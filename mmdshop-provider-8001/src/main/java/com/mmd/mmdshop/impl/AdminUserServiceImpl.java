@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mmd.mmdshop.dbdo.*;
 import com.mmd.mmdshop.mapper.AdminUserMapper;
+import com.mmd.mmdshop.mapper.ChangeTypeMapper;
 import com.mmd.mmdshop.result.AdminUserAll;
 import com.mmd.mmdshop.result.AdminUserLoginResult;
 import com.mmd.mmdshop.service.AdminUserService;
@@ -26,6 +27,8 @@ public class AdminUserServiceImpl implements AdminUserService {
 
 	@Autowired
 	private AdminUserMapper mapper;
+	@Autowired
+	private ChangeTypeMapper cmapper;
 	
 	@Override
 	public AdminUserLoginResult doLogin(int username, String password, String ip) {

@@ -15,8 +15,6 @@ public class SessionInterceptor implements HandlerInterceptor {
 		System.out.println("开始请求地址拦截"+request.getServletPath());
         HttpSession session = request.getSession(false);
         
-        System.out.println(session.getAttribute("userId"));
-        
         if (session != null && session.getAttribute("userId") != null) {
             return true;
         } else {

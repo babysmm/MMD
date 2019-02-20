@@ -36,4 +36,6 @@ public interface AdminUserMapper extends BaseMapper<AdminUserDO>{
 	 * @return	用户全部信息
 	 */
 	AdminUserAll getAdminUserAllByUsername(@Param("username")String username);
+	
+	
 }
