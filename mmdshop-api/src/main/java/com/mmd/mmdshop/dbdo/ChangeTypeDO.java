@@ -14,17 +14,23 @@ package com.mmd.mmdshop.dbdo;
 
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 /**
  * 变更(change_type)
  * 
  * @author QJH
  * @version 1.0.0 2019-02-19
  */
+@TableName("change_type")
 public class ChangeTypeDO implements java.io.Serializable {
     /** 版本号 */
     private static final long serialVersionUID = -2049950392095083621L;
     
     /** 变更ID */
+    @TableId(value="change_id",type=IdType.AUTO)
     private Integer changeId;
     
     /** 变更名字 */

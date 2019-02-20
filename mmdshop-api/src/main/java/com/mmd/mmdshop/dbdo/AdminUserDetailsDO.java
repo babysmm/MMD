@@ -55,7 +55,7 @@ public class AdminUserDetailsDO implements java.io.Serializable {
     private String fullName;
     
     /** 性别 */
-    private int sex;
+    private Integer sex;
     
     /** 生日 */
     private Date birthday;
