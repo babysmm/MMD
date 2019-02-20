@@ -3,21 +3,22 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mmd.mmdshop.mapper.AdminUserDetailsMapper">
+
 	<resultMap type="com.mmd.mmdshop.dbdo.AdminUserDetailsDO" id="AdminUserDetailsDO">
 		<id column="user_id" property="userId"/>
 		<result column="email" property="email"/>
-		<result column="cardId" property="card_id"/>
-		<result column="fullName" property="full_name"/>
+		<result column="card_id" property="cardId"/>
+		<result column="full_name" property="fullName"/>
 		<result column="sex" property="sex"/>
 		<result column="birthday" property="birthday"/>
-		<result column="registerTime" property="register_time"/>
-		<result column="lastIp" property="last_ip"/>
-		<result column="lastTime" property="last_time"/>
-		<result column="changeId" property="d_change_id"/>
-		<result column="changeTime" property="d_change_time"/>
-		<result column="changeUserId" property="d_change_user_id"/>
+		<result column="register_time" property="registerTime"/>
+		<result column="last_ip" property="lastIp"/>
+		<result column="last_time" property="lastTime"/>
+		<result column="d_change_id" property="changeId"/>
+		<result column="d_change_time" property="changeTime"/>
+		<result column="d_change_user_id" property="changeUserId"/>
 	</resultMap>
 	
-	
+
 </mapper>
  

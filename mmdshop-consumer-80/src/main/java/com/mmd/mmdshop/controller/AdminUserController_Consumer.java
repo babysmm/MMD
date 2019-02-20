@@ -2,15 +2,12 @@ package com.mmd.mmdshop.controller;
 
 import java.io.IOException;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
-import org.apache.ibatis.annotations.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
 import com.mmd.mmdshop.result.AdminUserAll;
 import com.mmd.mmdshop.result.AdminUserLoginResult;
 import com.mmd.mmdshop.vo.AdminUserLoginVO;

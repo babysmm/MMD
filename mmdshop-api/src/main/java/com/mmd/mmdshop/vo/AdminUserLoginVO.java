@@ -4,7 +4,8 @@ import java.io.IOException;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 
-import com.mmd.mmdshop.util.WebUtils;
+import com.mmd.mmdshop.utils.WebUtils;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
