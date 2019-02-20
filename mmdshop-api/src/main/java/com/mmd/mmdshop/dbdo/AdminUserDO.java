@@ -34,7 +34,7 @@ public class AdminUserDO implements java.io.Serializable {
     
     /** 用户ID */
     @TableId(value="user_id",type=IdType.AUTO)
-    private int userId;
+    private Integer userId;
     
     /** 用户名 */
     private Integer username;
@@ -43,13 +43,13 @@ public class AdminUserDO implements java.io.Serializable {
     private String password;
     
     /** 变更ID */
-    private int changeId;
+    private Integer changeId;
     
     /** 变更时间 */
     private Date changeTime;
     
     /** 变更用户ID */
-    private int changeUserId;
+    private Integer changeUserId;
     
     /**  */
     private String data1;

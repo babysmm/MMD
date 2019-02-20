@@ -3,6 +3,12 @@
 <head>
 	<title>11</title>
 	<link rel="stylesheet" href="./css/aUserManager.css">
+	<script type="text/javascript">
+		var changeType;
+		function setChangeType(result){
+			changeType = result;
+		}
+	</script>
 	<script  src="./js/jquery.min.js"></script>
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 </head>
@@ -28,15 +34,13 @@
 						<td><input type="text" name="password" placeholder="********" disabled="true" id="passwordInput"></td>
 					</tr>
 					<tr>
-						<td>修改时间</td>
+						<td>数据变更时间</td>
 						<td><input type="datetime-local" name="changeTime" disabled="disabled"></td>
 					</tr>
 					<tr>
-						<td>修改类型</td>
+						<td>数据变更类型</td>
 						<td>
-							<select disabled="true" name="changeId" title='select'>
-								 
-							</select>
+							<select disabled="true" name="changeId" title='select' class='chang'></select>
 						</td>
 					</tr>
 				</table>
@@ -86,15 +90,13 @@
         		    	<td><input type="datetime-local" name="lastTime" disabled="true"></td>
         		    </tr>
         		    <tr>
-        		    	<td>变更时间</td>
+        		    	<td>数据变更时间</td>
         		    	<td><input type="datetime-local" name="changeTime" disabled="true"></td>
         		    </tr>
         		    <tr>
-        		    	<td>修改类型</td>
+        		    	<td>数据变更类型</td>
 						<td>
-							<select disabled="true" name="changeId" title='select'>
-								 
-							</select>
+							<select disabled="true" name="changeId" title='select' class='chang'></select>
 						</td>
         		    </tr>
         		</table>
@@ -112,15 +114,13 @@
 						<td><input type="text" name="jurType"></td>
 					</tr>
 					<tr>
-						<td>变更时间</td>
+						<td>数据变更时间</td>
 						<td><input type="datetime-local" name="changeTime" disabled="true"></td>
 					</tr>
 					<tr>
-						<td>修改类型</td>
+						<td>数据变更类型</td>
 						<td>
-							<select disabled="true" name="changeId" title='select'>
-								 
-							</select>
+							<select disabled="true" name="changeId" title='select' class='chang'></select>
 						</td>
 					</tr>
 				</table>
@@ -130,4 +130,5 @@
 	</nav>
 </body>
 </html>
+<script src="./js/mmd.js"></script>
 <script src="./js/aUserManage.js"></script>

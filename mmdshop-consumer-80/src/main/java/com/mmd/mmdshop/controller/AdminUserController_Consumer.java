@@ -38,7 +38,9 @@ public class AdminUserController_Consumer {
 		
 		AdminUserLoginResult result = template.postForObject(ADMINUSERPROVIDER_URL+"/adminUserLogin", vo, AdminUserLoginResult.class);
 		
-		if(result == null)return null;
+		if(result == null) {
+			return null;
+		}
 		
 		request.getSession().setAttribute("userId", result.getUserId());
 		
