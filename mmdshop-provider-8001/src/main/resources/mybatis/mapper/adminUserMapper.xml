@@ -7,9 +7,9 @@
 		<id column="user_id" property="userId"/>
 		<result column="username" property="username"/>
 		<result column="password" property="password"/>
-		<result column="changeId" property="u_change_id"/>
-		<result column="changeTime" property="u_change_time"/>
-		<result column="changeUserId" property="u_change_user_id"/>
+		<result column="u_change_id" property="changeId"/>
+		<result column="u_change_time" property="changeTime"/>
+		<result column="u_change_user_id" property="changeUserId"/>
 	</resultMap>
 	
 	<resultMap type="com.mmd.mmdshop.result.AdminUserAll" id="AdminUserAll">
