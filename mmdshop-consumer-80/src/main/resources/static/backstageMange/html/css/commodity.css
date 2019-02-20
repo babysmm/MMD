@@ -1,0 +1,23 @@
+.treeUl{
+	list-style-type: none;
+}
+.treeUl li{
+	float: left;
+	
+}
+.treeUl li select{
+	padding: 5px 20px 5px 20px;
+	border-radius: 20px;
+}
+
+#mainsection{
+	clear: left;
+	padding: 1%;
+}
+#mainsection select{
+	padding: 1px 0 1px 5px;
+	border-radius: 20px;
+}
+#mainsection button{
+	width: 70px;
+}

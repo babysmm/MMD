@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mmd.mmdshop.mapper.AdminUserMapper">
+	<resultMap type="com.mmd.mmdshop.dbdo.AdminUserDO" id="AdminUserDO">
+		<id column="user_id" property="userId"/>
+		<result column="username" property="username"/>
+		<result column="password" property="password"/>
+		<result column="changeId" property="u_change_id"/>
+		<result column="changeTime" property="u_change_time"/>
+		<result column="changeUserId" property="u_change_user_id"/>
+	</resultMap>
+	
+	<resultMap type="com.mmd.mmdshop.result.AdminUserAll" id="AdminUserAll">
+		<association property="adminUserDO" resultMap="com.mmd.mmdshop.mapper.AdminUserMapper.AdminUserDO"></association>
+		<association property="adminUserDetailsDO" resultMap="com.mmd.mmdshop.mapper.AdminUserDetailsMapper.AdminUserDetailsDO"></association>
+		<association property="adminUserJurisdictionDO" resultMap="com.mmd.mmdshop.mapper.AdminUserJurisdictionMapper.AdminUserJurisdictionDO"></association>
+	</resultMap>
+	
+	<select id="getAdminUserAllByUsername" resultMap="AdminUserAll" parameterType="java.lang.String">
+		SELECT
+			u.user_id,
+			u.username,
+			u.change_id AS u_change_id,
+			u.change_time AS u_change_time,
+			u.change_user_id AS u_chang_user_id,
+			d.email,
+			d.card_id,
+			d.full_name,
+			d.sex,
+			d.birthday,
+			d.register_time,
+			d.last_ip,
+			d.last_time,
+			d.change_id AS d_change_id,
+			d.change_time AS d_change_time,
+			d.change_user_id AS d_change_user_id,
+			j.jur_type,
+			j.change_id AS j_change_id,
+			j.change_time AS j_chang_time,
+			j.change_user_id AS j_change_user_id
+		FROM
+			admin_user u
+		JOIN admin_user_details d ON u.user_id = d.user_id
+		JOIN admin_user_jurisdiction j ON u.user_id = d.user_id
+		WHERE
+			u.username = #{username}
+	</select>
+</mapper>
+ 

@@ -1,0 +1,48 @@
+button { /* 按钮美化 */
+	width: 270px; /* 宽度 */
+	height: 40px; /* 高度 */
+	border-width: 0px; /* 边框宽度 */
+	border-radius: 3px; /* 边框半径 */
+	background: #1E90FF; /* 背景颜色 */
+	cursor: pointer; /* 鼠标移入按钮范围时出现手势 */
+	outline: none; /* 不显示轮廓线 */
+	font-family: Microsoft YaHei; /* 设置字体 */
+	color: white; /* 字体颜色 */
+	font-size: 14px; /* 字体大小 */
+}
+button:hover { /* 鼠标移入按钮范围时改变颜色 */
+	background: #5599FF;
+}
+
+
+.section{
+	width: 100%;
+}
+.user-search-input{
+	margin: 20px 0 0 0;
+	padding: 0 20px 0 0;
+	border-radius: 4px;
+}
+.user-button{
+	text-align: center;
+}
+.user-table{
+	position: absolute;
+	left: 40%;
+	top: 20%;
+}
+.user-button button{
+	width: 100px;
+	margin: 5px 5px 10px 10px;
+}
+.user-section table tr td{
+	text-align: right;
+	color: #888;
+	font-weight: 600;
+}
+.user-section table tr :first-child{
+	margin: 0 0 0 10px;
+}
+.user-section table tr td{
+	padding: 10px 10px 0 0;
+}

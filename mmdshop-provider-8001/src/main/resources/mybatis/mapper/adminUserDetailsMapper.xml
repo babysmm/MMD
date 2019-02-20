@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mmd.mmdshop.mapper.AdminUserDetailsMapper">
+	<resultMap type="com.mmd.mmdshop.dbdo.AdminUserDetailsDO" id="AdminUserDetailsDO">
+		<id column="user_id" property="userId"/>
+		<result column="email" property="email"/>
+		<result column="cardId" property="card_id"/>
+		<result column="fullName" property="full_name"/>
+		<result column="sex" property="sex"/>
+		<result column="birthday" property="birthday"/>
+		<result column="registerTime" property="register_time"/>
+		<result column="lastIp" property="last_ip"/>
+		<result column="lastTime" property="last_time"/>
+		<result column="changeId" property="d_change_id"/>
+		<result column="changeTime" property="d_change_time"/>
+		<result column="changeUserId" property="d_change_user_id"/>
+	</resultMap>
+	
+	
+</mapper>
+ 

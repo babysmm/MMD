@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mmd.mmdshop.mapper.AdminUserJurisdictionMapper">
+	<resultMap type="com.mmd.mmdshop.dbdo.AdminUserJurisdictionDO" id="AdminUserJurisdictionDO">
+		<id column="user_id" property="userId"/>
+		<result column="jurType" property="jur_type"/>
+		<result column="changeId" property="j_change_id"/>
+		<result column="changeTime" property="j_change_time"/>
+		<result column="changeUserId" property="j_change_user_id"/>
+	</resultMap>
+</mapper>
+ 
