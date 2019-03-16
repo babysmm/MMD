@@ -373,11 +373,18 @@ function lengthVerify(name,val){
 	var lengths = val.length;
 	if(lengths >= min && max >= lengths){
 		switch(type){
-			case 'number':if(isNaN(val)){alert("不是数字")}return 0;
-			case 'email':if(!emailReg.test(val)){alert("不是邮件")}return 0;
+			case 'number':if(isNaN(val)){throw new DataError("不是数字");}return 0;
+			case 'email':if(!emailReg.test(val)){throw new DataError("不是邮件");}return 0;
 		}
 	}else{
-		$.myAlert("警告", cname+"错误", "red", 2000);
+		throw new DataError("输入框获取"+cname+"值错误");
+	}
+}
+
+class DataError extends Error {
+	constructor(message) {
+	    super(message); 
+	    this.name = "DataError";
 	}
 }
 
@@ -391,7 +398,8 @@ $.valM = function(a){
 	var result = lengthVerify(name,val);
 	
 	if(result != 0){
-		return null;
+		//return null;
+		throw new DataError("输入框获取值错误");
 	}
 	
 	return val;
