@@ -5,10 +5,10 @@
 <mapper namespace="com.mmd.mmdshop.mapper.AdminUserJurisdictionMapper">
 	<resultMap type="com.mmd.mmdshop.dbdo.AdminUserJurisdictionDO" id="AdminUserJurisdictionDO">
 		<id column="user_id" property="userId"/>
-		<result column="jurType" property="jur_type"/>
-		<result column="changeId" property="j_change_id"/>
-		<result column="changeTime" property="j_change_time"/>
-		<result column="changeUserId" property="j_change_user_id"/>
+		<result column="jur_type" property="jurType"/>
+		<result column="j_change_id" property="changeId"/>
+		<result column="j_chang_time" property="changeTime"/>
+		<result column="j_change_user_id" property="changeUserId"/>
 	</resultMap>
 </mapper>
  

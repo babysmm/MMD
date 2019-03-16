@@ -1,0 +1,83 @@
+html,body{
+	width: 100%;
+	margin: 0 auto;
+	font-size: 26px;
+	background-color: #F5F5F5;
+	font-family: '微软雅黑';
+}
+
+input{
+	-webkit-user-select:none;
+}
+button{
+	padding: 2px 16px;
+}
+.downICON{
+	width: 10px;
+	height: 10px;
+}
+
+.main-header{
+	width: 100%;
+}
+.main-header div{
+	width: 46%;
+	float: left;
+	font-size: .57000rem;
+	padding: 2%;
+}
+.main-section{
+	clear: both;
+	height: 100%;
+	margin-left: 2%;
+	margin-right: 2%;
+	overflow-y: auto;
+}
+.main-section div{
+	width: 100%;
+	margin-top: 0%;
+}
+.menuSection{
+	text-align: center;
+	display: none;
+}
+
+.menuHeader{
+	margin-top: 2%;
+}
+.menuHeader div{
+	padding:2% 0 2% 2%;
+	background-color:white;
+	font-size: .57000rem;
+}
+
+.searchInput{
+	padding:5px;
+}
+
+.changeFinal{
+	font-size: .57000rem;
+	margin-top: 1%;
+	margin-bottom: 3%;
+}
+.changeFinal table{
+	width: 100%;
+	margin-top: 5%;
+}
+.changeFinal table tr td{
+	width: 100%;
+}
+.changeFinal table tr td input{
+	padding: 5px;
+}
+.changeFinal table tr td:first-child{
+	width: 30%;
+	text-align: right;
+	padding-right: 3%;
+	padding-top: 10px;
+}
+.changeFinal table tr td:nth-child(2){
+	width: 70%;
+	text-align: left;
+	padding-top: 10px;
+}

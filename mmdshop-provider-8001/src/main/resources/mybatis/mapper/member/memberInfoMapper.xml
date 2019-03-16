@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mmd.mmdshop.mapper.member.MemberAddressMapper">
+<!--  
+	<resultMap type="com.mmd.mmdshop.dbdo.ChangeTypeDO" id="ChangeTypeDO">
+		<id column="user_id" property="userId"/>
+		<result column="name" property="name"/>
+		<result column="change_id" property="changeId"/>
+		<result column="change_time" property="changeTime"/>
+		<result column="change_user_id" property="changeUserId"/>
+	</resultMap>
+-->
+	<resultMap type="com.mmd.mmdshop.dbdo.MemberInfoDO" id="MemberInfoDO">
+		<id column="member_id" property="memberId"/>
+		<result column="phone_number" property="phoneNumber"/>
+		<result column="address_id" property="addressId"/>
+		<result column="grade" property="grade"/>
+		<result column="credit_line" property="creditLine"/>
+		<result column="mber_type" property="mberType"/>
+		<result column="register_time" property="registerTime"/>
+		<result column="last_ip" property="lastIp"/>
+		<result column="last_time" property="lastTime"/>
+		<result column="change_id" property="changeId"/>
+		<result column="change_time" property="changeTime"/>
+		<result column="change_user_id" property="changeUserId"/>
+		<result column="date1" property="date1"/>
+		<result column="date2" property="date2"/>
+		<result column="date3" property="date3"/>
+		<result column="date4" property="date4"/>
+		<result column="date5" property="date5"/>
+	</resultMap>
+</mapper>
+ 

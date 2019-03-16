@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mmd.mmdshop.mapper.order.OrderDeliveryMapper">
+<!--  
+	<resultMap type="com.mmd.mmdshop.dbdo.ChangeTypeDO" id="ChangeTypeDO">
+		<id column="user_id" property="userId"/>
+		<result column="name" property="name"/>
+		<result column="change_id" property="changeId"/>
+		<result column="change_time" property="changeTime"/>
+		<result column="change_user_id" property="changeUserId"/>
+	</resultMap>
+-->
+	<resultMap type="com.mmd.mmdshop.dbdo.OrderDeliveryDO" id="OrderDeliveryDO">
+		<id column="order_id" property="orderId"/>
+		<result column="start_time" property="name"/>
+		<result column="change_id" property="startTime"/>
+		<result column="end_time" property="endTime"/>
+		<result column="delivery_user_id" property="deliveryUserId"/>
+	</resultMap>
+</mapper>
+ 

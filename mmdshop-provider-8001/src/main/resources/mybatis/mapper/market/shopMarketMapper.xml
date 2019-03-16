@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mmd.mmdshop.mapper.market.ShopMarketMapper">
+	<resultMap type="com.mmd.mmdshop.dbdo.ShopMarketDO" id="ShopMarketDO">
+		<id column="market_order_id" property="marketOrderId"/>
+		<result column="creation_time" property="creationTime"/>
+		<result column="mode_type" property="modeType"/>
+		<result column="state" property="state"/>
+		<result column="comm_number" property="commNumber"/>
+		<result column="all_price" property="allPrice"/>
+		<result column="last_price" property="lastPrice"/>
+		<result column="over_price" property="overPrice"/>
+		<result column="debt_note" property="debtNote"/>
+		<result column="data1" property="data1"/>
+		<result column="data2" property="data2"/>
+		<result column="data3" property="data3"/>
+		<result column="data4" property="data4"/>
+		<result column="data5" property="data5"/>
+		<result column="change_time" property="changeTime"/>
+		<result column="change_type" property="changeType"/>
+		<result column="change_user_id" property="changeUserId"/>
+	</resultMap>
+	
+	<sql id="ShopMarket">
+		SELECT
+			sm.market_order_id,
+			sm.creation_time,
+			sm.mode_type,
+			sm.state,
+			sm.comm_number,
+			sm.all_price,
+			sm.last_price,
+			sm.over_price
+		FROM
+			shop_market AS sm
+		WHERE
+	</sql>
+	
+	<select id="getTodayShopMarket" resultType="com.mmd.mmdshop.dbdo.ShopMarketDO">
+		<include refid="ShopMarket"/>
+			date(sm.creation_time) = curdate();
+	</select>
+	<select id="getSevenDayShopMarket" resultType="com.mmd.mmdshop.dbdo.ShopMarketDO">
+		<include refid="ShopMarket"/>
+			DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+	</select>
+	<select id="getMouthShopMarket" resultType="com.mmd.mmdshop.dbdo.ShopMarketDO">
+		<include refid="ShopMarket"/>
+			DATE_FORMAT(sm.creation_time, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+	</select>
+	<select id="getShopMarket" resultType="com.mmd.mmdshop.dbdo.ShopMarketDO">
+		<include refid="ShopMarket"/>
+			sm.creation_time between #{start} and #{end};   
+	</select>
+</mapper>
+ 

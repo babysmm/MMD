@@ -8,14 +8,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 
-
+/**
+ * 
+ * @ClassName SessionInterceptor.java
+ * @author MM
+ * @version 2.0
+ * @date 2019/2/18
+ */
 public class SessionInterceptor implements HandlerInterceptor {
 
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		System.out.println("开始请求地址拦截"+request.getServletPath());
         HttpSession session = request.getSession(false);
         
-        System.out.println(session.getAttribute("userId"));
+        //System.out.println(session.getAttribute("userId"));
         
         if (session != null && session.getAttribute("userId") != null) {
             return true;

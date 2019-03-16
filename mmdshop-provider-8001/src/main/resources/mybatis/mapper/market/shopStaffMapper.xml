@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mmd.mmdshop.mapper.market.ShopStaffMappper">
+	<resultMap type="com.mmd.mmdshop.dbdo.ShopStaffDO" id="ShopStaffDO">
+		<id column="shop_staff_id" property="shopStaffId"/>
+		<result column="username" property="username"/>
+		<result column="password" property="password"/>
+		<result column="shop_id" property="shopId"/>
+		<result column="last_ip" property="lastIp"/>
+		<result column="change_time" property="changeTime"/>
+		<result column="change_type" property="changeType"/>
+		<result column="change_id" property="changeId"/>
+		<result column="full_name" property="fullName"/>
+		<result column="email" property="email"/>
+	</resultMap>
+	
+	<resultMap type="com.mmd.mmdshop.result.CommodityStaffRrsult" id="CommodityStaffRrsult">	
+		<association property="commodityDO" resultMap="com.mmd.mmdshop.mapper.commodity.CommodityMappper.CommodityDO"></association>
+		<association property="commodityTypeDO" resultMap="com.mmd.mmdshop.mapper.commodity.CommodityTypeMappper.CommodityTypeDO"></association>
+	</resultMap>
+	
+	<update id="setLastIpAndTimeById">
+		UPDATE shop_staff
+			SET last_ip = #{lastIp}
+		WHERE
+			shop_staff_id = #{id};
+	</update>
+	
+	<select id="getCommodityByBarCode" resultMap="CommodityStaffRrsult">
+		SELECT
+			c.commodity_id,
+			c.`name`,
+			ct.type,
+			c.market_price,
+			c.bar_code,
+			c.number,
+			c.retail_price,
+			c.trade_price
+		FROM
+			commodity AS c 
+			LEFT JOIN commodity_type AS ct ON c.comm_type_id = ct.comm_type_id
+		WHERE
+			c.bar_code = #{barCode};
+	</select>
+	
+	<insert id="insertShopStaff" parameterType="com.mmd.mmdshop.dbdo.ShopStaffDO">
+		INSERT INTO shop_staff (
+			shop_staff_id,username,password,shopId,lastIp,fullName,type,change_time
+		)VALUES(
+			Null,#{username},#{password},#{shop_id},#{last_ip},#{full_name},2,NOW()
+		);
+	</insert>
+	
+	<update id="upDataShopStaff" parameterType="com.mmd.mmdshop.dbdo.ShopStaffDO">
+		update shop_staff
+        <set>
+            <if test="username != null">username=#{username},</if>
+            <if test="fullName != null">full_name=#{fullName}</if>
+        </set>
+        where shop_staff_id=#{shop_staff_id};
+	</update>
+	
+	<select id="findEmail">
+		SELECT
+			ss.email
+		FROM
+			shop_staff AS ss
+		WHERE
+			ss.shop_staff_id = #{id}
+	</select>
+</mapper>
+ 

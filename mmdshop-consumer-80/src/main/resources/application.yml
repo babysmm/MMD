@@ -1,6 +1,23 @@
 server:
   port: 80
+  tomcat:
+    uri-encoding: UTF-8
+  
 spring:
  mvc:
   static-path-pattern: /**
+ http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
   
+  
+file_server_addr: 192.168.1.117:80
+max_storage_connection: 8
+fastdfs.connect_timeout_in_seconds: 10
+fastdfs.network_timeout_in_seconds: 30
+fastdfs.charset: UTF-8
+fastdfs.http_secret_key: HandFastDFSToken
+fastdfs.http_tracker_http_port: 80
+fastdfs.tracker_servers: 192.168.1.117:22122

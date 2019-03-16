@@ -1,14 +1,4 @@
-/*
- * Welcome to use the TableGo Tools.
- * 
- * http://vipbooks.iteye.com
- * http://blog.csdn.net/vipbooks
- * http://www.cnblogs.com/vipbooks
- * 
- * Author:bianj
- * Email:edinsker@163.com
- * Version:4.1.2
- */
+
 
 package com.mmd.mmdshop.dbdo;
 

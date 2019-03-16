@@ -1,5 +1,7 @@
 server:
   port: 8001
+  tomcat:
+    uri-encoding: UTF-8
  
 mybatis:
   config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
@@ -18,9 +20,9 @@ spring:
    application:
     name: mmdshop-provider 
    datasource:
-    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型useUnicode=true&characterEncoding=UTF-8
     driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
-    url: jdbc:mysql://localhost:3306/mmd_demo?allowMultiQueries=true              # 数据库名称
+    url: jdbc:mysql://localhost:3306/mmd_demo?allowMultiQueries=true&amp;useUnicode=true&characterEncoding=UTF-8              # 数据库名称
     username: root
     password: 123456
     dbcp2:
@@ -32,7 +34,13 @@ spring:
     test-on-borrow: false
     test-while-idle: true
     test-on-return: false
-    
+   http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+                
 logging:
   level:
     com.mmd.mmdshop.dao : debug
+   

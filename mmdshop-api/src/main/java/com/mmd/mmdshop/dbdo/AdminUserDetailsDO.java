@@ -1,23 +1,11 @@
-/*
- * Welcome to use the TableGo Tools.
- * 
- * http://vipbooks.iteye.com
- * http://blog.csdn.net/vipbooks
- * http://www.cnblogs.com/vipbooks
- * 
- * Author:bianj
- * Email:edinsker@163.com
- * Version:4.1.2
- */
+
 
 package com.mmd.mmdshop.dbdo;
 
 import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,7 +31,7 @@ public class AdminUserDetailsDO implements java.io.Serializable {
     
     /** 用户ID */
     @TableId(value="user_id",type=IdType.AUTO)
-    private String userId;
+    private Integer userId;
     
     /** 电子邮箱 */
     private String email;
@@ -76,7 +64,7 @@ public class AdminUserDetailsDO implements java.io.Serializable {
     private Date changeTime;
     
     /** 变更用户ID */
-    private String changeUserId;
+    private Integer changeUserId;
     
     /**  */
     private String date1;

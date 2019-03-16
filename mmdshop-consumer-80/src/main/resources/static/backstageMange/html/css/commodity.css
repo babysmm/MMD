@@ -1,23 +1,183 @@
-.treeUl{
-	list-style-type: none;
+body{
+	width: 100%;
+	height: 100%;
+	background-color: #F5F5F5;
 }
-.treeUl li{
-	float: left;
-	
-}
-.treeUl li select{
-	padding: 5px 20px 5px 20px;
-	border-radius: 20px;
+html{
+	width: 100%;
+	height: 100%;
 }
 
-#mainsection{
-	clear: left;
+.comm-header{
+	padding: 1% 0 0 0;
+}
+.comm-header button{
+	margin: 0 0.8% 0 0.8%;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+	padding: 1px;
+    text-decoration:none;  
+    background:#09c;  
+    color:white;  
+    padding: 7px 17px 7px 17px;  
+    font-size:12px;  
+    border-radius:10px;  
+    border: 0;
+}
+
+#commAnalysis,#goodAnalysis{
+	width: 42%;
+	padding: 2%;
+	margin: 2%;
+	color: #5F6E82;
+    font-weight: 400;
+    font-size: 14px;
+    background-color: white;
+    border-radius: 2px;
+}
+#commAnalysis header,#goodAnalysis header{
+	margin-bottom: 2%;
+}
+#commAnalysis header:first-child div,#goodAnalysis header:first-child div{
+	margin-bottom: 2%;
+}
+#commAnalysis{
+	float: left;
+}
+#goodAnalysis{
+	float: right;
+}
+
+#data1{
+	width: 100%;
+	height: 300px;
+}
+.dataTime{
+	font-size: 12px;
+}
+
+#comm-show header{
+	margin-top: 1%;
+}
+.b1{
+	margin-top:1%;
+	color: #1E90FF;
+}
+.comm-button{
+	display: inline-block;
+  display: inline;
+  padding: 6px 20px;
+  margin: 0;
+  cursor: pointer;
+  border: 1px solid #bbb;
+  overflow: visible;
+  font: bold 13px arial, helvetica, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+  color: #555;
+  
+  background-color: #ddd;
+  
+  background-image: -webkit-linear-gradient(top, rgba(255,255,255,1), rgba(255,255,255,0));
+  
+  -webkit-transition: background-color .2s ease-out;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 2px 2px -1px rgba(0, 0, 0, .5), 0 1px 0 rgba(255, 255, 255, .3) inset;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 2px 2px -1px rgba(0, 0, 0, .5), 0 1px 0 rgba(255, 255, 255, .3) inset;
+  text-shadow: 0 1px 0 rgba(255,255,255, .9);
+  
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.comm-o-button{
+	margin: 2%;
+	text-align: center;
+	background-color: white;
 	padding: 1%;
+	border-radius: 10px;
 }
-#mainsection select{
-	padding: 1px 0 1px 5px;
-	border-radius: 20px;
+#comm-message{
+	width: 100%;
 }
-#mainsection button{
-	width: 70px;
+.comm-img-div{
+	width: 80%;
+}
+.message form div{
+	margin: 2%;
+}
+.message form table{
+	width: 80%;
+	margin: 2%;
+}
+.message form table tr td{
+	padding: 1% 0 1% 2%;
+}
+.message form table :first-child{
+	width: 40%;
+	text-align: right;
+	font-size: 13px;
+	color: #696969;
+}
+.message form table :nth-child(2){
+	width: 60%;
+	text-align: left;
+}
+.message form table :nth-child(2) input{
+	width: 50%;
+	font-size: 13px;
+	padding: 1%;
+	text-align: left;
+}
+.comm-img{
+	width: 19%;
+}
+
+.serachTable{
+	margin: 1%;
+	padding: 1%;
+	width:46%;
+	
+	text-align: left;
+	background-color: white;
+	border-radius: 10px;
+}
+
+table.searchResult {
+	margin:0 auto;
+	width:80%;
+	height:40px;
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+	text-align: center;
+	margin-top: 2%;
+}
+table.searchResult th {
+	background:#b5cfd2;
+	border-width: 1px;
+	padding: 2px;
+	border-style: solid;
+	border-color: #999999;
+}
+table.searchResult td {
+	background:#dcddc0;
+	border-width: 1px;
+	padding: 2px;
+	border-style: solid;
+	border-color: #999999;
+}
+
+#brand-search-div{
+	margin: 0 auto;
+}
+
+#shopFrom{
+	padding: 2%;
+}
+#shopFrom div{
+	padding: 2% 2% 0 0;
 }

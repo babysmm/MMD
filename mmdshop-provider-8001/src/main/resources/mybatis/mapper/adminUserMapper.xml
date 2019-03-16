@@ -7,9 +7,9 @@
 		<id column="user_id" property="userId"/>
 		<result column="username" property="username"/>
 		<result column="password" property="password"/>
-		<result column="changeId" property="u_change_id"/>
-		<result column="changeTime" property="u_change_time"/>
-		<result column="changeUserId" property="u_change_user_id"/>
+		<result column="u_change_id" property="changeId"/>
+		<result column="u_change_time" property="changeTime"/>
+		<result column="u_change_user_id" property="changeUserId"/>
 	</resultMap>
 	
 	<resultMap type="com.mmd.mmdshop.result.AdminUserAll" id="AdminUserAll">
@@ -42,10 +42,89 @@
 			j.change_user_id AS j_change_user_id
 		FROM
 			admin_user u
-		JOIN admin_user_details d ON u.user_id = d.user_id
-		JOIN admin_user_jurisdiction j ON u.user_id = d.user_id
+		JOIN admin_user_details d ON d.user_id = u.user_id
+		JOIN admin_user_jurisdiction j ON j.user_id = u.user_id
 		WHERE
 			u.username = #{username}
 	</select>
+	
+	<insert id="insertAdminUser" useGeneratedKeys="true"  keyColumn="user_id" keyProperty="userId"
+								 parameterType="com.mmd.mmdshop.dbdo.AdminUserDO"  >
+		INSERT INTO 
+			admin_user(user_id,username,`password`,change_id,change_time,change_user_id) 
+		VALUES
+			(Null,#{username},#{password},1,NOW(),#{changeUserId});
+	</insert>
+	
+	<insert id="insertAdminUserDetailAndJur" parameterType="com.mmd.mmdshop.result.AdminUserAll">
+		 INSERT INTO admin_user_details (
+			user_id,
+			email,
+			card_id,
+			full_name,
+			sex,
+			birthday,
+			register_time,
+			change_id,
+			change_time,
+			change_user_id
+		)VALUES(
+			#{adminUserDetailsDO.userId},
+			#{adminUserDetailsDO.email},
+			#{adminUserDetailsDO.cardId},
+			#{adminUserDetailsDO.fullName},
+			#{adminUserDetailsDO.sex},
+			#{adminUserDetailsDO.birthday},
+			NOW(),
+			1,
+			NOW(),
+			#{adminUserDetailsDO.changeUserId}
+		);
+		INSERT INTO admin_user_jurisdiction (
+			user_id,
+			jur_type,
+			change_id,
+			change_time,
+			change_user_id
+		)VALUES(
+			#{adminUserJurisdictionDO.userId},
+			#{adminUserJurisdictionDO.jurType},
+			1,
+			NOW(),
+			#{adminUserJurisdictionDO.changeUserId}
+		)
+	</insert>
+	
+	<update id="upDataAdminUserAll" parameterType="com.mmd.mmdshop.result.AdminUserAll">
+		update admin_user
+        <set>
+            <if test="adminUserDO.username != null">username=#{adminUserDO.username},</if>
+            <if test="adminUserDO.password != null">password=#adminUserDO.password}</if>
+        </set>
+        where user_id=#{adminUserDO.userId};
+        
+        update admin_user_details
+        <set>
+            <if test="adminUserDetailsDO.email != null">email=#{adminUserDetailsDO.email},</if>
+            <if test="adminUserDetailsDO.cardId != null">card_id=#{adminUserDetailsDO.cardId},</if>
+            <if test="adminUserDetailsDO.fullName != null">full_name=#{adminUserDetailsDO.fullName},</if>
+            <if test="adminUserDetailsDO.sex != null">sex=#{adminUserDetailsDO.sex},</if>
+            <if test="adminUserDetailsDO.birthday != null">birthday=#{adminUserDetailsDO.birthday}</if>
+        </set>
+        where user_id=#{adminUserDO.userId};
+        
+        update admin_user_jurisdiction
+        <set>
+            <if test="adminUserJurisdictionDO.jurType != null">jur_type=#{adminUserJurisdictionDO.jurType}</if>
+        </set>
+        where user_id=#{adminUserDO.userId};
+        
+	</update>
+	
+	<delete id="deleteAdminUserAllByUserId" parameterType="java.lang.Integer">
+		delete from admin_user where user_id = #{userId};
+		delete from admin_user_details where user_id = #{userId};
+		delete from admin_user_jurisdiction where user_id = #{userId};
+	</delete>
 </mapper>
  

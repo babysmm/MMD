@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mmd.mmdshop.mapper.market.MarketOrderCommMappper">
+	<resultMap type="com.mmd.mmdshop.dbdo.MarketOrderCommDO" id="MarketOrderCommDO">
+		<id column="market_comm_id" property="marketOrderCommId"/>
+		<result column="market_order_id" property="marketOrderCommId"/>
+		<result column="bar_code" property="barCode"/>
+		<result column="number" property="number"/>
+		<result column="price_show" property="priceShow"/>
+		<result column="total_prices" property="totalPrices"/>
+		<result column="commodity_id" property="commodityId"/>
+		<result column="data3" property="data3"/>
+		<result column="data4" property="data4"/>
+		<result column="data5" property="data5"/>
+	</resultMap>
+	
+	<insert id="insertMarketOrderComm" useGeneratedKeys="false">
+    			insert into market_order_comm
+    				(market_comm_id,market_order_id,bar_code,number,price_show,total_prices,commodity_id)
+    			values
+    			<foreach collection="list" item="item" index="index" separator=",">
+    				(
+    					Null,
+    					#{id},
+    					#{item.barCode},
+    					#{item.number},
+    					#{item.priceShow},
+    					#{item.totalPrices},
+    					#{item.commodityId}
+    				)
+    		     </foreach>		
+    </insert>  
+    
+    <update id="updateState">
+    	UPDATE shop_market SET state = 2 WHERE market_order_id = #{id};
+    </update>  
+</mapper>
+ 

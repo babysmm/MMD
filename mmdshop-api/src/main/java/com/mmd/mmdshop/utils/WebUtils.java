@@ -1,6 +1,8 @@
 package com.mmd.mmdshop.utils;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -40,4 +42,16 @@ public class WebUtils {
         }
         return ip;
     }
+	
+	public boolean isValidDate(String str) {
+	      boolean convertSuccess=true;
+	       SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	       try {
+	          format.setLenient(false);
+	          format.parse(str);
+	       } catch (ParseException e) {
+	           convertSuccess=false;
+	       } 
+	       return convertSuccess;
+	}
 }

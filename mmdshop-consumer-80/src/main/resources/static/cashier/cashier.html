@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MMD收银系统</title>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  	<link rel="stylesheet" href="./cashier.css">
+
+  	<link rel="stylesheet" href="../backstageMange/html/dist/jBox.all.css">
+	<link rel="stylesheet" href="../backstageMange/html/Playground/Playground.Avatars.css">
+	<link rel="stylesheet" href="../backstageMange/html/Playground/Playground.Login.css">
+	<script  src="../backstageMange/html/js/jquery.min.js"></script>
+</head>
+<body>
+	<header class="m-header">
+		<table>
+			<tr>
+				<td>MMD前台收银系统</td>
+				<td style='width:5%'>消息<div>12</div></td>
+				<td id='cashierName'> </td>
+			</tr>
+		</table>
+	</header>
+	<section class="m-section">
+		<div id="arrears-div">
+			<div class="arrears-header" onclick="arrearsShows()">欠账记录</div>
+			<section style="display: none" class="arrearsShow">
+				<div>
+					<div class="arrears-from">
+					<!-- 
+						<div>欠账时间:&nbsp;<input type="data" name=""></div>
+						<div>欠账金额:&nbsp;<input type="number" name=""></div>
+						<div>欠账备注:&nbsp;<input type="text" name=""></div>
+						<div><button class="arrears-over">欠账已还</button></div>
+					 -->
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="commodity-input-header" style='display:none'>
+			<table>
+				<tr>
+					<td>
+						条形码:&nbsp;&nbsp;<input type="text" name="barCode" id='barCode'>
+					</td>
+					<td>
+						数量:&nbsp;&nbsp;<input type="text" name="commdoityNumber">&nbsp;&nbsp;个
+					</td>
+					<td>
+						单价:&nbsp;&nbsp;<input type="text" name="commodityPrice">&nbsp;&nbsp;元
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<table class="commodity-buy-show">
+				<tr>
+					<th style="width: 20%;">商品条形码</th>
+					<th style="width: 20%;">商品名称</th>
+					<th style="width: 10%;">商品数量</th>
+					<th style="width: 10%;">商品类型</th>
+					<th style="width: 10%;">商品库存</th>
+					<th style="width: 10%;">删除</th>
+				</tr>
+				<!--  
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td style="text-align: center"><button class="delect-commodity"></button></td>
+				</tr>
+				-->
+			</table>
+		</div>
+		<div>
+			<table class="over-table">
+				<tr>
+					<td><button style="background: #3CB371;" id='closeAnAccount'>结算(=)</button></td>
+					<!--  <td><button style="background: orange;" id='payment'>付款(N)</button></td>-->
+					<!--  <td><button style="background: #00CED1;">完成订单(O)</button></td>-->
+					<td><button style="background: #CD5C5C;display:none" id='billsDue'>欠账</button></td>
+					<td class="mode">
+						<button onclick="modeType(this,'retail')" id='modeL'>零售模式(L)</button>
+						<button onclick="modeType(this,'wholesale')" id='modeP'>批发模式(P)</button>
+					</td>
+				</tr>
+			</table>
+			<table class="price-show" style='display:none'>
+				<tr>
+					<td>共计:<b class="all-price" id='totalPrice'>&nbsp;&nbsp;</b>元</td>
+					<td>清除小数后:<input type="" name="" class="last-price" id='removeDecimal'></b>元</td>
+					<td>付款金额:<input type="" name="" class="last-price" id='priceMemory'></td>
+					<td>找零金额:<b class="all-price" id='giveChange'>&nbsp;&nbsp;</b>元</td>
+				</tr>
+				<tr style="margin-top:4px;">
+					
+				</tr>
+			</table>
+		</div>
+		<div><audio controls="controls" src="" id='audis' style="display:none"/></div>
+	</section>
+</body>
+</html>
+<script src="../backstageMange/html/dist/jBox.all.js"></script>
+<script src="../backstageMange/html/Playground/Playground.Avatars.js"></script>
+<script src="../backstageMange/html/Playground/Playground.Login.js"></script>
+<script src="../backstageMange/html/js/qiniu.min.js"></script>
+<script src="../backstageMange/html/js/mmd.js"></script>
+<script src="./cashier.js"></script>

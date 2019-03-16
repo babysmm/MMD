@@ -3,15 +3,16 @@ html{
 }
 
 .b1{
+	margin-top:1%;
 	color: #1E90FF;
 }
 
-.a-header{
+.a-header , .rsButton{
 	width: 100%;
 	margin-top: 1%;
 }
-.a-header input{
-	margin: 0 2% 0 2%;
+.a-header input , .rsButton button{
+	margin: 0 0.8% 0 0.8%;
 	text-shadow: 0 1px 0 rgba(0,0,0,.2);
 	padding: 1px;
     text-decoration:none;  
@@ -32,23 +33,28 @@ html{
 .a-header input:first-child{
 	margin: 0;
 }
-
+.leftSection nav{
+	margin:2% 2% 0 0;
+}
+.leftSection nav div{
+	margin-top:2% 2% 0 0;
+}
 .set-n{
-	width: 40%;
+	width: 80%;
+	margin-left:10%;
 	background-color: #F5F5F5;
 	text-align: center;
 	padding: 1%;
 	border-radius: 10px;
-	margin: 1%;
 }
 .set-n nav{
-	margin: 1% 1% 0 0;
+	margin: 2% 2% 0 0;
 }
 .set-n table tr{
 	margin: 5px 5px 0 0;
 }
 .set-n table tr td:first-child{
-	width:30%;
+	width:38%;
 	text-align: right;
 	padding-right: 10px;
 	font-size: 10%;
@@ -56,4 +62,31 @@ html{
 .set-n table tr input{
 	padding:5px;
 	width:200px;
+}
+
+
+table.changeTypeTable {
+	margin:0 auto;
+	width:60%;
+	height:50px;
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+table.changeTypeTable th {
+	background:#b5cfd2;
+	border-width: 1px;
+	padding: 2px;
+	border-style: solid;
+	border-color: #999999;
+}
+table.changeTypeTable td {
+	background:#dcddc0;
+	border-width: 1px;
+	padding: 2px;
+	border-style: solid;
+	border-color: #999999;
 }

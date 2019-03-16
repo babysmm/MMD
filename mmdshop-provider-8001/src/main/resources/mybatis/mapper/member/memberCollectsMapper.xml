@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mmd.mmdshop.mapper.member.MemberCollectsMapper">
+<!--  
+	<resultMap type="com.mmd.mmdshop.dbdo.ChangeTypeDO" id="ChangeTypeDO">
+		<id column="user_id" property="userId"/>
+		<result column="name" property="name"/>
+		<result column="change_id" property="changeId"/>
+		<result column="change_time" property="changeTime"/>
+		<result column="change_user_id" property="changeUserId"/>
+	</resultMap>
+-->
+	<resultMap type="com.mmd.mmdshop.dbdo.MemberCollectsDO" id="MemberCollectsDO">
+		<id column="member_id" property="memberId"/>
+		<result column="collect_commodity_id" property="collectCommodityId"/>
+		<result column="evaluate_commodity_id" property="evaluateCommodityId"/>
+		<result column="record_commodity_id" property="recordCommodityId"/>
+		<result column="change_id" property="changeId"/>
+		<result column="change_time" property="changeTime"/>
+		<result column="change_user_id" property="changeUserId"/>
+		<result column="date1" property="date1"/>
+		<result column="date2" property="date2"/>
+		<result column="date3" property="date3"/>
+		<result column="date4" property="date4"/>
+		<result column="date5" property="date5"/>
+	</resultMap>
+</mapper>
+ 
