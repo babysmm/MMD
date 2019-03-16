@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function commButt(that, name) {
 	$(".comm-header button").css("background-color", "#09c");
 	$(that).css("background-color", "#0099FF");
@@ -145,3 +146,8 @@ function upfile(file,key,token) {
 	//subscription.unsubscribe(); // 上传取消
 }
 
+=======
+ var param = window.paramFromParent;
+    var inputObject =  document.getElementsByTagName('input')[0];
+    inputObject.value = param;
+>>>>>>> d7e69f43594d178de4114880955737a167083d98

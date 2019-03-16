@@ -11,11 +11,19 @@
 	
 	<link rel="stylesheet" href="./css/aUserManager.css">
 	<script type="text/javascript">
+<<<<<<< HEAD
+=======
+		var changeType;
+		function setChangeType(result){
+			changeType = result;
+		}
+>>>>>>> d7e69f43594d178de4114880955737a167083d98
 	</script>
 	<script  src="./js/jquery.min.js"></script>
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 </head>
 <body>
+<<<<<<< HEAD
 
 		<div>
 			<div style='width:50%;float:left;' class='leftSection'>
@@ -160,8 +168,129 @@
 		<script src="./dist/jBox.all.js"></script>
 		<script src="./Playground/Playground.Avatars.js"></script>
 		<script src="./Playground/Playground.Login.js"></script>
+=======
+	<header class="a-header">
+		<input type="text" name="search" placeholder="输入用户姓名" id="usernameInput">
+		<input type="button" name="" value="搜索" style='margin:0' id="search">
+		<input type="button" name="" value="保存" id="udUser">
+		<input type="button" name="" value="清空表单新增用户" id="newUser">
+		<input type="button" name="" value="删除用户" id="delUser">
+	</header>
+	<nav>
+		<div><b class="b1">|</b> 后台用户基本信息</div>
+		<form id='userFrom'>
+			<section class="set-n">
+				<table style="width:100%;text-align: left;">
+					<tr>
+						<td>用户名</td>
+						<td><input type="text" name="username" placeholder="用户名"></td>
+					</tr>
+					<tr>
+						<td>密码</td>
+						<td><input type="text" name="password" placeholder="********" disabled="true" id="passwordInput"></td>
+					</tr>
+					<tr>
+						<td>数据变更时间</td>
+						<td><input type="datetime-local" name="changeTime" disabled="disabled"></td>
+					</tr>
+					<tr>
+						<td>数据变更类型</td>
+						<td>
+							<select disabled="true" name="changeId" title='select' class='chang'></select>
+						</td>
+					</tr>
+				</table>
+			</section>
+		</form>
+	</nav>
+	<nav>
+		<div><b class="b1">|</b> 后台用户详细信息</div>
+        <form id="userDetFrom">
+        	<section class="set-n">
+        		<table style="width: 100%;text-align: left;">
+        			<tr>
+        				<td>用户全名</td>
+        				<td><input type="text" name="fullName" placeholder="用户全名"></td>
+        			</tr>
+        			<tr>
+        				<td>电子邮箱</td>
+        				<td><input type="text" name="email" placeholder="@***.com"></td>
+        			</tr>
+        			<tr>
+        			    <td>身份证</td>
+        			    <td><input type="text" name="cardId" placeholder="18位"></td>
+        		    </tr>
+        		    <tr>
+        		    	<td>性别</td>
+        		    	<td>
+        		    		<select name="sex" title='select'>
+        		    		      <option value="1">男</option>
+        		    		      <option value="2">女</option>
+        		            </select>
+        		        </td>
+        		    </tr>
+        		    <tr>
+        		    	<td>生日</td>
+        		    	<td><input type="date" name="birthday"></td>
+        		    </tr>
+        		    <tr>
+        		    	<td>注册时间</td>
+        		    	<td><input type="datetime-local" name="registerTime" disabled="true"></td>
+        		    </tr>
+        		    <tr>
+        		    	<td>最后一次登录IP</td>
+        		    	<td><input type="text" name="lastIp" disabled="true"></td>
+        		    </tr>
+        		    <tr>
+        		    	<td>最后一次登陆时间</td>
+        		    	<td><input type="datetime-local" name="lastTime" disabled="true"></td>
+        		    </tr>
+        		    <tr>
+        		    	<td>数据变更时间</td>
+        		    	<td><input type="datetime-local" name="changeTime" disabled="true"></td>
+        		    </tr>
+        		    <tr>
+        		    	<td>数据变更类型</td>
+						<td>
+							<select disabled="true" name="changeId" title='select' class='chang'></select>
+						</td>
+        		    </tr>
+        		</table>
+        		
+        	</section>
+        </form>
+
+	</nav><nav>
+		<div><b class="b1">|</b> 后台用户权限信息</div>
+		<form id="userJurFrom">
+			<section class="set-n">
+				<table style="width: 100%;text-align: left;">
+					<tr>
+						<td>权限类型</td>
+						<td><input type="text" name="jurType"></td>
+					</tr>
+					<tr>
+						<td>数据变更时间</td>
+						<td><input type="datetime-local" name="changeTime" disabled="true"></td>
+					</tr>
+					<tr>
+						<td>数据变更类型</td>
+						<td>
+							<select disabled="true" name="changeId" title='select' class='chang'></select>
+						</td>
+					</tr>
+				</table>
+			</section>
+		</form>
+>>>>>>> d7e69f43594d178de4114880955737a167083d98
 		
 		<script src="./js/mmd.js"></script>
 		<script src="./js/aUserManage.js"></script>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+<script src="./js/mmd.js"></script>
+<script src="./js/aUserManage.js"></script>
+>>>>>>> d7e69f43594d178de4114880955737a167083d98

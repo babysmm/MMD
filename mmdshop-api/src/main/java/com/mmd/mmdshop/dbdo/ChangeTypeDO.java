@@ -6,6 +6,7 @@ import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+<<<<<<< HEAD
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import lombok.AllArgsConstructor;
@@ -13,6 +14,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+=======
+import com.baomidou.mybatisplus.annotation.TableName;
+>>>>>>> d7e69f43594d178de4114880955737a167083d98
 
 /**
  * 变更(change_type)
@@ -20,11 +24,14 @@ import lombok.experimental.Accessors;
  * @author QJH
  * @version 1.0.0 2019-02-19
  */
+<<<<<<< HEAD
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Accessors(chain=true)
 @ToString
+=======
+>>>>>>> d7e69f43594d178de4114880955737a167083d98
 @TableName("change_type")
 public class ChangeTypeDO implements java.io.Serializable {
     /** 版本号 */

@@ -6,11 +6,18 @@ window.onload = function() {
 	ct = JSON.parse(changeType);
 	
 	//alert(ct)
+<<<<<<< HEAD
 	$("#fullName").text("欢迎您\xa0\xa0\xa0"+ct+"\xa0\xa0\xa0MMD提醒你:代码千万条,规范第一条,代码不规范,后人两行泪"); 
 	
 	$.post("/consumer/findChangeType",function(result){
 		if(result != null && result.length != 0){
 			//console.log(result)
+=======
+	$("#fullName").text("欢迎您\xa0\xa0\xa0"+ct+"\xa0\xa0\xa0MMD提醒你:代码千万条,规范第一条,代码不规范,亲人两行泪"); 
+	
+	$.post("/consumer/findAllChangeType",function(result){
+		if(result != null && result.length != 0){
+>>>>>>> d7e69f43594d178de4114880955737a167083d98
 			sessionStorage.setItem('changeType', JSON.stringify(result));
 		}else{
 				alert("错误");

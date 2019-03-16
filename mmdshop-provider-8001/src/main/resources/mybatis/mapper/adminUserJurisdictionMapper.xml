@@ -7,7 +7,11 @@
 		<id column="user_id" property="userId"/>
 		<result column="jur_type" property="jurType"/>
 		<result column="j_change_id" property="changeId"/>
+<<<<<<< HEAD
 		<result column="j_chang_time" property="changeTime"/>
+=======
+		<result column="j_change_time" property="changeTime"/>
+>>>>>>> d7e69f43594d178de4114880955737a167083d98
 		<result column="j_change_user_id" property="changeUserId"/>
 	</resultMap>
 </mapper>

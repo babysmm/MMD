@@ -27,7 +27,7 @@ public class AdminUserLoginVO {
 	/**
 	 * 用户名
 	 */
-	private int username;
+	private Integer username;
 	/**
 	 * 密码
 	 */

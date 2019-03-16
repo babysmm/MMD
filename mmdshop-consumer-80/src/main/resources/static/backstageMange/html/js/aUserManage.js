@@ -1,11 +1,15 @@
 /**
  	* 获取sessionStorage中存储的changeType，给class为chang的select复选框进行加选项
+<<<<<<< HEAD
 
+=======
+>>>>>>> d7e69f43594d178de4114880955737a167083d98
 */
 window.onload = function() {
 	var changeType = sessionStorage.getItem('changeType');
 	ct = JSON.parse(changeType);
 	//console.log(ct); // => tom
+<<<<<<< HEAD
 	if(ct == null){
 		
 	}else{
@@ -18,6 +22,13 @@ window.onload = function() {
  * 搜索用户
  * @returns
  */
+=======
+	$.each(ct, function(i, item){ 
+		$(".chang").append($("<option/>").text(item.name).attr("value",item.changeId));
+	}); 
+}
+
+>>>>>>> d7e69f43594d178de4114880955737a167083d98
 $("#search").click(function(){
 	$.post("/consumer/findAdminUserAll",{'username':$("#usernameInput").val()},function(result){
 		if(result != null && result.length != 0){
@@ -137,6 +148,7 @@ $("#udUser").click(function(){
 	}
 });
 
+<<<<<<< HEAD
 $("#findChangeTypeButton").click(function(){
 	$.postData("/consumer/findChangeTypeAll",null,function(result){
 		$('.changeTypeTable tr:gt(0)').remove();
@@ -246,3 +258,8 @@ function myAlert(t,c,color,time){
 	    closeButton: true
 	  });
 }
+=======
+$("#newPassword").click(function(){
+	$("#passwordInput").removeAttr("disabled");
+});
+>>>>>>> d7e69f43594d178de4114880955737a167083d98

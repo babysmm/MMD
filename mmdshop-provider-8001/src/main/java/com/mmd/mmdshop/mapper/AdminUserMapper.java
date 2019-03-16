@@ -75,5 +75,11 @@ public interface AdminUserMapper extends BaseMapper<AdminUserDO> {
 	 * @param userId
 	 * @return
 	 */
+<<<<<<< HEAD
 	boolean deleteAdminUserAllByUserId(@Param("userId")Integer userId);
+=======
+	AdminUserAll getAdminUserAllByUsername(@Param("username")String username);
+	
+	
+>>>>>>> d7e69f43594d178de4114880955737a167083d98
 }

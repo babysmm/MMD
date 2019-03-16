@@ -1,12 +1,12 @@
 package com.mmd.mmdshop.controller;
 
 import org.slf4j.Logger;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.mmd.mmdshop.result.AdminUserAll;
 import com.mmd.mmdshop.result.AdminUserLoginResult;
 import com.mmd.mmdshop.service.AdminUserService;
@@ -24,18 +24,17 @@ public class AdminUserController{
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
-	private AdminUserService service;
+	private AdminUserService adminUserservice;
 	
 
 	@PostMapping("/provider/adminUserLogin")
 	public AdminUserLoginResult adminUserLogin(@RequestBody AdminUserLoginVO vo) {
-		logger.info(vo.toString());
-		return service.doLogin(vo.getUsername(), vo.getPassword(), vo.getLastIp());
+		return adminUserservice.doLogin(vo.getUsername(), vo.getPassword(), vo.getLastIp());
 	}
 	
 	@PostMapping("/provider/findAdminUserAll")
 	public AdminUserAll findUserAllZ(@RequestBody String username) {
-		return service.findAdminUserAllByUsername(username);
+		return adminUserservice.findAdminUserAllByUsername(username);
 	}
 	
 	@PostMapping("/provider/newAdminUser")

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mmd.mmdshop.service.AdminUserJurisdictionService;
+<<<<<<< HEAD
 
 /**
  * 
@@ -15,5 +16,16 @@ import com.mmd.mmdshop.service.AdminUserJurisdictionService;
 @Transactional(timeout=10)
 @Service
 public class AdminUserJurisdictionImpl  implements AdminUserJurisdictionService{
+=======
+/**
+ * 
+ * @author QJH
+ *
+ */
+public class AdminUserJurisdictionImpl  implements AdminUserJurisdictionService{
+
+	
+
+>>>>>>> d7e69f43594d178de4114880955737a167083d98
 	
 }

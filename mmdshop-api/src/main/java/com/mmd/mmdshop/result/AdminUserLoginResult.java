@@ -1,5 +1,9 @@
 package com.mmd.mmdshop.result;
 
+import java.util.List;
+
+import com.mmd.mmdshop.dbdo.ChangeTypeDO;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,4 +36,10 @@ public class AdminUserLoginResult {
 	 * 用户权限
 	 */
 	private int userjurisdiction;
+	
+	/**
+	 * 修改类型
+	 */
+	private List<ChangeTypeDO> changeTypeDOList;
+	
 }

@@ -8,7 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestBody;
+=======
+>>>>>>> d7e69f43594d178de4114880955737a167083d98
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import com.mmd.mmdshop.result.AdminUserAll;
@@ -53,6 +56,7 @@ public class AdminUserController_Consumer {
 		}
 		// 加入IP
 		vo.setLastIP(request);
+<<<<<<< HEAD
 		// 获取服务提供者返回信息
 		AdminUserLoginResult result = template.postForObject(ADMINUSERPROVIDER_URL + "/adminUserLogin", vo,
 				AdminUserLoginResult.class);
@@ -61,6 +65,17 @@ public class AdminUserController_Consumer {
 			return null;
 		}
 		// 设置session
+=======
+		
+		logger.info(vo.toString());
+		
+		AdminUserLoginResult result = template.postForObject(ADMINUSERPROVIDER_URL+"/adminUserLogin", vo, AdminUserLoginResult.class);
+		
+		if(result == null) {
+			return null;
+		}
+		
+>>>>>>> d7e69f43594d178de4114880955737a167083d98
 		request.getSession().setAttribute("userId", result.getUserId());
 
 		return result.getFullName();
