@@ -50,7 +50,7 @@ public class ShopStaffController {
 	 * @return
 	 */
 	@PostMapping("/provider/findShopStaffByfullName")
-	public ShopStaffDO findShopStaffByfullName(String fullName) {
+	public ShopStaffDO findShopStaffByfullName(@RequestBody String fullName) {
 		return service.findShopStaffByfullName(fullName);
 	}
 	
@@ -60,7 +60,7 @@ public class ShopStaffController {
 	 * @return
 	 */
 	@PostMapping("/provider/findShopStaffByusername")
-	public ShopStaffDO findShopStaffByusername(String username) {
+	public ShopStaffDO findShopStaffByusername(@RequestBody String username) {
 		return service.findShopStaffByusername(username);
 	}
 	
@@ -70,7 +70,7 @@ public class ShopStaffController {
 	 * @return
 	 */
 	@PostMapping("/provider/addShopStaff")
-	public boolean addShopStaff(ShopStaffDO shopStaffDO) {
+	public boolean addShopStaff(@RequestBody ShopStaffDO shopStaffDO) {
 		return service.addShopStaff(shopStaffDO);
 	}
 	
@@ -80,7 +80,7 @@ public class ShopStaffController {
 	 * @return
 	 */
 	@PostMapping("/provider/modifyShopStaff")
-	public boolean modifyShopStaff(ShopStaffDO shopStaffDO) {
+	public boolean modifyShopStaff(@RequestBody ShopStaffDO shopStaffDO) {
 		return service.modifyShopStaff(shopStaffDO);
 	}
 	
@@ -90,7 +90,7 @@ public class ShopStaffController {
 	 * @return
 	 */
 	@PostMapping("/provider/removeShopStaff")
-	public int removeShopStaff(ShopStaffDO shopStaffDO) {
+	public int removeShopStaff(@RequestBody ShopStaffDO shopStaffDO) {
 		return service.removeShopStaff(shopStaffDO);
 	}
 	
@@ -100,7 +100,7 @@ public class ShopStaffController {
 	 * @return
 	 */
 	@PostMapping("/consumer/sendEmailCode")
-	public Integer sendEmailCode(Integer userId) {
+	public Integer sendEmailCode(@RequestBody Integer userId) {
 		return service.sendEmailCode(userId);
 	}
 }

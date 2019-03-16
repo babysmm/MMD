@@ -17,15 +17,15 @@ $(".menuHeader").click(function() {
 
 $("#searchStaff").click(function() {
 	var val = $.valM(".searchInput");
-	$.post('findShopStaffByusername', {
+	$.post('/consumer/findShopStaffByusername', {
 		'username':val
-		}, function(result) {
-				if (result != null && result.length != 0) {
-					
-				} else {
-					$.myAlert("警告", "没有搜索到哦", "red", 2000);
-				}
-			});
+	}, function(result) {
+		if (result != null && result.length != 0) {
+			console.log(result);
+		} else {
+			$.myAlert("警告", "没有搜索到哦", "red", 2000);
+		}
+	});
 });
 
 

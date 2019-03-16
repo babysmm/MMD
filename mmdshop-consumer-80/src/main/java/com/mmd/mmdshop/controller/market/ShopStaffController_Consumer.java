@@ -85,7 +85,7 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 	 */
 	@PostMapping("/consumer/findShopStaffByfullName")
 	public ShopStaffDO findShopStaffByfullName(String fullName) {
-		return template.postForObject(ADMINUSERPROVIDER_URL+"findShopStaffByfullName", fullName, ShopStaffDO.class);
+		return template.postForObject(ADMINUSERPROVIDER_URL+"/findShopStaffByfullName", fullName, ShopStaffDO.class);
 	}
 	
 	/**
@@ -95,7 +95,7 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 	 */
 	@PostMapping("/consumer/findShopStaffByusername")
 	public ShopStaffDO findShopStaffByusername(String username) {
-		return template.postForObject(ADMINUSERPROVIDER_URL+"findShopStaffByfullName", username, ShopStaffDO.class);
+		return template.postForObject(ADMINUSERPROVIDER_URL+"/findShopStaffByusername", username, ShopStaffDO.class);
 	}
 	
 	/**
@@ -114,7 +114,7 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 		
 		//设置IP
 		shopStaffDO.setLastIpS(httpServletRequest);
-		return template.postForObject(ADMINUSERPROVIDER_URL+"addShopStaff", shopStaffDO, boolean.class);
+		return template.postForObject(ADMINUSERPROVIDER_URL+"/addShopStaff", shopStaffDO, boolean.class);
 	}
 	
 	/**
@@ -132,7 +132,7 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 		
 		//设置IP
 		shopStaffDO.setLastIpS(httpServletRequest);
-		return template.postForObject(ADMINUSERPROVIDER_URL+"modifyShopStaff", shopStaffDO, boolean.class);
+		return template.postForObject(ADMINUSERPROVIDER_URL+"/modifyShopStaff", shopStaffDO, boolean.class);
 	}
 	
 	/**
@@ -147,7 +147,7 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 			return null;
 		}
 		
-		return template.postForObject(ADMINUSERPROVIDER_URL+"removeShopStaff", shopStaffDO, int.class);
+		return template.postForObject(ADMINUSERPROVIDER_URL+"/removeShopStaff", shopStaffDO, int.class);
 	}
 	
 	/**
@@ -157,7 +157,7 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 	@PostMapping("/consumer/sendEmailCode")
 	public boolean getEmailCode(HttpServletRequest httpServletRequest) {
 		
-		Integer code = template.postForObject(ADMINUSERPROVIDER_URL+"sendEmailCode", httpServletRequest.getSession().getAttribute("userId"),Integer.class);
+		Integer code = template.postForObject(ADMINUSERPROVIDER_URL+"/sendEmailCode", httpServletRequest.getSession().getAttribute("userId"),Integer.class);
 		
 		if(code == null) {
 			return false;
