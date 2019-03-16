@@ -64,14 +64,14 @@ public class ShopStaffServiceImpl implements ShopStaffService{
 	@Override
 	public ShopStaffDO findShopStaffByfullName(String fullName) {
 		QueryWrapper<ShopStaffDO> shopStaffDOWrapper = new QueryWrapper<ShopStaffDO>();
-		shopStaffDOWrapper.select("username", "full_name").eq("full_name", fullName);
+		shopStaffDOWrapper.select("username", "full_name", "email").eq("full_name", fullName);
 		return mapper.selectOne(shopStaffDOWrapper);
 	}
 
 	@Override
 	public ShopStaffDO findShopStaffByusername(String username) {
 		QueryWrapper<ShopStaffDO> shopStaffDOWrapper = new QueryWrapper<ShopStaffDO>();
-		shopStaffDOWrapper.select("username", "full_name").eq("username", username);
+		shopStaffDOWrapper.select("username", "full_name", "email").eq("username", username);
 		return mapper.selectOne(shopStaffDOWrapper);
 	}
 

@@ -22,6 +22,11 @@ $("#searchStaff").click(function() {
 	}, function(result) {
 		if (result != null && result.length != 0) {
 			console.log(result);
+			
+			var formDate = {'shopStaffDate':result};
+			
+			//表单赋值
+			$("#shopStaffDate").setObjectForm(formDate);
 		} else {
 			$.myAlert("警告", "没有搜索到哦", "red", 2000);
 		}

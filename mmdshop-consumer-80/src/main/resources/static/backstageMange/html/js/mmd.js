@@ -25,6 +25,7 @@ $.fn.setForm = function(jsonValue) {
     // console.log(obj)
     // inputObjectSet(this,jsonValue);
 };
+
 $.fn.setObjectForm = function(jsonValue) {
 	var obj=this;
 	
