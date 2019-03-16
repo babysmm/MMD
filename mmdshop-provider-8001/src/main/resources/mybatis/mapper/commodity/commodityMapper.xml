@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mmd.mmdshop.mapper.commodity.CommodityMappper">
+<!--  
+	<resultMap type="com.mmd.mmdshop.dbdo.ChangeTypeDO" id="ChangeTypeDO">
+		<id column="user_id" property="userId"/>
+		<result column="name" property="name"/>
+		<result column="change_id" property="changeId"/>
+		<result column="change_time" property="changeTime"/>
+		<result column="change_user_id" property="changeUserId"/>
+	</resultMap>
+-->
+	<resultMap type="com.mmd.mmdshop.dbdo.CommodityDO" id="CommodityDO">
+		<id column="commodity_id" property="commodityId"/>
+		<result column="shop_id" property="shopId"/>
+		<result column="comm_img_id" property="commImgId"/>
+		<result column="shop_comm_type_id" property="shopCommTypeId"/>
+		<result column="thumb" property="thumb"/>
+		<result column="keywords" property="keywords"/>
+		<result column="name" property="name"/>
+		<result column="weight" property="weight"/>
+		<result column="number" property="number"/>
+		<result column="integral" property="integral"/>
+		<result column="is_on_sale" property="isOnSale"/>
+		<result column="in_out_stock" property="inOutStock"/>
+		<result column="is_new" property="isNew"/>
+		<result column="is_good" property="isGood"/>
+		<result column="is_hot" property="isHot"/>
+		<result column="note" property="note"/>
+		<result column="address" property="address"/>
+		<result column="evaluate" property="evaluate"/>
+		<result column="market_price" property="marketPrice"/>
+		<result column="good_num" property="goodNum"/>
+		<result column="month_sales" property="monthSales"/>
+		<result column="brand_id" property="brandId"/>
+		<result column="low_price" property="lowPrice"/>
+		<result column="suppliers_name" property="suppliersName"/>
+		<result column="suppliers_number" property="suppliersNumber"/>
+		<result column="change_id" property="changeId"/>
+		<result column="change_time" property="changeTime"/>
+		<result column="change_user_id" property="changeUserId"/>
+		<result column="register_Time" property="registerTime"/>
+		<result column="bar_code" property="barCode"/>
+		<result column="prime_cost" property="primeCost"/>
+		<result column="retail_price" property="retailPrice"/>
+		<result column="trade_price" property="tradePrice"/>
+		<result column="max_number" property="maxNumber"/>	
+		<result column="min_number" property="minNumber"/>
+	</resultMap>
+	
+	<resultMap type="com.mmd.mmdshop.result.CommodityRough" id="CommodityRough">	
+		<association property="commodityDO" resultMap="com.mmd.mmdshop.mapper.commodity.CommodityMappper.CommodityDO"></association>
+		<association property="commodityBrandDO" resultMap="com.mmd.mmdshop.mapper.commodity.CommodityBrandMapper.CommodityBrandDO"></association>
+		<association property="shopDO" resultMap="com.mmd.mmdshop.mapper.shop.ShopMappper.ShopDO"></association>
+	</resultMap>
+	
+	<resultMap type="com.mmd.mmdshop.result.CommodityAll" id="CommodityAll">	
+		<association property="commodityDO" resultMap="com.mmd.mmdshop.mapper.commodity.CommodityMappper.CommodityDO"></association>
+		<association property="commodityBrandDO" resultMap="com.mmd.mmdshop.mapper.commodity.CommodityBrandMapper.CommodityBrandDO"></association>
+		<association property="commodityImgDO" resultMap="com.mmd.mmdshop.mapper.commodity.CommodityImgMapper.CommodityImgDO"></association>
+		<association property="commodityTypeDO" resultMap="com.mmd.mmdshop.mapper.commodity.CommodityTypeMappper.CommodityTypeDO"></association>
+		<association property="shopDO" resultMap="com.mmd.mmdshop.mapper.shop.ShopMappper.ShopDO"></association>
+	</resultMap>
+	
+	
+	<select id='selectCommodityRoughByName' resultMap="CommodityRough" parameterType="java.lang.String">
+		SELECT
+			c.commodity_id,
+			c.bar_code,
+			c.register_time,
+			c.`name`,
+			s.`name` AS shop_name,
+			cb.`name` AS commodity_brand_name
+		FROM
+			commodity AS c
+			LEFT JOIN shop AS s ON c.shop_id = s.shop_id
+			LEFT JOIN commodity_brand AS cb ON c.brand_id = cb.brand_id
+		WHERE
+			c.`name` = #{name}
+	</select>
+	
+	<select id='selectCommodityAllById' resultMap="CommodityAll" parameterType="int">
+		SELECT
+			c.commodity_id,c.shop_id,c.comm_type_id,c.comm_img_id,c.shop_comm_type_id,c.thumb,c.keywords,
+			c.`name`,c.weight,c.number,c.integral,c.is_on_sale,c.in_out_stock,c.is_new,c.is_good,c.is_hot,
+			c.note,c.address,c.evaluate,c.market_price,c.good_num,c.month_sales,c.brand_id,c.low_price,
+			c.suppliers_name,c.suppliers_number,c.change_id,c.change_time,c.change_user_id,c.register_time,
+			c.bar_code,c.prime_cost,c.date4,c.date5,ci.comm_img_id,ci.shop_id,ci.img1,ci.img2,ci.img3,ci.img4,
+			ci.img5,ci.date1,ci.change_id,ci.change_time,ci.change_user_id,ci.date2,ci.date3,ci.date4,
+			ci.date5,cb.brand_id,cb.`name`AS commodity_brand_name,cb.address,cb.date1,cb.date2,cb.date3,cb.date4,cb.date5,
+			ct.comm_type_id,ct.type,ct.change_id,ct.change_time,ct.change_user_id,ct.date1,
+			ct.date2,ct.date3,ct.date4,ct.date5,s.shop_id,s.`name`AS shop_name
+		FROM
+			commodity AS c
+			LEFT JOIN commodity_img AS ci ON c.comm_img_id = ci.comm_img_id
+			LEFT JOIN commodity_brand AS cb ON c.brand_id = cb.brand_id
+			LEFT JOIN commodity_type AS ct ON c.comm_type_id = ct.comm_type_id
+			LEFT JOIN shop AS s ON c.shop_id = s.shop_id
+		WHERE
+			c.commodity_id = #{commodityId}
+	</select>
+</mapper>
+ 

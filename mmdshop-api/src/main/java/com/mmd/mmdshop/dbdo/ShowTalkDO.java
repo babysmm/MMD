@@ -1,30 +1,37 @@
-/*
- * Welcome to use the TableGo Tools.
- * 
- * http://vipbooks.iteye.com
- * http://blog.csdn.net/vipbooks
- * http://www.cnblogs.com/vipbooks
- * 
- * Author:bianj
- * Email:edinsker@163.com
- * Version:4.1.2
- */
+
 
 package com.mmd.mmdshop.dbdo;
 
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.Accessors;
+
 /**
  * 社会秀评论(show_talk)
  * 
- * @author bianj
+ * @author QJH
  * @version 1.0.0 2019-02-19
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Accessors(chain=true)
+@ToString
+@TableName("show_talk")
 public class ShowTalkDO implements java.io.Serializable {
     /** 版本号 */
     private static final long serialVersionUID = 3566621497005743930L;
     
     /** 社会秀评论ID */
+    @TableId(value="show_talk_id",type=IdType.AUTO)
     private Integer showTalkId;
     
     /** 社会秀ID */

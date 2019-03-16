@@ -15,11 +15,10 @@ import com.mmd.mmdshop.vo.AdminUserLoginVO;
 /**
  * 
  * @ClassName AdminUserController.java
- * @author QJH
+ * @author MM
  * @version 1.0
  * @date 2019/2/18
  */
-
 @RestController
 public class AdminUserController{
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
@@ -37,5 +36,20 @@ public class AdminUserController{
 	@PostMapping("/provider/findAdminUserAll")
 	public AdminUserAll findUserAllZ(@RequestBody String username) {
 		return service.findAdminUserAllByUsername(username);
+	}
+	
+	@PostMapping("/provider/newAdminUser")
+	public boolean newAdminUser(@RequestBody AdminUserAll adminUserAll) {
+		return service.addAdminUserAll(adminUserAll);
+	}
+	
+	@PostMapping("/provider/modifyAdminUserAll")
+	public boolean modifyAdminUserAll(@RequestBody AdminUserAll adminUserAll) {
+		return service.modifyAdminUserAll(adminUserAll);
+	}
+	
+	@PostMapping("/provider/removeAdminUserAll")
+	public boolean removeAdminUserAll(@RequestBody String username) {
+		return service.removeAdminUserAll(username);
 	}
 }

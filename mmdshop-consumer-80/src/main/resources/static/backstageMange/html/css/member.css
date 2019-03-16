@@ -1,0 +1,146 @@
+body{
+	width: 100%;
+	height: 100%;
+	background-color: #F5F5F5;
+}
+html{
+	width: 100%;
+	height: 100%;
+}
+
+.member-header{
+	padding: 1% 0 0 0;
+}
+.member-header button{
+	margin: 0 0.8% 0 0.8%;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+	padding: 1px;
+    text-decoration:none;  
+    background:#09c;  
+    color:white;  
+    padding: 7px 17px 7px 17px;  
+    font-size:12px;  
+    border-radius:10px;  
+    border: 0;
+}
+
+.b1{
+	margin-top:1%;
+	color: #1E90FF;
+}
+
+.member-button,.lookOrder{
+	display: inline-block;
+  display: inline;
+  padding: 6px 20px;
+  margin: 0;
+  cursor: pointer;
+  border: 1px solid #bbb;
+  overflow: visible;
+  font: bold 13px arial, helvetica, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+  color: #555;
+  
+  background-color: #ddd;
+  
+  background-image: -webkit-linear-gradient(top, rgba(255,255,255,1), rgba(255,255,255,0));
+  
+  -webkit-transition: background-color .2s ease-out;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 2px 2px -1px rgba(0, 0, 0, .5), 0 1px 0 rgba(255, 255, 255, .3) inset;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 2px 2px -1px rgba(0, 0, 0, .5), 0 1px 0 rgba(255, 255, 255, .3) inset;
+  text-shadow: 0 1px 0 rgba(255,255,255, .9);
+  
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.member-o-button{
+	margin: 2%;
+	text-align: center;
+	background-color: white;
+	padding: 1%;
+	border-radius: 10px;
+}
+
+.member-img{
+	width: 19%;
+}
+
+.serachTable{
+	margin: 1%;
+	padding: 1%;
+	width:46%;
+	
+	text-align: left;
+	background-color: white;
+	border-radius: 10px;
+}
+
+table.searchResult {
+	margin:0 auto;
+	width:80%;
+	height:40px;
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+	text-align: center;
+	margin-top: 2%;
+}
+table.searchResult th {
+	background:#b5cfd2;
+	border-width: 1px;
+	padding: 2px;
+	border-style: solid;
+	border-color: #999999;
+}
+table.searchResult td {
+	background:#dcddc0;
+	border-width: 1px;
+	padding: 2px;
+	border-style: solid;
+	border-color: #999999;
+}
+
+.allMess{
+	width:48%;
+	background-color: white;
+	border-radius: 10px;
+	margin:1%;
+	float: right;
+}
+
+.allMess form{
+	padding: 2%;
+}
+.allMess form div{
+	padding: 2% 2% 0 0;
+}
+.allMess form table{
+	width: 80%;
+	padding: 2% 2% 0 0;
+}
+.allMess form table tr td{
+	padding: 1% 0 1% 2%;
+}
+.allMess form table :first-child{
+	width: 40%;
+	text-align: right;
+	font-size: 13px;
+	color: #696969;
+}
+.allMess form table :nth-child(2){
+	width: 60%;
+	text-align: left;
+}
+.allMess form table :nth-child(2) input{
+	width: 50%;
+	font-size: 13px;
+	padding: 1%;
+	text-align: left;
+}

@@ -24,6 +24,11 @@
     #nav1{
       border-bottom:1px solid #B0C4DE;
     }
+    .showsiframe{
+    	width:100%;
+    	height:100%;
+    	display:none;
+    }
   </style>
 </head>
 <body>
@@ -49,10 +54,10 @@
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <div class="nav-profile-img">
-                <span class="availability-status online"></span>             
+                           
               </div>
               <div class="nav-profile-text">
-                <p class="mb-1 text-black">David Greymaax</p>
+                <p class="mb-1 text-black" id='fullName'> </p>
               </div>
             </a>
             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -96,13 +101,6 @@
               </div>
             </a>
           </li>
-          <li class="nav-item nav-profile" onclick="pageSwitch(2,this)">
-            <a href="#" class="nav-link">
-              <div class="nav-profile-text d-flex flex-column">
-                  <span class="font-weight-bold mb-2" style="margin: 20px 0 0 0;">商户管理</span>
-              </div>
-            </a>
-          </li>
           <li class="nav-item nav-profile"  onclick="pageSwitch(3,this)">
             <a href="#" class="nav-link">
               <div class="nav-profile-text d-flex flex-column">
@@ -110,10 +108,10 @@
               </div>
             </a>
           </li>
-          <li class="nav-item nav-profile" onclick="pageSwitch(4,this)">
+          <li class="nav-item nav-profile" onclick="pageSwitch(8,this)">
             <a href="#" class="nav-link">
               <div class="nav-profile-text d-flex flex-column">
-                <span class="font-weight-bold mb-2" style="margin: 20px 0 0 0;">优惠券管理</span>
+                <span class="font-weight-bold mb-2" style="margin: 20px 0 0 0;">会员管理</span>
               </div>
             </a>
           </li>
@@ -124,13 +122,6 @@
               </div>
             </a>
           </li>
-          <li class="nav-item nav-profile" onclick="pageSwitch(6,this)">
-            <a href="#" class="nav-link">
-              <div class="nav-profile-text d-flex flex-column">
-                <span class="font-weight-bold mb-2" style="margin: 20px 0 0 0;">订单管理</span>
-              </div>
-            </a>
-          </li>
           <li class="nav-item nav-profile"  onclick="pageSwitch(7,this)">
             <a href="#" class="nav-link">
               <div class="nav-profile-text d-flex flex-column">
@@ -138,17 +129,24 @@
               </div>
             </a>
           </li>
-           <li class="nav-item nav-profile"  onclick="pageSwitch(7,this)">
-            <a href="#" class="nav-link">
-              <div class="nav-profile-text d-flex flex-column">
-                <span class="font-weight-bold mb-2" style="margin: 20px 0 0 0;">全自动会计系统</span>
-              </div>
-            </a>
-          </li>
         </ul>
+
       </nav>
       <nav class="section">
-        <iframe id="showiframe" name="toppage" width=100% height=100% marginwidth=0 marginheight=0 frameborder="no" border="0"  src="./html/commodity.html"></iframe> 
+      
+        <iframe class='showsiframe' id='adminUserManage'
+        		name="toppage" marginwidth=0 marginheight=0 frameborder="no" border="0"
+        		  src="./html/adminUserManage.html"
+        		  style='display:none'>
+        </iframe> 
+        
+        <iframe class='showsiframe' id='commodity' name="toppage" marginwidth=0 marginheight=0 frameborder="no" border="0"  src="./html/commodity.html" style='display:block'></iframe> 
+        <iframe class='showsiframe' id='member' name="toppage" marginwidth=0 marginheight=0 frameborder="no" border="0"  src="./html/member.html" style="display: none">
+        </iframe> 
+        <iframe class='showsiframe' id='deliveryman' name="toppage" marginwidth=0 marginheight=0 frameborder="no" border="0"  src="./html/deliveryman.html"></iframe> 
+        <iframe class='showsiframe' id='showiframe' name="toppage" marginwidth=0 marginheight=0 frameborder="no" border="0"  src="./html/adminUserManage.html"></iframe> 
+        <iframe class='showsiframe' id='showiframe' name="toppage" marginwidth=0 marginheight=0 frameborder="no" border="0"  src="./html/adminUserManage.html"></iframe> 
+        <iframe class='showsiframe' id='showiframe' name="toppage" marginwidth=0 marginheight=0 frameborder="no" border="0"  src="./html/adminUserManage.html"></iframe> 
       </nav>
     </div>
     <!-- page-body-wrapper ends -->

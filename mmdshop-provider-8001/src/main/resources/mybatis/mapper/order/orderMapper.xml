@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mmd.mmdshop.mapper.order.OrderMapper">
+<!--  
+	<resultMap type="com.mmd.mmdshop.dbdo.ChangeTypeDO" id="ChangeTypeDO">
+		<id column="user_id" property="userId"/>
+		<result column="name" property="name"/>
+		<result column="change_id" property="changeId"/>
+		<result column="change_time" property="changeTime"/>
+		<result column="change_user_id" property="changeUserId"/>
+	</resultMap>
+-->
+	<resultMap type="com.mmd.mmdshop.dbdo.OrderTDO" id="OrderTDO">
+		<id column="order_id" property="orderId"/>
+		<result column="user_id" property="userId"/>
+		<result column="status" property="status"/>
+		<result column="eva_status" property="evaStatus"/>
+		<result column="new_time" property="newTime"/>
+		<result column="pay_time" property="payTime"/>
+		<result column="confirm_time" property="confirmTime"/>
+		<result column="shipping_time" property="shippingTime"/>
+		<result column="shop_id" property="shopId"/>
+		<result column="address_id" property="addressId"/>
+		<result column="y_amount" property="yAmount"/>
+		<result column="h_amount" property="hAmount"/>
+		<result column="h_pay" property="hPay"/>
+		<result column="distribution_pay" property="distributionPay"/>
+		<result column="pack_pay" property="packPay"/>
+		<result column="comm_sum" property="commSum"/>
+		<result column="change_ip" property="changeIp"/>
+		<result column="change_id" property="changeId"/>
+		<result column="change_time" property="changeTime"/>
+		<result column="change_user_id" property="changeUserId"/>
+		<result column="date1" property="date1"/>
+		<result column="date2" property="date2"/>
+		<result column="date3" property="date3"/>
+		<result column="date4" property="date4"/>
+		<result column="date5" property="date5"/>
+	</resultMap>
+</mapper>
+ 

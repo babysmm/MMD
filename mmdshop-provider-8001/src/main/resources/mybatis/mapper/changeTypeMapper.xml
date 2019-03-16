@@ -6,9 +6,9 @@
 	<resultMap type="com.mmd.mmdshop.dbdo.ChangeTypeDO" id="ChangeTypeDO">
 		<id column="user_id" property="userId"/>
 		<result column="name" property="name"/>
-		<result column="changeId" property="change_id"/>
-		<result column="changeTime" property="change_time"/>
-		<result column="changeUserId" property="change_user_id"/>
+		<result column="change_id" property="changeId"/>
+		<result column="change_time" property="changeTime"/>
+		<result column="change_user_id" property="changeUserId"/>
 	</resultMap>
 </mapper>
  

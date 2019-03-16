@@ -2,69 +2,392 @@
 <html>
 <head>
 	<title></title>
+	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+	<script type="../js/echarts.min.js"  charset="utf-8"></script>
+
+
+	<link rel="stylesheet" href="./dist/jBox.all.css">
+	<link rel="stylesheet" href="./Playground/Playground.Avatars.css">
+	<link rel="stylesheet" href="./Playground/Playground.Login.css">
+
 	<script  src="./js/jquery.min.js"></script>
-	<link rel="stylesheet" href="./css/commodity.css">
+	<link rel="stylesheet" href="./css/commodity.css"> 
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 </head>
 <body>
-	<div>
-		<ul class="treeUl">
-			<li style="display: block"> 
-				<select>
-					<option value="0">销售数据</option>
-				</select>
-			</li>
-			<li> >
-				<select>
-					<option value="1">商店商品</option>
-				</select>
-			</li>
-			<li> >
-				<select>
-					<option value="2">商店商品</option>
-				</select>
-			</li>
-			<li> >
-				<select>
-					<option value="3">商品详情</option>
-				</select>
-			</li>
-			<li> >
-				<select>
-					<option value="4">商品销售日志</option>
-				</select>
-			</li>
-		</ul>
-	</div>
-	<section id="mainsection">
-		<div style="text-align: center;">
-			<select>
-				<option value="1">商品名字</option>
-				<option value="2">商家名字</option>
-				<option value="3">商品条形码</option>
-				<option value="4">品牌</option>
-			</select>
-			<input type="text" name="commoditySearch">
-			<button >搜索</button>
+	<div id="dialog_large_image" style="display: none"></div>
+	<header class="comm-header">
+		<button onclick="commButt(this,'dataShow')" >数据分析展示</button>
+		<button onclick="commButt(this,'commShow')" >商品数据管理</button>
+		<button onclick="commButt(this,'memberShopTalkShow')" >会员商品评价管理数据管理</button>
+		<button onclick="commButt(this,'commBrandShow')" >品牌管理</button>
+		<button onclick="commButt(this,'commTypeShow')" >商品类型管理</button>
+		<button onclick="commButt(this,'shopShow')" >商户管理</button>
+		<button onclick="commButt(this,'shopDataShow')" >商户数据分析</button>
+	</header>
+	<section class="comm-section">
+		<div class="data-analysis" style="display: none" id='data-analysis'>
+			<div id="commAnalysis">
+				<header>
+					<div>销量最好的5个商品销售数据</div>
+					<div class="dataTime">
+						<input type="date" name="">
+						~
+						<input type="date" name="">
+						<button>按星期查询</button>
+						<button>按日查询</button>
+					</div>
+				</header>
+				<div id="data1"></div>
+			</div>
+			<div id="goodAnalysis">
+				<header>
+					<div>销量最好的5个商品销售数据</div>
+					<div class="dataTime">
+						<input type="date" name="">
+						~
+						<input type="date" name="">
+						<button>按星期查询</button>
+						<button>按日查询</button>
+					</div>
+				</header>
+			</div>
 		</div>
-		<div>
-			<!--星期商品排行-->
+		<div class="data-analysis" style="display: block" id="comm-show">
+			<header class="comm-o-button">
+				<input type="text" name="commoditySearchInput" placeholder="请输入商品名字或者条形码">
+				<button class="comm-button" onclick="commodity(this,'search')">搜索商品</button>
+				<button class="comm-button">新增商品</button>
+				<button class="comm-button">新增商品模式</button>
+				<button class="comm-button">删除商品</button>
+			</header>
+			<section id="comm-message" style=""  class='message'>
+				<input type="file" name="file" accept="image/png,image/jpg,image/jpeg" id="commImgInput" style="display:none;" />
+				
+				<div class="serachTable" style="float: left;">
+					<div><b class="b1">|</b>搜索结果</div>
+					<table  class="searchResult" id="searchCommodity">
+						<tr>
+							<th>序号</th>
+							<th>商品名字</th>
+							<th>商品条形码</th>
+							<th>商品所属商店</th>
+							<th>商品类型</th>
+							<th>创建时间</th>
+							<th>
+								<button>升序</button>
+								<button>降序</button>
+							</th>
+						</tr>
+					</table>
+				</div>
 
-			<!--星期商品好评排行-->
+				<div style="width:48%;background-color: white;border-radius: 10px;margin:1%;float: right;">
+					<form id='commodity'>
+						<div style="padding-top: 2%;"><b class="b1">|</b>商品缩略图</div>
+						<div class="comm-img-div">
+							<img src="" class="comm-img" onerror="this.src='../images/addImg.png';this.onerror=null">
+						</div>
+						<div><b class="b1">|</b>商品基本信息</div>
+							<table id="comm-show-table">
+								<tr>
+									<td>商品条形码</td>
+									<td><input type="text" name="commodityDO.barCode"></td>
+								</tr>
+								<tr>
+									<td>商品名字</td>
+									<td><input type="text" name="commodityDO.name"></td>
+								</tr>
+								<tr>
+									<td>商家名字</td>
+									<td><input type="text" name="shopDO.name"></td>
+								</tr>
+								<tr>
+									<td>商品类型</td>
+									<td><input type="text" name="commodityTypeDO.type"></td>
+								</tr>
+								<tr>
+									<td>商品关键词</td>
+									<td><input type="text" name="commodityDO.keywords"></td>
+								</tr>
+								<tr>
+									<td>商品品牌</td>
+									<td><input type="text" name="commodityBrandDO.name"></td>
+								</tr>
+								<tr>
+									<td>商品品牌地址</td>
+									<td><input type="text" name="commodityBrandDO.address"></td>
+								</tr>
+							</table>
+						<div><b class="b1">|</b>商品详细信息</div>
+						<table >
+							<tr>
+								<td>商品重量</td>
+								<td><input type="text" name="commodityDO.weight"></td>
+							</tr>
+							<tr>
+								<td>商品所剩数量</td>
+								<td><input type="text" name="commodityDO.number"></td>
+							</tr>
+							<tr>
+								<td>购买商品所得积分</td>
+								<td><input type="text" name="commodityDO.integral"></td>
+							</tr>
+							<tr>
+								<td>商品备注</td>
+								<td><input type="text" name="commodityDO.note"></td>
+							</tr>
+							<tr>
+								<td>商品生产地址</td>
+								<td><input type="text" name="commodityDO.address"></td>
+							</tr>
+						</table>
 
-			<!--星期商品差评排行-->
+						<div><b class="b1">|</b>商品图片描述</div>
+						<div style="width: 80%;">
+							<img src=""  class="comm-img" onerror="this.src='../images/addImg.png';this.onerror=null">
+							<img src=""  class="comm-img" onerror="this.src='../images/addImg.png';this.onerror=null">
+							<img src=""  class="comm-img" onerror="this.src='../images/addImg.png';this.onerror=null">
+							<img src=""  class="comm-img" onerror="this.src='../images/addImg.png';this.onerror=null">
+							<img src=""  class="comm-img" onerror="this.src='../images/addImg.png';this.onerror=null">
+						</div>
 
-			<!--好评商品下星期销售量评估-->
+						<div><b class="b1">|</b>商品状况</div>
+						<table>
+							<tr>
+								<td>是否新品</td>
+								<td>
+									<select name="commodityDO.isNew">
+										<option value="1">是</option>
+										<option value="2">否</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>是否好东西</td>
+								<td>
+									<select name="commodityDO.isGood"> 
+										<option value="1">是</option>
+										<option value="2">否</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>是否热销</td>
+								<td>
+									<select name="commodityDO.isHot">
+										<option value="1">是</option>
+										<option value="2">否</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+						<div><b class="b1">|</b>价格</div>
+						<table >
+							<tr>
+								<td>市场价</td>
+								<td><input type="number" name="commodityDO.marketPrice">&nbsp;元</td>
+							</tr>
+							<tr>
+								<td>进货价</td>
+								<td><input type="number" name="commodityDO.primeCost">&nbsp;元</td>
+							</tr>
+							<tr>
+								<td>售卖最低价</td>
+								<td><input type="number" name="commodityDO.lowPrice">&nbsp;元</td>
+							</tr>
+						</table>
+						<div><b class="b1">|</b>商品评价</div>
+						<table id="comm-show-table">
+							<tr>
+								<td>好评数</td>
+								<td><input type="number" name="commodityDO.evaluate"></td>
+							</tr>
+						</table>
+					</form>    
+				</div>
+			</section>
+		</div>
+		<div class="data-analysis" style="display: none" id="commBrand-show">
+			<header class="comm-o-button">
+				<input type="text" name="" placeholder="请输入品牌的名字">
+				<button class="comm-button">搜索品牌</button>
+				<button class="comm-button">新增品牌</button>
+				<button class="comm-button">新增品牌模式</button>
+				<button class="comm-button">删除品牌</button>
+			</header>
+			<div id="commType-show" style="text-align: center">
+				<div class="serachTable" id='brand-search-div'>
+					<div><b class="b1">|</b>搜索结果</div>
+					<table class="searchResult">
+						<tr>
+							<th>序号</th>
+							<th>品牌名字</th>
+							<th>品牌地址</th>
+							<th>创建时间</th>
+							<th>修改时间</th>
+							<th>修改类型</th>
+							<th>
+								<button>升序</button>
+								<button>降序</button>
+							</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="data-analysis" style="display: none" id='commTypeShowDiv'>
+			<header class="comm-o-button">
+				<input type="text" name="" placeholder="请输入品牌的名字">
+				<button class="comm-button">搜索商品类型</button>
+				<button class="comm-button">新增商品类型</button>
+				<button class="comm-button">新增商品类型模式</button>
+				<button class="comm-button">删除商品类型</button>
+			</header>
+			<div style="text-align: center">
+				<div class="serachTable" id='brand-search-div'>
+					<div><b class="b1">|</b>搜索结果</div>
+					<table class="searchResult">
+						<tr>
+							<th>序号</th>
+							<th>商品类型名字</th>
+							<th>创建时间</th>
+							<th>修改时间</th>
+							<th>修改类型</th>
+							<th>
+								<button>升序</button>
+								<button>降序</button>
+							</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="data-analysis" style="display: none" id='shopshowDiv'>
+			<header class="comm-o-button">
+				<input type="text" name="" placeholder="请输入品牌的名字">
+				<button class="comm-button">搜索商户</button>
+				<button class="comm-button">新增商户</button>
+				<button class="comm-button">新增商户模式</button>
+				<button class="comm-button">删除商户</button>
+			</header>
+			<div>
+				<div class="serachTable" style="float: left;">
+					<div><b class="b1">|</b>搜索结果</div>
+					<table class="searchResult">
+						<tr>
+							<th>序号</th>
+							<th>商户名字</th>
+							<th>商户地址</th>
+							<th>商户创建时间</th>
+							<th>商户电话号码</th>
+							<th>
+								<button>升序</button>
+								<button>降序</button>
+							</th>
+						</tr>
+					</table>
+				</div>
+				<div style="width:48%;background-color: white;border-radius: 10px;margin:1%;float: right;" class='message'>
+					<form >
+						<div><b class="b1">|</b>商户基本信息</div>
+						
+						<div class="comm-img-div">
+							<img src="" class="comm-img" onerror="this.src='../images/addImg.png';this.onerror=null">
+						</div>
 
-			<!--星期商店排行-->
+						<div><b class="b1">|</b>商户图片展示</div>
+						<div style="width: 80%;">
+							<img src=""  class="comm-img" onerror="this.src='../images/addImg.png';this.onerror=null">
+							<img src=""  class="comm-img" onerror="this.src='../images/addImg.png';this.onerror=null">
+							<img src=""  class="comm-img" onerror="this.src='../images/addImg.png';this.onerror=null">
+							<img src=""  class="comm-img" onerror="this.src='../images/addImg.png';this.onerror=null">
+							<img src=""  class="comm-img" onerror="this.src='../images/addImg.png';this.onerror=null">
+						</div>
 
-			<!--星期商店好评排行-->
+						<table >
+							<tr>
+								<td>商户名字</td>
+								<td><input type="text" name=""></td>
+							</tr>
+							<tr name="changeTimeTR">
+			        		    <td>数据变更时间</td>
+			        		    <td><input type="datetime-local" name="changeTime" disabled="true"></td>
+			        		</tr>
+			        		<tr name='changeTypeTR'>
+			        		    <td>数据变更类型</td>
+								<td>
+									<select disabled="true" name="changeId" title='select' class='chang'>
+											<option style='display: none'></option>
+									</select>
+								</td>
+			        		</tr>
+						</table>
 
-			<!--星期商店差评排行-->
+						<div><b class="b1">|</b>商户详细信息</div>
 
-			<!--好评商店下星期销售量评估-->
+						<table >
+							<tr>
+								<td>商户地址</td>
+								<td><input type="text" name=""></td>
+							</tr>
+							<tr>
+								<td>商户电话</td>
+								<td><input type="text" name=""></td>
+							</tr>
+							<tr>
+								<td>商户种类</td>
+								<td><input type="text" name=""></td>
+							</tr>
+							<tr>
+								<td>商户服务</td>
+								<td><input type="text" name=""></td>
+							</tr>
+							<tr>
+								<td>商户告示</td>
+								<td><input type="text" name=""></td>
+							</tr>
+							<tr>
+								<td>商户好评</td>
+								<td><input type="text" name=""></td>
+							</tr>
+							<tr>
+								<td>营业时间</td>
+								<td><input type="text" name=""></td>
+							</tr>
+							<tr name="changeTimeTR">
+			        		    <td>数据变更时间</td>
+			        		    <td><input type="datetime-local" name="changeTime" disabled="true"></td>
+			        		</tr>
+			        		<tr name='changeTypeTR'>
+			        		    <td>数据变更类型</td>
+								<td>
+									<select disabled="true" name="changeId" title='select' class='chang'>
+											<option style='display: none'></option>
+									</select>
+								</td>
+			        		</tr>
+						</table>
+
+						<div><b class="b1">|</b>商户许可证</div>
+						
+						<div class="comm-img-div">
+							<img src="" class="comm-img" onerror="this.src='../images/addImg.png';this.onerror=null">
+						</div>
+					</form>    
+				</div>
+
+			</div>
 		</div>
 	</section>
+		
+		
 </body>
 </html>
+<script src="./dist/jBox.all.js"></script>
+<script src="./Playground/Playground.Avatars.js"></script>
+<script src="./Playground/Playground.Login.js"></script>
+<script src="./js/qiniu.min.js"></script>
+<script src="./js/mmd.js"></script>
+<script src="./js/commtable.js"></script>
 <script src="./js/commodity.js"></script>

@@ -1,18 +1,18 @@
-/*
- * Welcome to use the TableGo Tools.
- * 
- * http://vipbooks.iteye.com
- * http://blog.csdn.net/vipbooks
- * http://www.cnblogs.com/vipbooks
- * 
- * Author:bianj
- * Email:edinsker@163.com
- * Version:4.1.2
- */
+
 
 package com.mmd.mmdshop.dbdo;
 
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 
 /**
  * 变更(change_type)
@@ -20,11 +20,18 @@ import java.util.Date;
  * @author QJH
  * @version 1.0.0 2019-02-19
  */
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Accessors(chain=true)
+@ToString
+@TableName("change_type")
 public class ChangeTypeDO implements java.io.Serializable {
     /** 版本号 */
     private static final long serialVersionUID = -2049950392095083621L;
     
     /** 变更ID */
+    @TableId(value="change_id",type=IdType.AUTO)
     private Integer changeId;
     
     /** 变更名字 */
@@ -34,7 +41,7 @@ public class ChangeTypeDO implements java.io.Serializable {
     private Date changeTime;
     
     /** 变更用户ID */
-    private String changeUserId;
+    private Integer changeUserId;
     
     /**  */
     private String date1;
@@ -50,175 +57,4 @@ public class ChangeTypeDO implements java.io.Serializable {
     
     /**  */
     private String date5;
-    
-    /**
-     * 获取变更ID
-     * 
-     * @return 变更ID
-     */
-    public Integer getChangeId() {
-        return this.changeId;
-    }
-     
-    /**
-     * 设置变更ID
-     * 
-     * @param changeId
-     *          变更ID
-     */
-    public void setChangeId(Integer changeId) {
-        this.changeId = changeId;
-    }
-    
-    /**
-     * 获取变更名字
-     * 
-     * @return 变更名字
-     */
-    public String getName() {
-        return this.name;
-    }
-     
-    /**
-     * 设置变更名字
-     * 
-     * @param name
-     *          变更名字
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    /**
-     * 获取变更时间
-     * 
-     * @return 变更时间
-     */
-    public Date getChangeTime() {
-        return this.changeTime;
-    }
-     
-    /**
-     * 设置变更时间
-     * 
-     * @param changeTime
-     *          变更时间
-     */
-    public void setChangeTime(Date changeTime) {
-        this.changeTime = changeTime;
-    }
-    
-    /**
-     * 获取变更用户ID
-     * 
-     * @return 变更用户ID
-     */
-    public String getChangeUserId() {
-        return this.changeUserId;
-    }
-     
-    /**
-     * 设置变更用户ID
-     * 
-     * @param changeUserId
-     *          变更用户ID
-     */
-    public void setChangeUserId(String changeUserId) {
-        this.changeUserId = changeUserId;
-    }
-    
-    /**
-     * 获取
-     * 
-     * @return 
-     */
-    public String getDate1() {
-        return this.date1;
-    }
-     
-    /**
-     * 设置
-     * 
-     * @param date1
-     *          
-     */
-    public void setDate1(String date1) {
-        this.date1 = date1;
-    }
-    
-    /**
-     * 获取
-     * 
-     * @return 
-     */
-    public String getDate2() {
-        return this.date2;
-    }
-     
-    /**
-     * 设置
-     * 
-     * @param date2
-     *          
-     */
-    public void setDate2(String date2) {
-        this.date2 = date2;
-    }
-    
-    /**
-     * 获取
-     * 
-     * @return 
-     */
-    public String getDate3() {
-        return this.date3;
-    }
-     
-    /**
-     * 设置
-     * 
-     * @param date3
-     *          
-     */
-    public void setDate3(String date3) {
-        this.date3 = date3;
-    }
-    
-    /**
-     * 获取
-     * 
-     * @return 
-     */
-    public String getDate4() {
-        return this.date4;
-    }
-     
-    /**
-     * 设置
-     * 
-     * @param date4
-     *          
-     */
-    public void setDate4(String date4) {
-        this.date4 = date4;
-    }
-    
-    /**
-     * 获取
-     * 
-     * @return 
-     */
-    public String getDate5() {
-        return this.date5;
-    }
-     
-    /**
-     * 设置
-     * 
-     * @param date5
-     *          
-     */
-    public void setDate5(String date5) {
-        this.date5 = date5;
-    }
 }

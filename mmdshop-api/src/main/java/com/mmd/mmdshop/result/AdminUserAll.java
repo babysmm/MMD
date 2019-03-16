@@ -1,5 +1,6 @@
 package com.mmd.mmdshop.result;
 
+import javax.validation.constraints.NotNull;
 import com.mmd.mmdshop.dbdo.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,16 +23,19 @@ public class AdminUserAll {
 	/**
 	 * 后台管理用户表
 	 */
+	@NotNull
 	private AdminUserDO adminUserDO;
 	
 	/**
 	 * 后台管理详情用户表
 	 */
+	@NotNull
 	private AdminUserDetailsDO adminUserDetailsDO;
 	
 	/**
 	 * 后台管理权限表
 	 */
+	@NotNull
 	private AdminUserJurisdictionDO adminUserJurisdictionDO;
 	
 	

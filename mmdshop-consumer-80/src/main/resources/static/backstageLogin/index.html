@@ -92,14 +92,13 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 		function getValues(id){
 			return dom.getElementById(id).value
 		}
-		console.log(1)
 		function login(){
-			console.log(1)
 			var username = getValues("username"),
 				password = getValues("password");
 			//console.log(username+","+password);
 				$.post("/consumer/adminUserLogin",{'username':username,'password':password},function(result){
 					if(result != null && result.length != 0){
+						sessionStorage.setItem('fullName', JSON.stringify(result));
 						window.location.href = "../backstageMange/index.html";
 					}else{
 						alert("密码错误");
