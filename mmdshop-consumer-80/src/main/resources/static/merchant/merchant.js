@@ -17,7 +17,7 @@ $(".menuHeader").click(function() {
 
 $("#searchStaff").click(function() {
 	var val = $.valM(".searchInput");
-	$.post('/consumer/findShopStaffByusername', {
+	$.post('findShopStaffByusername', {
 		'username':val
 		}, function(result) {
 				if (result != null && result.length != 0) {
