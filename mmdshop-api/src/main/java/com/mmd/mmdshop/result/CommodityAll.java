@@ -8,10 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-/**
- * @author QJH
- *
- */
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
 /**
  * 后端用户权限表\r\n权限验证(admin_user_jurisdiction)
  * 
- * @author QJH
+ * @author MM
  * @version 1.0.0 2019-02-19
  */
 @NoArgsConstructor

@@ -17,7 +17,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 /**
  * 后端用户表\r\n主要用于登录验证(admin_user)
  * 
- * @author QJH
+ * @author MM
  * @version 1.0.0 2019-02-19
  */
 

@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * 后台搜索商品
- * @author QJH
+ * @author MM
  * @version 1.0.0 2019-02-20
  */
 @NoArgsConstructor

@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 /**
  * 搜索后台管理用户全部信息封装
  * 
- * @author QJH
+ * @author MM
  * @version 1.0.0 2019-02-20
  */
 @NoArgsConstructor

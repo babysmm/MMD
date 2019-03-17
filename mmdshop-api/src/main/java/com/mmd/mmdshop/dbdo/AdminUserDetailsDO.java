@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
 /**
  * 后端用户详情表\r\n主要用于展示用户详情(admin_user_details)
  * 
- * @author QJH
+ * @author MM
  * @version 1.0.0 2019-02-19
  */
 

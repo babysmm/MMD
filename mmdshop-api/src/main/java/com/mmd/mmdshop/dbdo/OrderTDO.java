@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 /**
  * 订单(order_t)
  * 
- * @author QJH
+ * @author MM
  * @version 1.0.0 2019-02-26
  */
 @NoArgsConstructor

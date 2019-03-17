@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
 /**
  * 商品品牌(commodity_brand)
  * 
- * @author QJH
+ * @author MM
  * @version 1.0.0 2019-02-26
  */
 @NoArgsConstructor

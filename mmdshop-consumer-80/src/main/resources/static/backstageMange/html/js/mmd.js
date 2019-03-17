@@ -277,7 +277,6 @@ $.inputSafe = function(str){
 }
 
 
-
 var chnNumChar = {
         零:0,
         一:1,

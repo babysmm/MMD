@@ -12,6 +12,16 @@ input{
 button{
 	padding: 2px 16px;
 }
+input[type="file"] {
+  color: transparent;
+}
+table tbody{
+	width:100%;
+}
+*{
+	margin:0;
+	padding:0;
+}
 .downICON{
 	width: 10px;
 	height: 10px;
@@ -35,7 +45,6 @@ button{
 }
 .main-section div{
 	width: 100%;
-	margin-top: 0%;
 }
 .menuSection{
 	text-align: center;
@@ -80,4 +89,42 @@ button{
 	width: 70%;
 	text-align: left;
 	padding-top: 10px;
+}
+
+.comm-img{
+	width: 18%;
+}
+
+#img-c{
+	width:100px;
+	margin-top: 2%;
+}
+
+.commMessageHeader{
+	background-color: white;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width:94%;
+	margin-left:2%;
+	padding-left:2%;
+	text-align: left;
+	margin-top:10px;
+}
+.commodity-tr,.commodityDef-tr,.commodityImg-tr,.commodityState-tr,.commodityPrice-tr,.commodityGood-tr{
+	display: none;
+}
+.commodity-tr tr,.commodityDef-tr tr,.commodityImg-tr tr,.commodityState-tr tr,.commodityPrice-tr tr,.commodityGood-tr tr{
+	width:100%;
+}
+.commodityState-tr tr td:first-child{
+	position: relative;
+	left: 17%;
+}
+.commodityState-tr tr td:nth-child(2){
+	position: relative;
+	left: 23%;
+}
+
+.marketData{
+	font-size: .57000rem;
 }

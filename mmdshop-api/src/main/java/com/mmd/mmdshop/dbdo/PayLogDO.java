@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 /**
  * (pay_log)
  * 
- * @author QJH
+ * @author MM
  * @version 1.0.0 2019-02-19
  */
 @NoArgsConstructor

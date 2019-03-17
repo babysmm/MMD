@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
 
 /**
  * 后台管理登录表现层数据传输
- * @author QJH
+ * @author MM
  * @version 1.0.0 2019-02-20
  */
 @NoArgsConstructor

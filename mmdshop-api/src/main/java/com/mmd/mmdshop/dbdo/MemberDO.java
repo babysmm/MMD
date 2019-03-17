@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
 /**
  * 会员(member)
  * 
- * @author QJH
+ * @author MM
  * @version 1.0.0 2019-02-19
  */
 @NoArgsConstructor

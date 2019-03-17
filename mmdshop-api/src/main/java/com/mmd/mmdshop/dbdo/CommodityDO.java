@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 /**
  * 商品(commodity)
  * 
- * @author QJH
+ * @author MM
  * @version 1.0.0 2019-02-19
  */
 @NoArgsConstructor

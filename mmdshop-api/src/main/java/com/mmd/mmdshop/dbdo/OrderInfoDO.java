@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * 订单(order_info)
  * 
- * @author bianj
+ * @author MM
  * @version 1.0.0 2019-02-19
  */
 public class OrderInfoDO implements java.io.Serializable {

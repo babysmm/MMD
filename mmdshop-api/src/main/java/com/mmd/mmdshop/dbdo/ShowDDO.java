@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
 /**
  * 社会秀(show_d)
  * 
- * @author QJH
+ * @author MM
  * @version 1.0.0 2019-02-26
  */
 @NoArgsConstructor

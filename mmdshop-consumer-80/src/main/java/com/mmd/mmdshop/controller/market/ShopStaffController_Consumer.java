@@ -8,10 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import com.mmd.mmdshop.dbdo.*;
 import com.mmd.mmdshop.result.CommodityStaffRrsult;
+import com.mmd.mmdshop.result.market.MarketOperationResult;
 import com.mmd.mmdshop.utils.NoRepeatSubmit;
 import com.mmd.mmdshop.utils.ParamValidation;
 
@@ -105,7 +107,10 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 	 * @throws IOException 
 	 */
 	@PostMapping("/consumer/addShopStaff")
-	public boolean addShopStaff(ShopStaffDO shopStaffDO,Integer code,HttpServletRequest httpServletRequest) throws IOException {
+	public boolean addShopStaff(@RequestBody MarketOperationResult result,HttpServletRequest httpServletRequest) throws IOException {
+		
+		ShopStaffDO shopStaffDO = result.getShopStaffDO();
+		Integer code = result.getCode();
 		
 		//邮箱验证码验证
 		if(this.emailCodeVerify(code, httpServletRequest) == false) {
@@ -114,6 +119,7 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 		
 		//设置IP
 		shopStaffDO.setLastIpS(httpServletRequest);
+		
 		return template.postForObject(ADMINUSERPROVIDER_URL+"/addShopStaff", shopStaffDO, boolean.class);
 	}
 	
