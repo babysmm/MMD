@@ -75,7 +75,11 @@ $.postData = function(url,data,Mysuccess,Myerror) {
         	Mysuccess(e)
 		},
         error: function(e) {
-        	Myerror(e)
+        	if(Myerror == null){
+        		$.myAlert("警告", "服务器错误喵喵喵", "red", 2000);
+        	}else{
+        		Myerror(e)
+        	}
 		}
     });
 }
@@ -384,6 +388,7 @@ class DataError extends Error {
 	constructor(message) {
 	    super(message); 
 	    this.name = "DataError";
+	    $.myAlert("警告", message, "red", 2000);
 	}
 }
 

@@ -3,7 +3,15 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>MMD收银员收银系统</title>
+  <title>MMD商店店长管理系统</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+	content="initial-scale=1,maximum-scale=3,minimum-scale=1,user-scalable=no">
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Pragma" content="no-store">
+<meta http-equiv="Cache-control" content="no-store">
+<meta http-equiv="Cache" content="no-store">
       <style>
       /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
       
@@ -73,7 +81,7 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 <body>
 
   <div class="login">
-	<h1>MMD商店店长管理系统</h1>
+	<h1>MMD商店店长管理</h1>
     	<input type="text" name="u" placeholder="Username" required="required"  id='username'/>
         <input type="password" name="p" placeholder="Password" required="required" id='password' />
         <button type="submit" class="btn btn-primary btn-block btn-large" onclick="login()">登录</button>
@@ -88,7 +96,7 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 		//$.safe();	
 		var dom = document;
 		function getValues(id){
-			return dom.getElementById(id).value
+			return dom.getElementById(id).value;
 		};
 		var time = 0;
 	
@@ -102,7 +110,6 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 				return;
 			}
 			
-			console.log(1)
 			var username = $.inputSafe(getValues("username")),
 				password = $.inputSafe(getValues("password"));
 			

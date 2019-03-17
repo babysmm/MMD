@@ -1,5 +1,6 @@
 var length = {
-	"searchStaff":[3,10,'number',"用户名"]
+	"searchStaff":[3,10,'number',"用户名"],
+	"emailcode":[5,6,'number',"邮箱验证码"]
 }
 //初始化是否已经清空表单，未清空0,已清空1
 //初始化是否已经获取验证码，未获取0,已获取1
@@ -26,9 +27,12 @@ $("#searchStaff").click(function() {
 		'username' : val
 	}, function(result) {
 		if (result != null && result.length != 0) {
-			console.log(result)
-			// 表单赋值
-			$("#shopStaffDate").setForm(result);
+			
+			if(result !=null){
+				// 表单赋值
+				$("#shopStaffDate").setForm(result);
+				$('.passwordTr').css("visibility","hidden");
+			}
 		} else {
 			$.myAlert("警告", "没有搜索到哦", "red", 2000);
 		}
@@ -38,31 +42,44 @@ $("#searchStaff").click(function() {
 $("#clearStaff").click(function() {
 	if (status == '0') {
 		$('#shopStaffDate')[0].reset();
+		$('.passwordTr').css("visibility","visible");
 		status = "1";
 	}
 });
 $("#saveStaff").click(function() {
+	var code = $.valM("#emailcode");
 	if (status == '1') { // 新增模式
-			var code = $("#email").serializeJson()['emailcode'];
-			
-			if (code == null || code == '') {
-				$.myAlert("提醒", "请先填写邮箱验证码", "red", 2000);
-			} else {
 				var data = {
 					'shopStaffDO' : $("#shopStaffDate").serializeJson(),
 					'code' : code
 				}
-				console.log(data);
 				$.postData("/consumer/addShopStaff", data, function(result) {
 					if (result != null && result.length != 0) {
-						alert(result)
+						if(result == true){
+							$('.passwordTr').css("visibility","hidden");
+							$.myAlert("提醒", "新增完成", "green", 2000);
+						}else{
+							$.myAlert("提醒", "新增失败", "green", 2000);
+						}
 					}
 				}, function() {
 					$.myAlert("警告", "服务器错误喵喵喵", "red", 2000);
-				});
-			}	
+				});	
 	} else { // 保存模式
-		
+			var data = {
+				'shopStaffDO' : $("#shopStaffDate").serializeJson(),
+				'code' : code
+			}
+			$.postData("/consumer/modifyShopStaff", data, function(result) {
+				if (result != null && result.length != 0) {
+					if(result == true){
+						$('.passwordTr').css("visibility","hidden");
+						$.myAlert("提醒", "修改完成", "green", 2000);
+					}else{
+						$.myAlert("提醒", "修改失败", "green", 2000);
+					}
+				}
+			}, null);	
 	}
 });
 

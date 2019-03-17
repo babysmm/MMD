@@ -55,7 +55,7 @@
 								<td>员工用户名</td>
 								<td><input type="text" name="username"></td>
 							</tr>
-							<tr>
+							<tr class='passwordTr' style="visibility: hidden">
 								<td>员工密码</td>
 								<td><input type="password" name="password"></td>
 							</tr>
@@ -73,8 +73,8 @@
 						<table>
 							<tr>
 								<td>邮箱验证码</td>
-								<td><input type="emailcode" name="emailcode">
-									<input type="button" class="btn" id="sendemail" value="获取验证码""></td>
+								<td><input name="emailcode" id='emailcode'>
+									<input type="button" class="btn" id="sendemail" value="获取验证码"></td>
 							</tr>
 						</table>
 					</form>
