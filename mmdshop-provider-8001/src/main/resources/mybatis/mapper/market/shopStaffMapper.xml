@@ -47,9 +47,9 @@
 	
 	<insert id="insertShopStaff" parameterType="com.mmd.mmdshop.dbdo.ShopStaffDO">
 		INSERT INTO shop_staff (
-			shop_staff_id,username,password,shopId,lastIp,fullName,type,change_time
+			shop_staff_id,username,password,shop_id,last_ip,full_name,type,change_time
 		)VALUES(
-			Null,#{username},#{password},#{shop_id},#{last_ip},#{full_name},2,NOW()
+			Null,#{username},#{password},#{shopId},#{lastIp},#{fullName},2,NOW()
 		);
 	</insert>
 	
@@ -62,13 +62,13 @@
         where shop_staff_id=#{shop_staff_id};
 	</update>
 	
-	<select id="findEmail">
+	<select id="findEmail" parameterType="java.lang.Integer" resultType="java.lang.String">
 		SELECT
 			ss.email
 		FROM
 			shop_staff AS ss
 		WHERE
-			ss.shop_staff_id = #{id}
+			ss.shop_staff_id = #{userId}
 	</select>
 </mapper>
  

@@ -43,7 +43,7 @@ public class CommodityServiceImpl implements CommodityService {
 	@Override
 	public List<CommodityDO> replenishmentCommodityNumber(Integer shopId) {
 		QueryWrapper<CommodityDO> commWrapper = new QueryWrapper<CommodityDO>();
-		commWrapper.select("name","number","max_number").eq("shop_id", shopId);
+		commWrapper.select("name","number","max_number","min_number").eq("shop_id", shopId);
 		
 		List<CommodityDO> db = mapper.selectList(commWrapper);
 		List<CommodityDO> result = new ArrayList<CommodityDO>();
@@ -59,6 +59,8 @@ public class CommodityServiceImpl implements CommodityService {
 				result.add(commodityDO);
 			}
 		}
+		
+		System.out.println(result);
 		
 		return result;
 	}

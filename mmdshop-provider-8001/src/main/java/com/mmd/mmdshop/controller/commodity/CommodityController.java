@@ -43,7 +43,7 @@ public class CommodityController<T>{
 	 * @return
 	 */
 	@PostMapping("/provider/replenishmentCommodityNumber")
-	public List<CommodityDO> replenishmentCommodityNumber(Integer shopId) {
+	public List<CommodityDO> replenishmentCommodityNumber(@RequestBody Integer shopId) {
 		return service.replenishmentCommodityNumber(shopId);
 	}
 }

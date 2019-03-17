@@ -128,3 +128,20 @@ table tbody{
 .marketData{
 	font-size: .57000rem;
 }
+
+.replenishment tr td:nth-child(1){
+	width:70%; 
+	background-color: #F0FFFF;
+}
+.replenishment tr td:nth-child(2){
+	width:15%; 
+	background-color: #F5F5DC;
+}
+.replenishment tr td:nth-child(2){
+	width:15%; 
+	background-color: #FDF5E6;
+}
+.replenishment tr td:nth-child(2) button{
+	width: 100%;
+	background-color: #FDF5E6;
+}

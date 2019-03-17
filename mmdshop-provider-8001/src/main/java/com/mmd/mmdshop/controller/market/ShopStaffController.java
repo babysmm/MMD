@@ -99,8 +99,9 @@ public class ShopStaffController {
 	 * 获取邮箱验证码
 	 * @return
 	 */
-	@PostMapping("/consumer/sendEmailCode")
+	@PostMapping("/provider/sendEmailCode")
 	public Integer sendEmailCode(@RequestBody Integer userId) {
+		System.out.println(userId);
 		return service.sendEmailCode(userId);
 	}
 }

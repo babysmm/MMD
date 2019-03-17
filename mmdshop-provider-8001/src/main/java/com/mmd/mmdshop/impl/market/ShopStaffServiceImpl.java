@@ -39,7 +39,7 @@ public class ShopStaffServiceImpl implements ShopStaffService{
 	@Override
 	public ShopStaffDO doLogin(ShopStaffDO shopStaffDO) {
 		QueryWrapper<ShopStaffDO> shopStaffDOWrapper = new QueryWrapper<ShopStaffDO>();
-		shopStaffDOWrapper.select("password", "shop_staff_id","full_name").eq("username", shopStaffDO.getUsername());
+		shopStaffDOWrapper.select("password", "shop_staff_id","full_name","shop_id").eq("username", shopStaffDO.getUsername());
 		
 		ShopStaffDO shopStaffDOResult = mapper.selectOne(shopStaffDOWrapper);
 		
@@ -93,9 +93,17 @@ public class ShopStaffServiceImpl implements ShopStaffService{
 	@Override
 	public Integer sendEmailCode(int userId) {
 		
+		String email = mapper.findEmail(userId);
+		
+		System.out.println(email);
+		
+		if(email.length() < 5) {
+			return null;
+		}
+		
 		int code = (int)(1+Math.random()*1000000);
 		
-		if(qqMail.sendTextMail(mapper.findEmail(userId), "收银系统店主验证码", "验证码:"+code, javaMailSender) == true) {
+		if(qqMail.sendTextMail(email, "收银系统店主验证码", "验证码:"+code, javaMailSender) == true) {
 			return code;
 		}else {
 			return null;

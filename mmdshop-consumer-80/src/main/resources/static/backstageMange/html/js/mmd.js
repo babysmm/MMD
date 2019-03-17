@@ -439,3 +439,38 @@ function inputSet(name,ival,obj) {
         obj.find("[name="+name+"]").val(ival); 
     }
 }
+
+$.getObjFrom = function(nameArray) {
+	
+	var result = {};
+	
+	for(var i=0;i<nameArray.length;i++){
+		
+		var dom = $(nameArray[i]);
+		var array = dom.serializeArray();
+		
+	    $.each(array, function() {
+	    	var name = this.name;
+	    	var value = this.value;
+	    	
+	    	var nameArray = name.split(".");
+	    	
+	    	var key1 = nameArray[0];
+	    	var key2 = nameArray[1];
+	    	
+	    	if(result[key1] == null){
+	    		result[key1] = {};
+	    	}
+	    	result[key1][key2] = value;
+	    	
+	    });
+	}
+	
+	//console.log(result)
+	return result;
+}
+
+
+$.getObjFrom(new Array("#commodityFrom","#commodityDefFrom","#commodityStateFrom","#commodityPriceFrom","#commodityGoodFrom"));
+
+

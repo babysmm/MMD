@@ -54,12 +54,16 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 		
 		ShopStaffDO staffDO = template.postForObject(ADMINUSERPROVIDER_URL+"/staffUserLogin", shopStaffDO, ShopStaffDO.class);
 		
-		System.out.println(staffDO);
+		//System.out.println(staffDO);
 		
 		if (staffDO != null) {
 			//System.out.println("id："+staffDO.getShopStaffId());
 			//设置session
 			httpServletRequest.getSession().setAttribute("userId", staffDO.getShopStaffId());
+			
+			System.out.println("shopID ====="+staffDO.getShopId());
+			
+			httpServletRequest.getSession().setAttribute("shopId", staffDO.getShopId());
 			
 			return staffDO.getFullName();
 		}else {
@@ -120,6 +124,11 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 		//设置IP
 		shopStaffDO.setLastIpS(httpServletRequest);
 		
+		//设置shop_id
+		shopStaffDO.setShopId((Integer)(httpServletRequest.getSession().getAttribute("shopId")));
+		
+		System.out.println(result);
+		
 		return template.postForObject(ADMINUSERPROVIDER_URL+"/addShopStaff", shopStaffDO, boolean.class);
 	}
 	
@@ -163,6 +172,13 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 	@PostMapping("/consumer/sendEmailCode")
 	public boolean getEmailCode(HttpServletRequest httpServletRequest) {
 		
+		Integer sessionEmilCode = (Integer) httpServletRequest.getSession().getAttribute("emailCode");
+		
+		//判断是否被按过了
+		if(sessionEmilCode != null) {
+			return false;
+		}
+		
 		Integer code = template.postForObject(ADMINUSERPROVIDER_URL+"/sendEmailCode", httpServletRequest.getSession().getAttribute("userId"),Integer.class);
 		
 		if(code == null) {
@@ -181,7 +197,8 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 	 * @return 
 	 */
 	public boolean emailCodeVerify(Integer code,HttpServletRequest httpServletRequest) {
-		if(code == httpServletRequest.getSession().getAttribute("emailCode")) {
+		
+		if(code.equals((Integer)httpServletRequest.getSession().getAttribute("emailCode"))) {
 			return true;
 		}else {
 			return false;

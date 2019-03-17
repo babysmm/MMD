@@ -2,23 +2,25 @@ var length = {
 	"searchStaff":[3,10,'number',"用户名"]
 }
 //初始化是否已经清空表单，未清空0,已清空1
+//初始化是否已经获取验证码，未获取0,已获取1
 var status = "0";
-
+var emailstatus = '0';
 $(".menuHeader").click(function() {
 	var div = $(this).parent().attr('class');
-	var section = $("."+div+">section");
+	var section = $("." + div + ">section");
 
-	if(section.css("display") == 'none'){
-		$(this).css("border-left","4px solid red");
-		section.css("display","block");
-	}else{
-		$(this).css("border-left","");
-		section.css("display","none");
+	if (section.css("display") == 'none') {
+		$(this).css("border-left", "4px solid red");
+		section.css("display", "block");
+	} else {
+		$(this).css("border-left", "");
+		section.css("display", "none");
 	}
 });
 
 $("#searchStaff").click(function() {
 	status = "0";
+	emailstatus = '0';
 	var val = $.valM(".searchInput");
 	$.post('/consumer/findShopStaffByusername', {
 		'username' : val
@@ -32,7 +34,7 @@ $("#searchStaff").click(function() {
 		}
 	});
 });
-// 新增模式清空店员表单
+//新增模式清空店员表单
 $("#clearStaff").click(function() {
 	if (status == '0') {
 		$('#shopStaffDate')[0].reset();
@@ -40,32 +42,81 @@ $("#clearStaff").click(function() {
 	}
 });
 $("#saveStaff").click(function() {
-	
-	
-	if (status == '1') {		//新增模式
-	
-		var data = {
-			'shopStaffDO' : $("#shopStaffDate").serializeJson(),
-			'code' : 123456
-		}
-		
-		console.log(data)
-		
-		$.postData("/consumer/addShopStaff", data, function(result) {
-			if (result != null && result.length != 0) {
-				alert(result)
-			}
-		}, function() {
-			$.myAlert("警告", "服务器错误喵喵喵", "red", 2000);
-		});
-		
-		//$('#shopStaffDate')[0].reset();
-		//status = "0";
-	} else {					//保存模式
+	if (status == '1') { // 新增模式
+			var code = $("#email").serializeJson()['emailcode'];
+			
+			if (code == null || code == '') {
+				$.myAlert("提醒", "请先填写邮箱验证码", "red", 2000);
+			} else {
+				var data = {
+					'shopStaffDO' : $("#shopStaffDate").serializeJson(),
+					'code' : code
+				}
+				console.log(data);
+				$.postData("/consumer/addShopStaff", data, function(result) {
+					if (result != null && result.length != 0) {
+						alert(result)
+					}
+				}, function() {
+					$.myAlert("警告", "服务器错误喵喵喵", "red", 2000);
+				});
+			}	
+	} else { // 保存模式
 		
 	}
-
 });
+
+//验证码按钮显示
+$("#sendemail").click(function() {
+	emailstatus = '1';
+	var code = $("#sendemail");
+	code.attr("disabled", "disabled");
+	setTimeout(function() {
+		code.css("opacity", "0.8");
+	}, 1000)
+	var time = 60;
+	var set = setInterval(function() {
+		code.val("(" + --time + ")秒后重新获取");
+	}, 1000);
+	setTimeout(function() {
+		code.attr("disabled", false).val("重新获取验证码");
+		clearInterval(set);
+	}, 60000);
+		
+	$.postData("/consumer/sendEmailCode", null, function(result) {
+		if (result != null && result.length != 0) {
+			alert(result)
+		}
+	}, function() {
+		$.myAlert("警告", "服务器错误喵喵喵", "red", 2000);
+	});
+});
+/**
+ * 获取补货清单
+ * @returns
+ */
+$(".getrReplenishmentData").click(function() {
+	
+	$.postData("/consumer/replenishmentCommodityNumber", null, function(result) {
+		if (result != null && result.length != 0) {
+			
+			$(".replenishment tr:not(:first)").empty("");
+			
+			var tr = '';
+			for(var i=0;i<result.length;i++){
+				tr +='<tr>';
+				tr += '<td>'+result[i].name+'</td>'+'<td>'+result[i].number+'</td>'+'<td><button>完成</button></td>';
+				tr +='</tr>';
+			}
+			$(".replenishment").append(tr);
+			
+		}else{
+			
+		}
+	}, function() {
+		$.myAlert("警告", "服务器错误喵喵喵", "red", 2000);
+	});
+})
 
 
 
@@ -180,3 +231,26 @@ $(function () {
 	    }
 	});
 });
+
+/**
+ * 生成图片
+ */
+$(function () {
+    $(".dataToImg").click(function () {
+        html2canvas($(".replenishment")).then(function (canvas) {
+            var imgUri = canvas.toDataURL("image/png"); // 获取生成的图片的url
+            
+            
+            var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+            save_link.href = imgUri;
+            save_link.download = '111.png';
+           
+            var event = document.createEvent('MouseEvents');
+            event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+            save_link.dispatchEvent(event);
+              
+            window.location.href = imgUri; // 下载图片
+        });
+    });
+});
+
