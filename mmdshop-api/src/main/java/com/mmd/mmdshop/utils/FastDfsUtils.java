@@ -12,7 +12,7 @@ import org.csource.fastdfs.TrackerClient;
 import org.csource.fastdfs.TrackerServer;
 
 /**
- * @author QJH
+ * @author MM
  *
  */
 public class FastDfsUtils {

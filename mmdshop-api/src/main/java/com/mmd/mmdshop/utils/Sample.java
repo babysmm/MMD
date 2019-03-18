@@ -9,7 +9,7 @@ import com.baidu.aip.speech.TtsResponse;
 import com.baidu.aip.util.Util;
 
 /**
- * @author QJH
+ * @author MM
  *
  */
 public class Sample {

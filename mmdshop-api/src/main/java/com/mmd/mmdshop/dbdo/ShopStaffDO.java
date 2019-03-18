@@ -62,6 +62,9 @@ public class ShopStaffDO implements java.io.Serializable {
     /**  */
     private Integer changeId;
     
+    /** 人员类型(1.店家，2.店员)  */
+    private Integer type;
+    
     /** 电子邮箱 */
     private String email;
     

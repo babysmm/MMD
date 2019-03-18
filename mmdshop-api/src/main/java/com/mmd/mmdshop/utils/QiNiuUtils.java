@@ -2,6 +2,10 @@ package com.mmd.mmdshop.utils;
 
 import java.io.File;
 
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
 import org.junit.Test;
 
 import com.qiniu.common.QiniuException;
@@ -11,6 +15,8 @@ import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
 import com.qiniu.util.StringMap;
+import com.qiniu.util.UrlSafeBase64;
+
  
 /**
  * 七牛 java sdk 简单上传，覆盖上传，文件上传
@@ -18,7 +24,8 @@ import com.qiniu.util.StringMap;
  */
 public class QiNiuUtils {
  
-    Auth auth = Auth.create("UTGwEARIYS8loLRm63rrKdt9-ifdaNLJ2vEGdOHH", "Vm7EcRiyhH5ka5lCrKTf6MRY8P3IA3dm4tSH0QM0");
+    //Auth auth = Auth.create("UTGwEARIYS8loLRm63rrKdt9-ifdaNLJ2vEGdOHH", "Vm7EcRiyhH5ka5lCrKTf6MRY8P3IA3dm4tSH0QM0");
+	Auth auth = Auth.create("0imN7QOzB-0mbmr-ITtayh0OC7XGtExG8DI1LTmi", "52_salQ0QDLouWeu97QMrRDB9PKbYO6est67gNRv");
     Configuration cfg = new Configuration(Zone.zone2());
     UploadManager uploadManager = new UploadManager(cfg);
  
@@ -115,18 +122,18 @@ public class QiNiuUtils {
      */
     @Test 
     public void test() {
-    	/*
+    	
         // 上传文件的路径，因为在Mac下，所以路径和windows下不同
         String filePath = "G:\\安装包\\wKgBdVx42LaAD3X3AAAAN64jzU494.java";
         // 要上传的空间
-        String bucketName = "mmd_shop";
+        String bucketName = "mmdshop";
         // 上传到七牛后保存的文件名
-        String key = "wKgBdVx42LaAD3X3AAAAN64jzU494.txt";
+        String key = "mm.java";
         // 这里的filepath可以直接替换成File如下注释所示
         // File file=new File(filePath);
         // new SimpleUpload().upload(file, key, bucketName);
         new QiNiuUtils().upload(filePath, key, bucketName);
-        */
+        
     	
     	//生成token
         //System.out.println(auth.uploadToken("mmd_shop"));
@@ -137,7 +144,7 @@ public class QiNiuUtils {
         
         StringMap stringMap = new StringMap().put("endUser", "uid").putNotEmpty("returnBody", "");
         
-        System.out.println(auth.uploadToken("mmd_shop", "111", 3600, stringMap));
+        System.out.println(auth.uploadToken("mmdshop", "111", 3600, stringMap));
         
         //System.out.println(auth.uploadToken("mmd_shop", "123455", 3600, stringMap));
         
@@ -152,5 +159,56 @@ public class QiNiuUtils {
         
         //System.out.println(auth.uploadToken("mmd_shop", "12345678", 3600, stringMap));
         
+    }
+    
+    
+    private static final String MAC_NAME = "HmacSHA1";
+	private static final String ENCODING = "UTF-8";
+	
+	/**
+	 * 
+	 * 这个签名方法找了半天 一个个对出来的、、、、程序猿辛苦啊、、、 使用 HMAC-SHA1 签名方法对对encryptText进行签名
+	 * 
+	 * @param encryptText
+	 *            被签名的字符串
+	 * @param encryptKey
+	 *            密钥
+	 * @return
+	 * @throws Exception
+	 */
+	public static byte[] HmacSHA1Encrypt(String encryptText, String encryptKey)
+			throws Exception {
+		byte[] data = encryptKey.getBytes(ENCODING);
+		// 根据给定的字节数组构造一个密钥,第二参数指定一个密钥算法的名称
+		SecretKey secretKey = new SecretKeySpec(data, MAC_NAME);
+		// 生成一个指定 Mac 算法 的 Mac 对象
+		Mac mac = Mac.getInstance(MAC_NAME);
+		// 用给定密钥初始化 Mac 对象
+		mac.init(secretKey);
+		byte[] text = encryptText.getBytes(ENCODING);
+		// 完成 Mac 操作
+		return mac.doFinal(text);
+	}
+    
+	
+	/**
+	 * 下载凭证
+	 * @throws Exception
+	 */
+    @Test
+    public void test1() throws Exception {
+    	
+    	
+    	String url = "http://mm.xknow.net/mm.java?e=8451491200";
+    	
+    	byte[] hmac = HmacSHA1Encrypt(url, "52_salQ0QDLouWeu97QMrRDB9PKbYO6est67gNRv");
+    	
+    	String si = UrlSafeBase64.encodeToString(hmac);
+    	
+    	String tToken = "0imN7QOzB-0mbmr-ITtayh0OC7XGtExG8DI1LTmi" + ":" + si;
+    			
+    	System.out.println(tToken);
+    	
+    	System.out.println(url+"&token="+tToken);
     }
 }

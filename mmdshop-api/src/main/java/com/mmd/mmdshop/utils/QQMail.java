@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
  * QQ邮箱工具类
  * 
- * @author QJH
+ * @author MM
  * 
  */
 @Service

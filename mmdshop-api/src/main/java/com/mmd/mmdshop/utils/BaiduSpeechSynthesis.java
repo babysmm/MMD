@@ -1,6 +1,7 @@
 package com.mmd.mmdshop.utils;
 
 import java.io.IOException;
+
 import java.util.HashMap;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,7 +19,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- * @author QJH
+ * @author MM
  *
  */
 public class BaiduSpeechSynthesis {

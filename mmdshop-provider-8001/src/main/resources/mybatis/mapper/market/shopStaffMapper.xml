@@ -12,6 +12,7 @@
 		<result column="change_time" property="changeTime"/>
 		<result column="change_type" property="changeType"/>
 		<result column="change_id" property="changeId"/>
+		<result column="type" property="type"/>
 		<result column="full_name" property="fullName"/>
 		<result column="email" property="email"/>
 	</resultMap>

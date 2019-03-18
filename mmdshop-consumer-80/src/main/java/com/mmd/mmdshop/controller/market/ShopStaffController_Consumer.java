@@ -1,7 +1,9 @@
 package com.mmd.mmdshop.controller.market;
 
 import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import org.json.JSONException;
 import org.slf4j.Logger;
@@ -54,21 +56,38 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 		
 		ShopStaffDO staffDO = template.postForObject(ADMINUSERPROVIDER_URL+"/staffUserLogin", shopStaffDO, ShopStaffDO.class);
 		
-		//System.out.println(staffDO);
+		if(staffDO == null) return null;
 		
-		if (staffDO != null) {
-			//System.out.println("id："+staffDO.getShopStaffId());
-			//设置session
-			httpServletRequest.getSession().setAttribute("userId", staffDO.getShopStaffId());
-			
-			System.out.println("shopID ====="+staffDO.getShopId());
-			
-			httpServletRequest.getSession().setAttribute("shopId", staffDO.getShopId());
-			
-			return staffDO.getFullName();
-		}else {
-			return null;
+		this.setLoginSession(staffDO, httpServletRequest);
+					
+		return staffDO.getFullName();
+	}
+	
+	/**
+	 * 收银店长登录
+	 * @throws JSONException 
+	 */
+	@PostMapping("/consumer/staffUserTLogin")
+	@NoRepeatSubmit
+	public String staffUserTLogin(ShopStaffDO shopStaffDO,HttpServletRequest httpServletRequest) throws IOException, JSONException {
+		
+		//账号密码null判断
+		if (pv.isNotNull(shopStaffDO, "username", "password") == false) {
+			return null;		
 		}
+		
+		//设置IP地址
+		shopStaffDO.setLastIpS(httpServletRequest);
+		
+		ShopStaffDO staffDO = template.postForObject(ADMINUSERPROVIDER_URL+"/staffUserLogin", shopStaffDO, ShopStaffDO.class);
+		
+		if(staffDO == null) return null;
+		
+		if(staffDO.getType() == 2) return null;
+		
+		this.setLoginSession(staffDO, httpServletRequest);
+					
+		return staffDO.getFullName();
 	}
 	
 	/**
@@ -203,5 +222,19 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 		}else {
 			return false;
 		}
+	}
+	
+	/**
+	 * 登录设置session
+	 */
+	private void setLoginSession(ShopStaffDO shopStaffDO,HttpServletRequest httpServletRequest) {
+		HttpSession session = httpServletRequest.getSession();
+		
+		//设置session的userId
+		session.setAttribute("userId", shopStaffDO.getShopStaffId());
+		//设置session的shopId
+		session.setAttribute("shopId", shopStaffDO.getShopId());
+		//设置session的type
+		session.setAttribute("shopStaffType", shopStaffDO.getType());
 	}
 }

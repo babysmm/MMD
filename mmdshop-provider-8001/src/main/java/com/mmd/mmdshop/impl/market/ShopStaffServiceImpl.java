@@ -39,7 +39,7 @@ public class ShopStaffServiceImpl implements ShopStaffService{
 	@Override
 	public ShopStaffDO doLogin(ShopStaffDO shopStaffDO) {
 		QueryWrapper<ShopStaffDO> shopStaffDOWrapper = new QueryWrapper<ShopStaffDO>();
-		shopStaffDOWrapper.select("password", "shop_staff_id","full_name","shop_id").eq("username", shopStaffDO.getUsername());
+		shopStaffDOWrapper.select("password", "shop_staff_id","full_name","shop_id","type").eq("username", shopStaffDO.getUsername());
 		
 		ShopStaffDO shopStaffDOResult = mapper.selectOne(shopStaffDOWrapper);
 		
