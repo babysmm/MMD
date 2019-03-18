@@ -27,7 +27,8 @@
 <script src="quagga/dist/quagga.min.js" type="text/javascript"></script>
 </head>
 <body>
-	<canvas width="320" height="180" style="width:160px;height:90px;display:none"></canvas>
+	<canvas width="320" height="180"
+		style="width: 160px; height: 90px; display: none"></canvas>
 	<header class="main-header">
 		<div>MMD店长系统</div>
 		<div style="text-align: right;">喵喵</div>
@@ -73,8 +74,9 @@
 						<table>
 							<tr>
 								<td>邮箱验证码</td>
-								<td><input name="emailcode" id='emailcode'>
-									<input type="button" class="btn" id="sendemail" value="获取验证码"></td>
+								<td><input name="emailcode" id='emailcode'
+									style="width: 28%;"> <input type="button" class="btn"
+									id="sendemail" style="width: 33%;" value="获取验证码"></td>
 							</tr>
 						</table>
 					</form>
@@ -86,7 +88,9 @@
 				<div>商品管理</div>
 			</header>
 			<section class="menuSection">
-				<input type="file" name="file" accept="image/png,image/jpg,image/jpeg" id="commImgInput" style="display:none;" />
+				<input type="file" name="file"
+					accept="image/png,image/jpg,image/jpeg" id="commImgInput"
+					style="display: none;" />
 				<div>
 					<input type="" name="" placeholder="输入员工账号获取全名" class='searchInput'>
 					<button>搜索商品</button>
@@ -98,19 +102,20 @@
 				</div>
 				<div class="changeFinal">
 
-							<img alt="" src=""
-								onerror="this.src='../backstageMange/images/addImg.png';this.onerror=null"
-								id='img-c' class='comm-img'>
+					<img alt="" src=""
+						onerror="this.src='../backstageMange/images/addImg.png';this.onerror=null"
+						id='img-c' class='comm-img'>
 
-							<div class='commMessageHeader' onclick='commodityTitle(1,this)'>商品基本信息</div></td>
+					<div class='commMessageHeader' onclick='commodityTitle(1,this)'>商品基本信息</div>
+					</td>
 					<form id='commodityFrom'>
 						<table class="commodity-tr">
 							<tr>
 								<td>商品条形码</td>
-								<td>
-									<input type="text" name="commodityDO.name" class='inputbarCode'>
-									<input type="file" accept="image/*;capture=camera" class='barCode'> 
-            					</td>
+								<td><input type="text" name="commodityDO.name"
+									style="width: 31%;" class='inputbarCode'> <input
+									type="file" style="width: 30%;" accept="image/*;capture=camera"
+									class='barCode'></td>
 							</tr>
 							<tr>
 								<td>商品名字</td>
@@ -124,11 +129,11 @@
 								<td>商品类型</td>
 								<td><input type="text" name="commodityTypeDO.type"></td>
 							</tr>
-							<tr >
+							<tr>
 								<td>商品关键词</td>
 								<td><input type="text" name="commodityDO.keywords"></td>
 							</tr>
-							<tr >
+							<tr>
 								<td>商品品牌</td>
 								<td><input type="text" name="commodityBrandDO.name"></td>
 							</tr>
@@ -137,11 +142,12 @@
 								<td><input type="text" name="commodityBrandDO.address"></td>
 							</tr>
 						</table>
-					</form>		
-							
-						<div class='commMessageHeader' onclick='commodityTitle(2,this)'>商品详细信息</div></td>
-							
-					<form id='commodityDefFrom'>		
+					</form>
+
+					<div class='commMessageHeader' onclick='commodityTitle(2,this)'>商品详细信息</div>
+					</td>
+
+					<form id='commodityDefFrom'>
 						<table class="commodityDef-tr">
 							<tr>
 								<td>商品重量</td>
@@ -163,82 +169,85 @@
 								<td>商品生产地址</td>
 								<td><input type="text" name="commodityDO.address"></td>
 							</tr>
-						  </table>
-					  </form>		
-							<div class='commMessageHeader' onclick='commodityTitle(3,this)'>商品图片描述</div><td>
-						
-						
+						</table>
+					</form>
+					<div class='commMessageHeader' onclick='commodityTitle(3,this)'>商品图片描述</div>
+					<td>
+
+
 						<div class='commodityImg-tr'>
 							<img src="" class="comm-img"
-											onerror="this.src='../backstageMange/images/addImg.png';this.onerror=null">
+								onerror="this.src='../backstageMange/images/addImg.png';this.onerror=null">
 							<img src="" class="comm-img"
-											onerror="this.src='../backstageMange/images/addImg.png';this.onerror=null">
+								onerror="this.src='../backstageMange/images/addImg.png';this.onerror=null">
 							<img src="" class="comm-img"
-											onerror="this.src='../backstageMange/images/addImg.png';this.onerror=null">
+								onerror="this.src='../backstageMange/images/addImg.png';this.onerror=null">
 							<img src="" class="comm-img"
-											onerror="this.src='../backstageMange/images/addImg.png';this.onerror=null">
+								onerror="this.src='../backstageMange/images/addImg.png';this.onerror=null">
 							<img src="" class="comm-img"
-											onerror="this.src='../backstageMange/images/addImg.png';this.onerror=null">
+								onerror="this.src='../backstageMange/images/addImg.png';this.onerror=null">
 						</div>
-								
-						
-						<div class='commMessageHeader' onclick='commodityTitle(4,this)'>商品状况</div><td>
-						
-					<form id='commodityStateFrom'>		
-						<table class="commodityState-tr">
-							<tr>
-								<td>是否新品</td>
-								<td><select name="commodityDO.isNew">
-										<option value="1">是</option>
-										<option value="2">否</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>是否好东西</td>
-								<td><select name="commodityDO.isGood">
-										<option value="1">是</option>
-										<option value="2">否</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>是否热销</td>
-								<td><select name="commodityDO.isHot">
-										<option value="1">是</option>
-										<option value="2">否</option>
-								</select></td>
-							</tr>
-						  </table>
-					</form>		
-						
-						<div class='commMessageHeader'  onclick='commodityTitle(5,this)'>价格</div><td>
-						
-					<form id='commodityPriceFrom'>			
-						<table class="commodityPrice-tr">
-							<tr>
-								<td>市场价</td>
-								<td><input type="number" name="commodityDO.marketPrice">&nbsp;元</td>
-							</tr>
-							<tr>
-								<td>进货价</td>
-								<td><input type="number" name="commodityDO.primeCost">&nbsp;元</td>
-							</tr>
-							<tr>
-								<td>售卖最低价</td>
-								<td><input type="number" name="commodityDO.lowPrice">&nbsp;元</td>
-							</tr>
-						</table>
-					</form>	
-						
-						<div class='commMessageHeader'  onclick='commodityTitle(6,this)'>商品评价</div>
-					
-					<form id='commodityGoodFrom'>				
-						<table class="commodityGood-tr">
-							<tr>
-								<td>好评数</td>
-								<td><input type="number" name="commodityDO.evaluate"></td>
-							</tr>
-						</table>
-					</form>	
+
+
+						<div class='commMessageHeader' onclick='commodityTitle(4,this)'>商品状况</div>
+					<td>
+
+						<form id='commodityStateFrom'>
+							<table class="commodityState-tr">
+								<tr>
+									<td>是否新品</td>
+									<td><select name="commodityDO.isNew">
+											<option value="1">是</option>
+											<option value="2">否</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td>是否好东西</td>
+									<td><select name="commodityDO.isGood">
+											<option value="1">是</option>
+											<option value="2">否</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td>是否热销</td>
+									<td><select name="commodityDO.isHot">
+											<option value="1">是</option>
+											<option value="2">否</option>
+									</select></td>
+								</tr>
+							</table>
+						</form>
+
+						<div class='commMessageHeader' onclick='commodityTitle(5,this)'>价格</div>
+					<td>
+
+						<form id='commodityPriceFrom'>
+							<table class="commodityPrice-tr">
+								<tr>
+									<td>市场价</td>
+									<td><input type="number" name="commodityDO.marketPrice">&nbsp;元</td>
+								</tr>
+								<tr>
+									<td>进货价</td>
+									<td><input type="number" name="commodityDO.primeCost">&nbsp;元</td>
+								</tr>
+								<tr>
+									<td>售卖最低价</td>
+									<td><input type="number" name="commodityDO.lowPrice">&nbsp;元</td>
+								</tr>
+							</table>
+						</form>
+
+						<div class='commMessageHeader' onclick='commodityTitle(6,this)'>商品评价</div>
+
+						<form id='commodityGoodFrom'>
+							<table class="commodityGood-tr">
+								<tr>
+									<td>好评数</td>
+									<td><input type="number" name="commodityDO.evaluate"></td>
+								</tr>
+							</table>
+						</form>
 				</div>
 			</section>
 		</div>
@@ -262,9 +271,7 @@
 			<header class="menuHeader">
 				<div>补货核实</div>
 			</header>
-			<section class="menuSection">
-				
-			</section>
+			<section class="menuSection"></section>
 		</div>
 	</section>
 </body>
