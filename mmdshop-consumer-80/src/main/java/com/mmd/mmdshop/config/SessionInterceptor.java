@@ -41,21 +41,19 @@ public class SessionInterceptor implements HandlerInterceptor {
         
         requestPath = requestPath.replace("/consumer/", "");
         
-        System.out.println(requestPath);
-        
         boolean result = false;
         
         if(session.getAttribute("userId") == null) {
         	result = false;
-        }
-        
-        switch(map.get(requestPath)) {
-        	//是否是商店员工
-        	case 1:if(session.getAttribute("shopStaffType") == null) result = false;break;
-        	//是否是商店店员
-        	case 2:if((int)session.getAttribute("shopStaffType") == 2) result = false;break;
-        	
-        	default :result = false;break;
+        }else {
+        	switch(map.get(requestPath)) {
+	        	//是否是商店员工
+	        	case 1:if(session.getAttribute("shopStaffType") == null) result = false;break;
+	        	//是否是商店店员
+	        	case 2:if((int)session.getAttribute("shopStaffType") == 2) result = false;break;
+	        	
+	        	default :result = false;break;
+        	}
         }
         
         if(result == false) {
