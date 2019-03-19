@@ -1,6 +1,8 @@
 var length = {
 	"searchStaff" : [ 3, 10, 'number', "用户名" ],
-	"emailcode" : [ 5, 6, 'number', "邮箱验证码" ]
+	"emailcode" : [ 5, 6, 'number', "邮箱验证码" ],
+	"username" : [2 ,10,'number','显示用户名'],
+	"commodityDO.name" : [2 ,10,'text','条形码'],
 }
 // 初始化是否已经清空表单，未清空0,已清空1
 // 初始化是否已经获取验证码，未获取0,已获取1
@@ -55,9 +57,15 @@ $("#clearStaff").click(function() {
 		hideEmail(status);
 		shopStaffStatus = '1';
 		hideshopStaff(shopStaffStatus);
-
+		//设置username输入框可以被修改
+		$('.staffUsername').removeAttr('disabled');
 	}
 });
+
+/**
+ * 新增和保存
+ * @returns
+ */
 $("#saveStaff").click(function() {
 	var code = $.valM("#emailcode");
 	if (status == '1') { // 新增模式
@@ -95,6 +103,16 @@ $("#saveStaff").click(function() {
 	}
 });
 
+/**
+ * 删除店员
+ * @returns
+ */
+$("#delStaff").click(function() {
+	var code = $.valM(".staffUsername");
+	
+	alert(code)
+})
+
 // 验证码按钮显示
 $("#sendemail").click(function() {
 	emailstatus = '1';
@@ -130,10 +148,12 @@ function hideEmail(status) {
 	}
 }
 function hideshopStaff(shopStaffStatus) {
-	if (status == '0') {
+	if (shopStaffStatus == '0') {
 		$("#shopStaff").hide();
 	} else {
 		$("#shopStaff").show();
+		//设置用户输入框不可改变
+		$('.staffUsername').attr('disabled',true);
 	}
 }
 /**

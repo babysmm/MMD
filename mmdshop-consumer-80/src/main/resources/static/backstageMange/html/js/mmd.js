@@ -89,44 +89,40 @@ $.isNotNull = function(table,array) {
 	var tableData = $(table).serializeJson();
 	
 	var result = new Array();
-	try{
+	
 		array.forEach(function(value,i){
+			
+			var obj = $("input[name = '"+value+"']");
+			
+			var cname = obj.attr("cname");
+			
 			if(tableData[value].length == 0){
-				result[0] = value;
-				result[1] = "是空的 没有填";
-				throw new Error("EndIterative");
+					throw new DataError(cname+"是空的 没有填");
 			}else if(value.indexOf("cardId") != -1){
 				if(tableData[value].length != 18){
-					result[0] = value;
-					result[1] = "不符合要求";
-					throw new Error("EndIterative");
+					throw new DataError(cname+"不符合要求");
 				}
 			}
 			
 			// 长度判断
 			var minLength,maxLength;
-			minLength = $("input[name = '"+value+"']").attr("minLength");
-			maxLength = $("input[name = '"+value+"']").attr("maxLength");
+			minLength = obj.attr("minLength");
+			maxLength = obj.attr("maxLength");
+			
+			console.log(cname+"---"+minLength+"----"+maxLength)
 			
 			if($("input[name = '"+value+"']").val().length <= minLength || $("input[name = '"+value+"']").val().length >= maxLength){
-				result[0] = value;
-				result[1] = "长度不对,不能小于"+minLength+"或者大于"+maxLength;
-				throw new Error("EndIterative");
+				throw new DataError(cname+"长度不对,不能小于"+minLength+"或者大于"+maxLength);
 			}
 			
 			// 类型判断
 			if($("input[name = '"+value+"']").attr("type") == 'number'){
 				if(isNaN($("input[name = '"+value+"']").val()) == true){
-					result[0] = value;
-					result[1] = "不是数字";
-					throw new Error("EndIterative");
+					throw new DataError(cname+"不是数字");
 				}
 			}
 			
 		})
-	}catch(e){
-		
-	}
 	return result;
 }
 
@@ -378,6 +374,7 @@ function lengthVerify(name,val){
 		switch(type){
 			case 'number':if(isNaN(val)){throw new DataError("不是数字");}return 0;
 			case 'email':if(!emailReg.test(val)){throw new DataError("不是邮件");}return 0;
+			case 'text':return 0;
 		}
 	}else{
 		throw new DataError("输入框获取"+cname+"值错误");
@@ -458,6 +455,8 @@ $.getObjFrom = function(nameArray) {
 	    	var name = this.name;
 	    	var value = this.value;
 	    	
+	    	
+	    	//截取.
 	    	var nameArray = name.split(".");
 	    	
 	    	var key1 = nameArray[0];
@@ -476,6 +475,6 @@ $.getObjFrom = function(nameArray) {
 }
 
 
-$.getObjFrom(new Array("#commodityFrom","#commodityDefFrom","#commodityStateFrom","#commodityPriceFrom","#commodityGoodFrom"));
+//$.getObjFrom(new Array("#commodityFrom","#commodityDefFrom","#commodityStateFrom","#commodityPriceFrom","#commodityGoodFrom"));
 
 

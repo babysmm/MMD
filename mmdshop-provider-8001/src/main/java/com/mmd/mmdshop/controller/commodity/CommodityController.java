@@ -46,4 +46,15 @@ public class CommodityController<T>{
 	public List<CommodityDO> replenishmentCommodityNumber(@RequestBody Integer shopId) {
 		return service.replenishmentCommodityNumber(shopId);
 	}
+	
+	/**
+	 * 增加商品
+	 * 
+	 * @param commodityBasic
+	 * @return
+	 */
+	@PostMapping("/provider/addCommodity")
+	public String addCommodityDO(@RequestBody CommodityDO commodityDO) {
+		return service.addCommodityBasic(commodityDO);
+	}
 }

@@ -1,7 +1,6 @@
 package com.mmd.mmdshop.service.commodity;
 
 import java.util.List;
-
 import com.mmd.mmdshop.dbdo.CommodityDO;
 import com.mmd.mmdshop.result.CommodityAll;
 import com.mmd.mmdshop.result.CommodityRough;
@@ -31,4 +30,11 @@ public interface CommodityService {
 	 * @return
 	 */
 	List<CommodityDO> replenishmentCommodityNumber(Integer shopId);
+	
+	/**
+	 * 添加商品
+	 * @param commodityAll
+	 * @return
+	 */
+	String  addCommodityBasic(CommodityDO commodityDO);
 }

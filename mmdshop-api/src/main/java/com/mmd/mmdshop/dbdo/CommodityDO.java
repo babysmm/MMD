@@ -1,5 +1,3 @@
-
-
 package com.mmd.mmdshop.dbdo;
 
 import java.math.BigDecimal;
@@ -32,7 +30,7 @@ public class CommodityDO implements java.io.Serializable {
     private static final long serialVersionUID = 333078981054144442L;
     
     /** 商品ID */
-    @TableId(value="commodity_id",type=IdType.AUTO)
+    @TableId(value="commodity_id",type=IdType.INPUT)
     private Integer commodityId;
     
     /** 商家id */

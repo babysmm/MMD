@@ -31,6 +31,7 @@ public class SessionInterceptor implements HandlerInterceptor {
 		map.put("modifyShopStaff", 2);
 		map.put("removeShopStaff", 2);
 		map.put("sendEmailCode", 2);
+		map.put("addCommodity", 2);
 	}
 	
 	
@@ -41,7 +42,7 @@ public class SessionInterceptor implements HandlerInterceptor {
         
         requestPath = requestPath.replace("/consumer/", "");
         
-        boolean result = false;
+        boolean result = true;
         
         if(session.getAttribute("userId") == null) {
         	result = false;

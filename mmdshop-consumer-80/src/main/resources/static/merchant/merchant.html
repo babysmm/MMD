@@ -59,7 +59,7 @@
 						<table>
 							<tr>
 								<td>员工用户名</td>
-								<td><input type="text" name="username"></td>
+								<td><input type="text" name="username" class='staffUsername'></td>
 							</tr>
 							<tr class='passwordTr' style="visibility: hidden" id="password">
 								<td>员工密码</td>
@@ -98,12 +98,12 @@
 					style="display: none;" />
 				<div>
 					<input type="" name="" placeholder="输入员工账号获取全名" class='searchInput'>
-					<button>搜索商品</button>
+					<button id='searchCommodity'>搜索商品</button>
 				</div>
 				<div>
-					<button>新增商品</button>
-					<button>保存商品信息</button>
-					<button>删除商品</button>
+					<button id='newCommodity'>新增商品</button>
+					<button id='saveCommodity'>保存商品信息</button>
+					<button id='delCommodity'>删除商品</button>
 				</div>
 				<div class="changeFinal">
 
@@ -117,34 +117,30 @@
 						<table class="commodity-tr">
 							<tr>
 								<td>商品条形码</td>
-								<td><input type="text" name="commodityDO.name"
-									style="width: 31%;" class='inputbarCode'> <input
-									type="file" style="width: 30%;" accept="image/*;capture=camera"
-									class='barCode'></td>
+								<td>
+									<input type="text" name="commodityDO.barCode" style="width: 31%;" class='inputbarCode' minLength='1' maxLength='4' cName='商品条形码'> 
+									<input type="file" style="width: 30%;" accept="image/*;capture=camera" class='barCode'>
+								</td>
 							</tr>
 							<tr>
 								<td>商品名字</td>
-								<td><input type="text" name="commodityDO.name"></td>
-							</tr>
-							<tr>
-								<td>商家名字</td>
-								<td><input type="text" name="shopDO.name"></td>
+								<td><input type="text" name="commodityDO.name"  minLength='1' maxLength='3' cName='商品名字'></td>
 							</tr>
 							<tr>
 								<td>商品类型</td>
-								<td><input type="text" name="commodityTypeDO.type"></td>
+								<td><input type="text" name="commodityTypeDO.type"  minLength='1' maxLength='3'  cName='商品类型'></td>
 							</tr>
 							<tr>
 								<td>商品关键词</td>
-								<td><input type="text" name="commodityDO.keywords"></td>
+								<td><input type="text" name="commodityDO.keywords"  minLength='1' maxLength='3'  cName='商品关机词'></td>
 							</tr>
 							<tr>
 								<td>商品品牌</td>
-								<td><input type="text" name="commodityBrandDO.name"></td>
+								<td><input type="text" name="commodityBrandDO.name"  minLength='1' maxLength='3'  cName='商品品牌'></td>
 							</tr>
 							<tr>
 								<td>商品品牌地址</td>
-								<td><input type="text" name="commodityBrandDO.address"></td>
+								<td><input type="text" name="commodityBrandDO.address"  minLength='1' maxLength='3'  cName='商品品牌地址'></td>
 							</tr>
 						</table>
 					</form>
@@ -287,3 +283,4 @@
 <script src="../backstageMange/html/js/qiniu.min.js"></script>
 <script src="../backstageMange/html/js/mmd.js"></script>
 <script src="./merchant.js"></script>
+<script src="./commodity.js"></script>
