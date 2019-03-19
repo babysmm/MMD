@@ -70,11 +70,16 @@ function getCommodityFrom(){
 	//提交后台
 	$.postData("/consumer/addCommodity", obj["commodityDO"],function(result) {
 		if (result != null && result.length != 0) {
-			//获取提交
+			console.log(result)
+			
+			var src = $(".comm-img").attr("src");
+			
+			
+			$.qiniuUp(img['img1'],"123.img","xx.png",result.token);
+			
+			
 		} else {
 
 		}
-	}, function() {
-		$.myAlert("警告", "服务器错误喵喵喵", "red", 2000);
-	});
+	}, null);
 }

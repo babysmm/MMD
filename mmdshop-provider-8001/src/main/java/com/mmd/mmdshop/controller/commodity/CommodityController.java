@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mmd.mmdshop.dbdo.CommodityDO;
 import com.mmd.mmdshop.result.CommodityAll;
 import com.mmd.mmdshop.result.CommodityRough;
+import com.mmd.mmdshop.result.QiNiuResult;
 import com.mmd.mmdshop.service.commodity.CommodityService;
 
 /**
@@ -54,7 +55,7 @@ public class CommodityController<T>{
 	 * @return
 	 */
 	@PostMapping("/provider/addCommodity")
-	public String addCommodityDO(@RequestBody CommodityDO commodityDO) {
+	public QiNiuResult addCommodityDO(@RequestBody CommodityDO commodityDO) {
 		return service.addCommodityBasic(commodityDO);
 	}
 }

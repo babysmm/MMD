@@ -109,8 +109,6 @@ $.isNotNull = function(table,array) {
 			minLength = obj.attr("minLength");
 			maxLength = obj.attr("maxLength");
 			
-			console.log(cname+"---"+minLength+"----"+maxLength)
-			
 			if($("input[name = '"+value+"']").val().length <= minLength || $("input[name = '"+value+"']").val().length >= maxLength){
 				throw new DataError(cname+"长度不对,不能小于"+minLength+"或者大于"+maxLength);
 			}
@@ -356,7 +354,8 @@ function filtration(str){
 		return false;
 	}	
 }
-//alert(filtration('&#97;&#108;&#101;&#114;&#116;&#40;&#49;&#41;'))
+
+
 var emailReg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
 /**
  * 长度类型判断
@@ -475,6 +474,75 @@ $.getObjFrom = function(nameArray) {
 }
 
 
-//$.getObjFrom(new Array("#commodityFrom","#commodityDefFrom","#commodityStateFrom","#commodityPriceFrom","#commodityGoodFrom"));
+
+//upfile($(this)[0].files[0],"111","UTGwEARIYS8loLRm63rrKdt9-ifdaNLJ2vEGdOHH:" +
+//"JA1hyFr7pDgdbh3m0kwGKUqn30Q=:eyJlbmRVc2VyIjoidWlkIiwic2NvcGUiOiJtbWRfc2hvcDoxMTEiLCJkZWFkbGluZSI6MTU1MTUxMDA4OH0=");
+
+/**
+ * 七牛云图片上传
+ * @param file 文件
+ * @param fileName 文件名字
+ * @key 密码
+ * @token 公钥
+ */
+$.qiniuUp = function(file,fileName,key,token) {
+	var config = {
+		useCdnDomain: true,
+		region: qiniu.region.z2
+	};
+	
+	var putExtra = {
+		fname: fileName,
+		params: {},
+		mimeType: [] || null
+	};
+	
+	var observer = {
+		next(res){
+			console.log(res)
+		},
+		error(err){
+			console.log(err)
+		}, 
+		complete(res){
+			console.log(res)
+		}
+	}
+	
+	//token = "0imN7QOzB-0mbmr-ITtayh0OC7XGtExG8DI1LTmi:"+token;
+	
+	var observable = qiniu.upload(file, key, token, putExtra, config);
+	var subscription = observable.subscribe(observer); // 上传开始
+	//subscription.unsubscribe(); // 上传取消
+}
+
+
+$.preView = function(url){
+    let reader = new FileReader();
+    var b = null
+    
+    getImageBlob( url , function(blob){
+    	b = blob;
+    });
+    
+    console.log(b)
+    
+    return b;
+}
+
+//获取图片的Blob值
+function getImageBlob(url, cb) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("get", url, true);
+    xhr.responseType = "blob";
+    xhr.onload = function() {
+        if (this.status == 200) {
+            if(cb){
+            	cb(this.response);
+            }
+        }
+    };
+    xhr.send();
+}
 
 

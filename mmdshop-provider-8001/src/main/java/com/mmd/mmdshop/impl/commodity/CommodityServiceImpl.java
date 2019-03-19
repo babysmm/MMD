@@ -13,6 +13,7 @@ import com.mmd.mmdshop.mapper.commodity.CommodityImgMapper;
 import com.mmd.mmdshop.mapper.commodity.CommodityMappper;
 import com.mmd.mmdshop.result.CommodityAll;
 import com.mmd.mmdshop.result.CommodityRough;
+import com.mmd.mmdshop.result.QiNiuResult;
 import com.mmd.mmdshop.result.commodity.CommodityBasic;
 import com.mmd.mmdshop.service.commodity.CommodityService;
 import com.mmd.mmdshop.utils.QiNiuYunUtils;
@@ -72,19 +73,20 @@ public class CommodityServiceImpl implements CommodityService {
 	}
 
 	@Override
-	public String addCommodityBasic(CommodityDO commodityDO) {
+	public QiNiuResult addCommodityBasic(CommodityDO commodityDO) {
 		
 		System.out.println(commodityDO);
 		
 		Integer commodity = mapper.insert(commodityDO);
 		
+		QiNiuResult q =  new QiNiuResult();
 		
-		//生成上传码
-		String token = qiniu.jsUploadToken("mmdshop", "123456", 3600);
+		String key = "xx.png";
 		
-		System.out.println(token);
+		q.setKey(key);
+		q.setToken(qiniu.jsUploadToken("mmdshop", key, 360000));
 		
-		return token;
+		return q;
 	}
 
 }

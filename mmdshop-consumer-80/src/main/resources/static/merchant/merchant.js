@@ -4,6 +4,17 @@ var length = {
 	"username" : [2 ,10,'number','显示用户名'],
 	"commodityDO.name" : [2 ,10,'text','条形码'],
 }
+
+var img = {
+	img1:null,
+	img2:null,
+	img3:null,
+	img4:null,
+	img5:null,
+	img6:null,
+}
+
+
 // 初始化是否已经清空表单，未清空0,已清空1
 // 初始化是否已经获取验证码，未获取0,已获取1
 var status = "0";
@@ -238,6 +249,8 @@ $(".comm-img").click(
  */
 $("#commImgInput").change(function() {
 	$(changeImg).attr("src", URL.createObjectURL($(this)[0].files[0]));
+	img['img1'] = $(this)[0].files[0];
+	console.log($(this)[0].files[0])
 });
 
 /**

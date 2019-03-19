@@ -4,6 +4,7 @@ import java.util.List;
 import com.mmd.mmdshop.dbdo.CommodityDO;
 import com.mmd.mmdshop.result.CommodityAll;
 import com.mmd.mmdshop.result.CommodityRough;
+import com.mmd.mmdshop.result.QiNiuResult;
 
 public interface CommodityService {
 
@@ -36,5 +37,5 @@ public interface CommodityService {
 	 * @param commodityAll
 	 * @return
 	 */
-	String  addCommodityBasic(CommodityDO commodityDO);
+	QiNiuResult addCommodityBasic(CommodityDO commodityDO);
 }

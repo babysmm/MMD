@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import com.mmd.mmdshop.dbdo.CommodityDO;
+import com.mmd.mmdshop.result.QiNiuResult;
+
+import net.sf.json.JSONObject;
 
 /**
  * 
@@ -46,10 +49,7 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 	 * @return
 	 */
 	@PostMapping("/consumer/addCommodity")
-	public String addCommodityDO(@RequestBody CommodityDO commodityDO) {
-		
-		String result = template.postForObject(ADMINUSERPROVIDER_URL+"/addCommodity", commodityDO, String.class);
-		
-		return result;
+	public QiNiuResult addCommodityDO(@RequestBody CommodityDO commodityDO) {
+		return template.postForObject(ADMINUSERPROVIDER_URL+"/addCommodity", commodityDO, QiNiuResult.class);
 	}
 }
