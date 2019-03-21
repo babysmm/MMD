@@ -5,6 +5,7 @@ import com.mmd.mmdshop.dbdo.CommodityDO;
 import com.mmd.mmdshop.result.CommodityAll;
 import com.mmd.mmdshop.result.CommodityRough;
 import com.mmd.mmdshop.result.QiNiuResult;
+import com.mmd.mmdshop.result.commodity.CommodityBasic;
 
 public interface CommodityService {
 
@@ -38,4 +39,18 @@ public interface CommodityService {
 	 * @return
 	 */
 	QiNiuResult addCommodityBasic(CommodityDO commodityDO);
+	
+	/**
+	 * 通过查询商品条形码查询商品
+	 * @param barcode
+	 * @return
+	 */
+	CommodityBasic findCommodityByBarCode(Integer barcode);
+	
+	/**
+	 * 通过查询商品名称查询商品
+	 * @param name
+	 * @return
+	 */
+	CommodityBasic findCommodityByName(String name);
 }

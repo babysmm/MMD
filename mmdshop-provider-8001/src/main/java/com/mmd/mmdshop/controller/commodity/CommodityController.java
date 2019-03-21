@@ -11,6 +11,7 @@ import com.mmd.mmdshop.dbdo.CommodityDO;
 import com.mmd.mmdshop.result.CommodityAll;
 import com.mmd.mmdshop.result.CommodityRough;
 import com.mmd.mmdshop.result.QiNiuResult;
+import com.mmd.mmdshop.result.commodity.CommodityBasic;
 import com.mmd.mmdshop.service.commodity.CommodityService;
 
 /**
@@ -57,5 +58,41 @@ public class CommodityController<T>{
 	@PostMapping("/provider/addCommodity")
 	public QiNiuResult addCommodityDO(@RequestBody CommodityDO commodityDO) {
 		return service.addCommodityBasic(commodityDO);
+	}
+	
+	/**
+	 * 通过商品条形码搜索单个商品
+	 * 
+	 * @param commodityIdentity
+	 * @return
+	 */
+	@PostMapping("/provider/searchCommodityDOByBarCode")
+	public CommodityBasic searchCommodityDOByBarCode(@RequestBody Integer commodityIdentity) {
+		return service.findCommodityByBarCode(commodityIdentity);
+	}
+	
+	/**
+	 * 通过商品名称搜索单个商品
+	 * 
+	 * @param commodityIdentity
+	 * @return
+	 */
+	@PostMapping("/provider/searchCommodityDOByName")
+	public CommodityBasic searchCommodityDOByName(@RequestBody String commodityIdentity) {
+		return service.findCommodityByName(commodityIdentity);
+	}
+	
+	/**
+	 * 通过商品Id搜索单个商品
+	 * 
+	 * @param commodityIdentity
+	 * @return
+	 */
+	@PostMapping("/provider/searchCommodityDOById")
+	public CommodityDO searchCommodityDOById(@RequestBody Integer commodityIdentity) {
+		
+		System.out.println(commodityIdentity);
+		
+		return null;
 	}
 }

@@ -273,19 +273,8 @@ $(".comm-img").click(
 				// 有图片
 
 				changeImg = event.target;
-
-				$(".comm-header").css("display", "none");
-				$(".comm-section").css("display", "none");
-				$("#dialog_large_image").css("display", "block");
-
-				var large_image = '<img src= ' + $(this).attr("src")
-						+ '></img>';
-				$('#dialog_large_image').html($(large_image).animate({
-					width : '70%'
-				}, 500));
-				$('#dialog_large_image').append(
-						"<button name='changeThisImg'>修改</button>"
-								+ "<button name='closeBigImg'>关闭</button>");
+				$("#commImgInput").click();
+				
 			}
 		});
 /**

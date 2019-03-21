@@ -73,22 +73,33 @@ table tbody{
 	width: 100%;
 	margin-top: 5%;
 }
-.changeFinal table tr td{
+.changeFinal table tbody{
 	width: 100%;
+	display: block;
+}
+.changeFinal table tr{
+	width:100%;
+	display: table;
 }
 .changeFinal table tr td input{
 	padding: 5px;
 }
 .changeFinal table tr td:first-child{
-	width: 30%;
+	width:40%;
 	text-align: right;
-	padding-right: 3%;
 	padding-top: 10px;
 }
 .changeFinal table tr td:nth-child(2){
-	width: 70%;
+	width:60%;
 	text-align: left;
 	padding-top: 10px;
+	padding-left:10px;
+}
+.changeFinal table tr td:nth-child(2) input{
+	width:80%;
+}
+.changeFinal table tr td:nth-child(2) select{
+	width:20%;
 }
 
 .comm-img{
@@ -110,20 +121,6 @@ table tbody{
 	text-align: left;
 	margin-top:10px;
 }
-.commodity-tr,.commodityDef-tr,.commodityImg-tr,.commodityState-tr,.commodityPrice-tr,.commodityGood-tr{
-	display: none;
-}
-.commodity-tr tr,.commodityDef-tr tr,.commodityImg-tr tr,.commodityState-tr tr,.commodityPrice-tr tr,.commodityGood-tr tr{
-	width:100%;
-}
-.commodityState-tr tr td:first-child{
-	position: relative;
-	left: 17%;
-}
-.commodityState-tr tr td:nth-child(2){
-	position: relative;
-	left: 23%;
-}
 
 .marketData{
 	font-size: .57000rem;
@@ -144,4 +141,8 @@ table tbody{
 .replenishment tr td:nth-child(2) button{
 	width: 100%;
 	background-color: #FDF5E6;
+}
+
+.commodity-tr,.commodityDef-tr,.commodityImg-tr,.commodityState-tr,.commodityPrice-tr,.commodityGood-tr{
+	display: none;
 }

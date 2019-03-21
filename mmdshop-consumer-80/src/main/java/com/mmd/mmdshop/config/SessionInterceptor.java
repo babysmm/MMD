@@ -32,6 +32,8 @@ public class SessionInterceptor implements HandlerInterceptor {
 		map.put("removeShopStaff", 2);
 		map.put("sendEmailCode", 2);
 		map.put("addCommodity", 2);
+		map.put("searchCommodityDOByBarCode", 3);
+		map.put("searchCommodityDOByName", 3);
 	}
 	
 	
@@ -52,6 +54,8 @@ public class SessionInterceptor implements HandlerInterceptor {
 	        	case 1:if(session.getAttribute("shopStaffType") == null) result = false;break;
 	        	//是否是商店店员
 	        	case 2:if((int)session.getAttribute("shopStaffType") == 2) result = false;break;
+	        	//查询商品
+	        	case 3:if(session.getAttribute("userId") == null)result = false;break;
 	        	
 	        	default :result = false;break;
         	}

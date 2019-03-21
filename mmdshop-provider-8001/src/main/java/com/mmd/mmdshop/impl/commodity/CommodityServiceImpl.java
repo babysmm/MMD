@@ -16,6 +16,7 @@ import com.mmd.mmdshop.mapper.commodity.CommodityMappper;
 import com.mmd.mmdshop.result.CommodityAll;
 import com.mmd.mmdshop.result.CommodityRough;
 import com.mmd.mmdshop.result.QiNiuResult;
+import com.mmd.mmdshop.result.commodity.CommodityBasic;
 import com.mmd.mmdshop.service.commodity.CommodityService;
 import com.mmd.mmdshop.utils.QiNiuYunUtils;
 import com.mmd.mmdshop.utils.RedisUtil;
@@ -127,10 +128,44 @@ public class CommodityServiceImpl implements CommodityService {
 		//存储商品图片
 		Integer imgs = imgMapper.insert(img);
 		
+		//设置图片id
+		commodityDO.setCommImgId(img.getCommImgId());
+		
 		//存储商品信息
 		Integer commodity = mapper.insert(commodityDO);
 		
 		
 		return q;
 	}
+
+	@Override
+	public CommodityBasic findCommodityByBarCode(Integer barcode) {
+		QueryWrapper<CommodityDO> commWrapper = new QueryWrapper<CommodityDO>();
+		commWrapper.select().eq("bar_code", barcode);
+		
+		return this.getCommodityBasic(commWrapper);
+	}
+	
+	@Override
+	public CommodityBasic findCommodityByName(String name) {
+		QueryWrapper<CommodityDO> commWrapper = new QueryWrapper<CommodityDO>();
+		commWrapper.select().eq("name", name);
+		return this.getCommodityBasic(commWrapper);
+	}
+	
+	/**
+	 * 通过不同的wrapper获取商品信息和图片
+	 * @param commWrapper
+	 * @return
+	 */
+	private CommodityBasic getCommodityBasic(QueryWrapper<CommodityDO> commWrapper) {
+		
+		CommodityBasic basic = new CommodityBasic();
+		CommodityDO commodityDO = mapper.selectOne(commWrapper);
+		basic.setCommodityDO(commodityDO);
+		basic.setCommodityImgDO(imgMapper.selectById(commodityDO.getCommImgId()));
+		
+		return basic;
+	}
+	
 }

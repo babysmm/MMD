@@ -40,7 +40,7 @@ public class CommodityDO implements java.io.Serializable {
     private Integer commTypeId;
     
     /** 商品图片URL */
-    private String commImgId;
+    private Integer commImgId;
     
     /** 商家商品类型 */
     private Integer shopCommTypeId;
