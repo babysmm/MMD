@@ -158,11 +158,16 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 	 * @throws IOException 
 	 */
 	@PostMapping("/consumer/modifyShopStaff")
-	public boolean modifyShopStaff(ShopStaffDO shopStaffDO,Integer code,HttpServletRequest httpServletRequest) throws IOException {
+	public boolean modifyShopStaff(@RequestBody MarketOperationResult result,HttpServletRequest httpServletRequest) throws IOException {
+		ShopStaffDO shopStaffDO = result.getShopStaffDO();
+		Integer code = result.getCode();
+		
 		//邮箱验证码验证
 		if(this.emailCodeVerify(code, httpServletRequest) == false) {
 			return false;
 		}
+		
+		System.out.println(shopStaffDO);
 		
 		//设置IP
 		shopStaffDO.setLastIpS(httpServletRequest);
@@ -175,13 +180,21 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 	 * @return
 	 */
 	@PostMapping("/consumer/removeShopStaff")
-	public Integer removeShopStaff(ShopStaffDO shopStaffDO,Integer code,HttpServletRequest httpServletRequest) {
+	public boolean removeShopStaff(@RequestBody MarketOperationResult result,HttpServletRequest httpServletRequest) {
+		ShopStaffDO shopStaffDO = result.getShopStaffDO();
+		Integer code = result.getCode();
+		
 		//邮箱验证码验证
 		if(this.emailCodeVerify(code, httpServletRequest) == false) {
-			return null;
+			return false;
 		}
 		
-		return template.postForObject(ADMINUSERPROVIDER_URL+"/removeShopStaff", shopStaffDO, int.class);
+		System.out.println(shopStaffDO);
+		
+		//设置shopId
+		shopStaffDO.setShopId((Integer) httpServletRequest.getSession().getAttribute("shopId"));
+		
+		return template.postForObject(ADMINUSERPROVIDER_URL+"/removeShopStaff", shopStaffDO, boolean.class);
 	}
 	
 	/**
@@ -217,7 +230,9 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 	 */
 	public boolean emailCodeVerify(Integer code,HttpServletRequest httpServletRequest) {
 		
-		if(code.equals((Integer)httpServletRequest.getSession().getAttribute("emailCode"))) {
+		Integer ecode = (Integer)httpServletRequest.getSession().getAttribute("emailCode");
+		
+		if(ecode != null || code.equals(ecode) == true) {
 			return true;
 		}else {
 			return false;

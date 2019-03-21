@@ -25,9 +25,10 @@ $("#newCommodity").click(function() {
  * @returns
  */
 $("#saveCommodity").click(function() {
-	if(commodityMode == 0){
+	if(commodityMode == 0){		//新增商品
 		getCommodityFrom();
-	}else{
+		commodityMode = 1;
+	}else{						//保存商品
 		
 	}
 })
@@ -67,19 +68,34 @@ function getCommodityFrom(){
 	//获取数据
 	var obj = $.getObjFrom(new Array("#commodityFrom","#commodityDefFrom","#commodityStateFrom","#commodityPriceFrom","#commodityGoodFrom"));
 	
+	//获取图片有几张
+	var imgLength = 0;
+	for(var o in img){  
+        if(img[o] != null){
+        	imgLength++;
+        }
+	}  
+	//通过设置商品ID来设置图片数量
+	obj["commodityDO"]["commodityId"] = imgLength;
+	
 	//提交后台
 	$.postData("/consumer/addCommodity", obj["commodityDO"],function(result) {
 		if (result != null && result.length != 0) {
 			console.log(result)
 			
-			var src = $(".comm-img").attr("src");
-			
-			
-			$.qiniuUp(img['img1'],"123.img","xx.png",result.token);
-			
-			
+			for(var i=0;i<6;i++){
+				if(result.key[i] != null || result.token[i] != null){
+					var s = i+1;
+					
+					$.qiniuUp(img['img'+s],"123.img",result["key"][i],result["token"][i]);
+				}
+			}
 		} else {
 
 		}
 	}, null);
+}
+
+function send(){
+	
 }

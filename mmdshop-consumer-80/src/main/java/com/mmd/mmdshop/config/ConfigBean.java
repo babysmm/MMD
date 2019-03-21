@@ -7,6 +7,8 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 import com.baidu.aip.speech.AipSpeech;
 import com.mmd.mmdshop.utils.BaiduSpeechSynthesis;
+import com.mmd.mmdshop.utils.RedisUtil;
+import com.mmd.mmdshop.utils.SerializeUtil;
 
 /**
  * 
@@ -37,5 +39,14 @@ public class ConfigBean {
 	@Bean
 	public BaiduSpeechSynthesis getBaiduSpeechSynthesis() {
 		return new BaiduSpeechSynthesis();
+	}
+	
+	@Bean
+	public RedisUtil getRedisUtil() {
+		return new RedisUtil();
+	}
+	
+	@Bean SerializeUtil getSerializeUtil() {
+		return new SerializeUtil();
 	}
 }

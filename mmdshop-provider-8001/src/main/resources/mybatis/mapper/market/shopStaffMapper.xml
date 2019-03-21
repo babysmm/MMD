@@ -48,19 +48,19 @@
 	
 	<insert id="insertShopStaff" parameterType="com.mmd.mmdshop.dbdo.ShopStaffDO">
 		INSERT INTO shop_staff (
-			shop_staff_id,username,password,shop_id,last_ip,full_name,type,change_time
+			shop_staff_id,username,password,shop_id,last_ip,full_name,type,change_time,email
 		)VALUES(
-			Null,#{username},#{password},#{shopId},#{lastIp},#{fullName},2,NOW()
+			Null,#{username},#{password},#{shopId},#{lastIp},#{fullName},2,NOW(),#{email}
 		);
 	</insert>
 	
 	<update id="upDataShopStaff" parameterType="com.mmd.mmdshop.dbdo.ShopStaffDO">
 		update shop_staff
         <set>
-            <if test="username != null">username=#{username},</if>
+            <if test="email != null">email=#{email},</if>
             <if test="fullName != null">full_name=#{fullName}</if>
         </set>
-        where shop_staff_id=#{shop_staff_id};
+        where username = #{username};
 	</update>
 	
 	<select id="findEmail" parameterType="java.lang.Integer" resultType="java.lang.String">
@@ -71,5 +71,9 @@
 		WHERE
 			ss.shop_staff_id = #{userId}
 	</select>
+	
+	<delete id="deleteShopStaff" parameterType="com.mmd.mmdshop.dbdo.ShopStaffDO">
+		DELETE FROM shop_staff WHERE username = #{username} AND shop_id = #{shopId};
+	</delete>
 </mapper>
  

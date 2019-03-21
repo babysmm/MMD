@@ -31,7 +31,7 @@ public class CommodityImgDO implements java.io.Serializable {
     private static final long serialVersionUID = -3023308244918821349L;
     
     /** 商品图片ID */
-    @TableId(value="comm_img_id",type=IdType.AUTO)
+    @TableId(value="comm_img_id",type=IdType.INPUT)
     private Integer commImgId;
     
     /** 商家ID */

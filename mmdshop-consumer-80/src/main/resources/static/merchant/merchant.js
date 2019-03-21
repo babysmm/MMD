@@ -48,6 +48,8 @@ $("#searchStaff").click(function() {
 				console.log(result);
 				shopStaffStatus = '1';
 				hideshopStaff(shopStaffStatus);
+				//设置验证码显示
+				$("#email").show();
 				// 表单赋值
 				$("#shopStaffDate").setForm(result);
 				$('.passwordTr').css("visibility", "hidden");
@@ -69,7 +71,8 @@ $("#clearStaff").click(function() {
 		shopStaffStatus = '1';
 		hideshopStaff(shopStaffStatus);
 		//设置username输入框可以被修改
-		$('.staffUsername').removeAttr('disabled');
+		//$('.staffUsername').removeAttr('disabled');
+		$(".staffUsername").attr("readOnly",false);
 	}
 });
 
@@ -78,40 +81,46 @@ $("#clearStaff").click(function() {
  * @returns
  */
 $("#saveStaff").click(function() {
-	var code = $.valM("#emailcode");
+	
+	var data = getStaffData();
+	
+	var url = null;
+	var success = null;
+	
 	if (status == '1') { // 新增模式
-		var data = {
-			'shopStaffDO' : $("#shopStaffDate").serializeJson(),
-			'code' : code
-		}
-		$.postData("/consumer/addShopStaff", data, function(result) {
+		url = "/consumer/addShopStaff";
+		success = function(result) {
 			if (result != null && result.length != 0) {
 				if (result == true) {
 					$('.passwordTr').css("visibility", "hidden");
 					$.myAlert("提醒", "新增完成", "green", 2000);
+					remStaffFrom();
 				} else {
 					$.myAlert("提醒", "新增失败", "green", 2000);
 				}
 			}
-		}, function() {
-			$.myAlert("警告", "服务器错误喵喵喵", "red", 2000);
-		});
-	} else { // 保存模式
-		var data = {
-			'shopStaffDO' : $("#shopStaffDate").serializeJson(),
-			'code' : code
 		}
-		$.postData("/consumer/modifyShopStaff", data, function(result) {
+	} else { // 保存模式
+		url = "/consumer/modifyShopStaff";
+		success = function(result) {
 			if (result != null && result.length != 0) {
 				if (result == true) {
 					$('.passwordTr').css("visibility", "hidden");
 					$.myAlert("提醒", "修改完成", "green", 2000);
+					remStaffFrom();
 				} else {
 					$.myAlert("提醒", "修改失败", "green", 2000);
 				}
 			}
-		}, null);
+		}
 	}
+	
+	if(url == null || success == null){
+		return;
+	}
+	
+	$.postData(url, data, success, null);
+	
 });
 
 /**
@@ -119,9 +128,19 @@ $("#saveStaff").click(function() {
  * @returns
  */
 $("#delStaff").click(function() {
-	var code = $.valM(".staffUsername");
 	
-	alert(code)
+	var data = getStaffData();
+	
+	$.postData("/consumer/removeShopStaff", data, function(result) {
+		if (result != null && result.length != 0) {
+			if (result == true) {
+				$.myAlert("提醒", "删除完成", "green", 2000);
+				remStaffFrom();
+			} else {
+				$.myAlert("提醒", "删除失败", "green", 2000);
+			}
+		}
+	}, null);
 })
 
 // 验证码按钮显示
@@ -142,7 +161,11 @@ $("#sendemail").click(function() {
 	}, 60000);
 	$.postData("/consumer/sendEmailCode", null, function(result) {
 		if (result != null && result.length != 0) {
-			alert(result)
+			if(result == true){
+				$.myAlert("提醒", "验证码已发送", "green", 2000);
+			}else{
+				$.myAlert("提醒", "已经发送了，不能再获取了", "green", 2000);
+			}
 		}
 	}, function() {
 		$.myAlert("警告", "服务器错误喵喵喵", "red", 2000);
@@ -164,9 +187,32 @@ function hideshopStaff(shopStaffStatus) {
 	} else {
 		$("#shopStaff").show();
 		//设置用户输入框不可改变
-		$('.staffUsername').attr('disabled',true);
+		$(".staffUsername").attr("readOnly",true);
 	}
 }
+/**
+ * 获取表单数据和验证码
+ * @returns
+ */
+function getStaffData(){
+	var data = {
+			'shopStaffDO' : $("#shopStaffDate").serializeJson(),
+			'code' : $.valM("#emailcode")
+	}
+	return data;
+}
+
+/**
+ * 删除表单和隐藏输入栏
+ * @returns
+ */
+function remStaffFrom(){
+	$("#shopStaffDate")[0].reset();
+	$("#email")[0].reset();
+	
+	hideshopStaff(0);
+}
+
 /**
  * 获取补货清单
  * 
@@ -249,8 +295,10 @@ $(".comm-img").click(
  */
 $("#commImgInput").change(function() {
 	$(changeImg).attr("src", URL.createObjectURL($(this)[0].files[0]));
-	img['img1'] = $(this)[0].files[0];
-	console.log($(this)[0].files[0])
+	
+	var cname = $(changeImg).attr("cname");
+	img[cname] = $(this)[0].files[0];
+	console.log(cname)
 });
 
 /**

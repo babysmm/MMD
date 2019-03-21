@@ -86,8 +86,8 @@ public class ShopStaffServiceImpl implements ShopStaffService{
 	}
 
 	@Override
-	public int removeShopStaff(ShopStaffDO shopStaffDO) {
-		return mapper.deleteById(shopStaffDO);
+	public boolean removeShopStaff(ShopStaffDO shopStaffDO) {
+		return mapper.deleteShopStaff(shopStaffDO);
 	}
 
 	@Override

@@ -11,13 +11,9 @@ spring:
       force: true
       charset: UTF-8
       enabled: true
-  
-  
-file_server_addr: 192.168.1.117:80
-max_storage_connection: 8
-fastdfs.connect_timeout_in_seconds: 10
-fastdfs.network_timeout_in_seconds: 30
-fastdfs.charset: UTF-8
-fastdfs.http_secret_key: HandFastDFSToken
-fastdfs.http_tracker_http_port: 80
-fastdfs.tracker_servers: 192.168.1.117:22122
+ redis:
+    database: 0         # Redis数据库索引（默认为0）  
+    host: 192.168.1.9  # Redis服务器地址  
+    port: 6379          # Redis服务器连接端口
+    password: 123456    # Redis服务器连接密码（默认为空）
+    

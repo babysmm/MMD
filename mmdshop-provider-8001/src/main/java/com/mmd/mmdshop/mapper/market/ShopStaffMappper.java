@@ -19,4 +19,6 @@ public interface ShopStaffMappper extends BaseMapper<ShopStaffDO>{
 	boolean upDataShopStaff(ShopStaffDO shopStaffDO);
 	
 	String findEmail(@Param("userId")Integer userId);
+	
+	boolean deleteShopStaff(ShopStaffDO shopStaffDO);
 }

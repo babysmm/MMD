@@ -11,8 +11,6 @@ import org.springframework.web.client.RestTemplate;
 import com.mmd.mmdshop.dbdo.CommodityDO;
 import com.mmd.mmdshop.result.QiNiuResult;
 
-import net.sf.json.JSONObject;
-
 /**
  * 
  * @ClassName CommodityController_Consumer.java

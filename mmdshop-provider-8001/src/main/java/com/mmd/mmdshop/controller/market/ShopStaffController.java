@@ -90,7 +90,7 @@ public class ShopStaffController {
 	 * @return
 	 */
 	@PostMapping("/provider/removeShopStaff")
-	public int removeShopStaff(@RequestBody ShopStaffDO shopStaffDO) {
+	public boolean removeShopStaff(@RequestBody ShopStaffDO shopStaffDO) {
 		return service.removeShopStaff(shopStaffDO);
 	}
 	

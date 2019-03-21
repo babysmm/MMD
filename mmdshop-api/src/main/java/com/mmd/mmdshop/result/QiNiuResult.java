@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 @ToString
 public class QiNiuResult {
 	
-	private String token;
+	private String[] token;
 	
-	private String key;
+	private String[] key;
 }

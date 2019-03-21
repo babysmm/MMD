@@ -1,6 +1,7 @@
 package com.mmd.mmdshop.impl.commodity;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,14 +10,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mmd.mmdshop.dbdo.CommodityDO;
+import com.mmd.mmdshop.dbdo.CommodityImgDO;
 import com.mmd.mmdshop.mapper.commodity.CommodityImgMapper;
 import com.mmd.mmdshop.mapper.commodity.CommodityMappper;
 import com.mmd.mmdshop.result.CommodityAll;
 import com.mmd.mmdshop.result.CommodityRough;
 import com.mmd.mmdshop.result.QiNiuResult;
-import com.mmd.mmdshop.result.commodity.CommodityBasic;
 import com.mmd.mmdshop.service.commodity.CommodityService;
 import com.mmd.mmdshop.utils.QiNiuYunUtils;
+import com.mmd.mmdshop.utils.RedisUtil;
+import com.mmd.mmdshop.utils.SnowflakeIdWorker;
 
 /**
  * 
@@ -35,7 +38,16 @@ public class CommodityServiceImpl implements CommodityService {
 	private CommodityMappper mapper;
 	
 	@Autowired
+	private CommodityImgMapper imgMapper;
+	
+	@Autowired
 	private QiNiuYunUtils qiniu;
+	
+	@Autowired
+	private SnowflakeIdWorker idWorker;
+	
+	@Autowired
+	private RedisUtil redisUtil;
 	
 	@Override
 	public List<CommodityRough> findCommodityRoughByName(String name) {
@@ -75,18 +87,50 @@ public class CommodityServiceImpl implements CommodityService {
 	@Override
 	public QiNiuResult addCommodityBasic(CommodityDO commodityDO) {
 		
-		System.out.println(commodityDO);
-		
-		Integer commodity = mapper.insert(commodityDO);
+		if(commodityDO.getCommodityId() == null || commodityDO.getCommodityId() > 6 || commodityDO.getCommodityId() < 1) {
+			return null;
+		}
 		
 		QiNiuResult q =  new QiNiuResult();
 		
-		String key = "xx.png";
+		String [] keya = new String[6];
+		String [] token = new String[6];
+		CommodityImgDO img = new CommodityImgDO();
 		
-		q.setKey(key);
-		q.setToken(qiniu.jsUploadToken("mmdshop", key, 360000));
+		for(int i=0;i<commodityDO.getCommodityId();i++) {
+			keya[i] = idWorker.nextId() + ".png";
+			token[i] = qiniu.jsUploadToken("mmdshop", keya[i], 360000);
+			
+			//设置图片
+			switch(i) {
+				case 1:	img.setImg1(keya[i]);break;
+				case 2:	img.setImg2(keya[i]);break;
+				case 3:	img.setImg3(keya[i]);break;
+				case 4:	img.setImg4(keya[i]);break;
+				case 5:	img.setImg5(keya[i]);break;
+			}
+			
+			System.out.println(keya[i]);
+			System.out.println(token[i]);
+			
+		}
+		
+		q.setKey(keya);
+		q.setToken(token);
+		
+		//设置缩略图
+		commodityDO.setThumb(keya[0]);
+		
+		//清除commodityID
+		commodityDO.setCommodityId(null);
+		
+		//存储商品图片
+		Integer imgs = imgMapper.insert(img);
+		
+		//存储商品信息
+		Integer commodity = mapper.insert(commodityDO);
+		
 		
 		return q;
 	}
-
 }

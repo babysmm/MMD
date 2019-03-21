@@ -59,7 +59,7 @@ public interface ShopStaffService {
 	 * @param shopStaffDO
 	 * @return
 	 */
-	int removeShopStaff(ShopStaffDO shopStaffDO);
+	boolean removeShopStaff(ShopStaffDO shopStaffDO);
 	
 	/**
 	 * 发送验证码

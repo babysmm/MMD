@@ -35,6 +35,8 @@ public class QiNiuYunUtils {
    	private static final String ENCODING = "UTF-8";
    	
    	private static final String URL = "http://mm.xknow.net/";
+   	
+   	private static final String CALLBACK = "http://2123v771z2.imwork.net/common/qiniu/upload/callback";
  
     /**
      * 获取凭证
@@ -107,6 +109,33 @@ public class QiNiuYunUtils {
     	 StringMap stringMap = new StringMap().put("endUser", "uid").putNotEmpty("returnBody", "");
          //System.out.println(auth.uploadToken(space, key, time, stringMap));
     	 return auth.uploadToken(space, key, time, stringMap);
+    }
+    
+    /**
+     * 有回调的前端js获取上传文件凭证(/common/qiniu/upload/callback)
+     * @param space
+     * @param key
+     * @param time
+     * @return
+     */
+    public String jsUpLoadTokenForCallback(String space,String key,Integer time,String token) {
+    	 StringMap putPolicy = new StringMap();
+    	 putPolicy.put("callbackUrl", CALLBACK);
+    	 putPolicy.put("callbackBody", "{\"key\":\"$(key)\","
+    	 								+ "\"hash\":\"$(etag)\","
+    	 								+ "\"bucket\":\"$(bucket)\","
+    	 								+ "\"fsize\":$(fsize),\"token\":\""+token+"}");
+    	 putPolicy.put("callbackBodyType", "application/json");
+    	 
+    	 return auth.uploadToken(space, key, time, putPolicy);
+    }
+    
+    /**
+     * 前端js上传覆盖凭证
+     * @return
+     */
+    public String jsUpLoadForUpdata(String space,String key) {
+		return auth.uploadToken(space, key);
     }
     
     /**
