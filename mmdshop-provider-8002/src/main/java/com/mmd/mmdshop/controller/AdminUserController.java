@@ -15,9 +15,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AdminUserController{
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
-	
-	
-	
-
-	
 }
