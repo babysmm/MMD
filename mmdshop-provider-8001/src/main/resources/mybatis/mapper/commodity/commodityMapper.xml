@@ -92,6 +92,21 @@
 		WHERE
 			c.commodity_id = #{commodityId}
 	</select>
+	<select id="upDataCommodity" resultType="java.util.HashMap">
+<!--	update commodity
+        <set>
+            <if test="commTypeId != null">comm_type_id=#{commTypeId},</if>
+        </set>
+        where bar_code=#{barCode};-->
+        SELECT
+			commodity.commodity_id,
+			commodity.thumb,
+			commodity.comm_img_id
+		FROM
+			commodity
+		WHERE
+			commodity.bar_code = #{barCode};
+	</select>
 	
 </mapper>
  

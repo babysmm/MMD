@@ -95,4 +95,14 @@ public class CommodityController<T>{
 		
 		return null;
 	}
+	
+	/**
+	 * 更新商品
+	 * @param basic
+	 * @return
+	 */
+	@PostMapping("/provider/modifyCommodity")
+	public QiNiuResult modifyCommodity(@RequestBody CommodityDO commodityDO) {
+		return service.modifyCommodityBasic(commodityDO);
+	}
 }

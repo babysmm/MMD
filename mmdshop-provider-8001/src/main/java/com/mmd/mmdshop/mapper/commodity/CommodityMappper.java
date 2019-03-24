@@ -1,6 +1,7 @@
 package com.mmd.mmdshop.mapper.commodity;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -8,6 +9,8 @@ import org.apache.ibatis.annotations.Param;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.mmd.mmdshop.dbdo.*;
 import com.mmd.mmdshop.result.*;
+
+import net.sf.json.JSONObject;
 
 /**
  * 
@@ -34,4 +37,6 @@ public interface CommodityMappper extends BaseMapper<CommodityDO> {
 	 * @return
 	 */
 	CommodityAll selectCommodityAllById(@Param("commodityId") Integer commodityId);
+	
+	Map<String, Object> upDataCommodity(CommodityDO commodityDO);
 }

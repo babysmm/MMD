@@ -1,8 +1,13 @@
 package com.mmd.mmdshop.impl.commodity;
 
+import java.io.Serializable;
+
+
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +26,8 @@ import com.mmd.mmdshop.service.commodity.CommodityService;
 import com.mmd.mmdshop.utils.QiNiuYunUtils;
 import com.mmd.mmdshop.utils.RedisUtil;
 import com.mmd.mmdshop.utils.SnowflakeIdWorker;
+
+import net.sf.json.JSONObject;
 
 /**
  * 
@@ -88,17 +95,13 @@ public class CommodityServiceImpl implements CommodityService {
 	@Override
 	public QiNiuResult addCommodityBasic(CommodityDO commodityDO) {
 		
-		if(commodityDO.getCommodityId() == null || commodityDO.getCommodityId() > 6 || commodityDO.getCommodityId() < 1) {
-			return null;
-		}
-		
 		QiNiuResult q =  new QiNiuResult();
 		
 		String [] keya = new String[6];
 		String [] token = new String[6];
 		CommodityImgDO img = new CommodityImgDO();
 		
-		for(int i=0;i<commodityDO.getCommodityId();i++) {
+		for(int i=0;i<6;i++) {
 			keya[i] = idWorker.nextId() + ".png";
 			token[i] = qiniu.jsUploadToken("mmdshop", keya[i], 360000);
 			
@@ -162,10 +165,58 @@ public class CommodityServiceImpl implements CommodityService {
 		
 		CommodityBasic basic = new CommodityBasic();
 		CommodityDO commodityDO = mapper.selectOne(commWrapper);
+		
+		if(commodityDO == null) {
+			return null;
+		}
+		
 		basic.setCommodityDO(commodityDO);
 		basic.setCommodityImgDO(imgMapper.selectById(commodityDO.getCommImgId()));
 		
 		return basic;
+	}
+
+	@Override
+	public QiNiuResult modifyCommodityBasic(CommodityDO commodityDO) {
+		
+		System.out.println(commodityDO);
+		
+		//更新数据和查询图片
+		Map<String, Object> thump = mapper.upDataCommodity(commodityDO);
+		//获取改动后的commodityID
+		//Integer commodityID = basic.getCommodityDO().getCommodityId();
+		System.out.println(thump);
+		
+		//查询缩略图
+		QueryWrapper<CommodityImgDO> commWrapper = new QueryWrapper<CommodityImgDO>();
+		commWrapper.select("img1","img2","img3","img4","img5").eq("comm_img_id", thump.get("comm_img_id"));
+		CommodityImgDO commodityImgDO = imgMapper.selectOne(commWrapper);
+		
+		QiNiuResult q =  new QiNiuResult();
+		String [] keya = new String[6];
+		String [] token = new String[6];
+		String imgname = (String) thump.get("thumb");
+		
+		//生成七牛token
+		for(int i=0;i<6;i++) {
+			
+			//设置图片
+			switch(i) {
+				case 1:	imgname = commodityImgDO.getImg1();break;
+				case 2: imgname = commodityImgDO.getImg2();break;
+				case 3:	imgname = commodityImgDO.getImg3();break;
+				case 4:	imgname = commodityImgDO.getImg4();break;
+				case 5:	imgname = commodityImgDO.getImg5();break;
+			}
+			
+			keya[i] = imgname;
+			token[i] = qiniu.jsUploadToken("mmdshop", keya[i], 360000);
+		}
+		
+		q.setKey(keya);
+		q.setToken(token);
+		
+		return q;
 	}
 	
 }

@@ -53,4 +53,11 @@ public interface CommodityService {
 	 * @return
 	 */
 	CommodityBasic findCommodityByName(String name);
+	
+	/**
+	 * 更新
+	 * @param basic
+	 * @return
+	 */
+	QiNiuResult modifyCommodityBasic(CommodityDO commodityDO);
 }

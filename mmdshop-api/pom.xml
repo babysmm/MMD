@@ -7,7 +7,7 @@
   </parent>
   <artifactId>mmdshop-api</artifactId>
   <dependencies>
-		<dependency>
+  		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
@@ -146,5 +146,23 @@
             <artifactId>jedis</artifactId>
             <version>2.9.0</version>
         </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- 修改后立即生效，热部署 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>springloaded</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+	    <dependency>
+	       <groupId>org.springframework.boot</groupId>
+	       <artifactId>spring-boot-starter-websocket</artifactId>
+	     </dependency>
 	</dependencies>
+	
 </project>

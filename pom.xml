@@ -75,5 +75,6 @@
   	<module>mmdshop-api</module>
   	<module>mmdshop-consumer-80</module>
   	<module>mmdshop-provider-8001</module>
+  	<module>mmdshop-provider-8002</module>
   </modules>
 </project>

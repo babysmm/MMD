@@ -14,6 +14,11 @@ var img = {
 	img6:null,
 }
 
+var upDataimgName = {
+		
+}
+
+
 
 // 初始化是否已经清空表单，未清空0,已清空1
 // 初始化是否已经获取验证码，未获取0,已获取1
@@ -270,24 +275,25 @@ $(".comm-img").click(
 				changeImg = event.target;
 				$("#commImgInput").click();
 			} else {
-				// 有图片
-
+				// 有图片 m
 				changeImg = event.target;
 				$("#commImgInput").click();
-				
 			}
 		});
+
 /**
  * 图片设置值
  * 
  * @returns
  */
 $("#commImgInput").change(function() {
-	$(changeImg).attr("src", URL.createObjectURL($(this)[0].files[0]));
 	
 	var cname = $(changeImg).attr("cname");
+	
+	
+	$(changeImg).attr("src", URL.createObjectURL($(this)[0].files[0]));
+	
 	img[cname] = $(this)[0].files[0];
-	console.log(cname)
 });
 
 /**

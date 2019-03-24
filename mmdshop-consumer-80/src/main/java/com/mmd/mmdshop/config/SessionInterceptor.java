@@ -32,6 +32,7 @@ public class SessionInterceptor implements HandlerInterceptor {
 		map.put("removeShopStaff", 2);
 		map.put("sendEmailCode", 2);
 		map.put("addCommodity", 2);
+		map.put("modifyCommodity", 2);
 		map.put("searchCommodityDOByBarCode", 3);
 		map.put("searchCommodityDOByName", 3);
 	}

@@ -1,6 +1,7 @@
 package com.mmd.mmdshop.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+
 import org.apache.ibatis.annotations.Update;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

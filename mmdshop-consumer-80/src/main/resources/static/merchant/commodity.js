@@ -1,3 +1,5 @@
+var qiniuyunURL = "http://mm.xknow.net/";
+//var qiniuyunURL = "pojrz1xjh.bkt.clouddn.com/";
 var commodityMode = 1;//0:新增模式 1:保存模式
 
 /**
@@ -39,14 +41,23 @@ $("#searchCommodity").click(function() {
 			$("#commodityGoodFrom").setObjectForm(result);
 			
 			//设置缩略图
-			$("#img-c").attr("src","http://mm.xknow.net/"+result.commodityDO.thumb);
+			var thumb = qiniuyunURL+result.commodityDO.thumb;
+		
+			
+			if(validateImage(thumb) == true){
+				$("#img-c").attr("src",thumb);
+			}
 			
 			//设置图片
 			for(var i=1;i<6;i++){
 				var img = result.commodityImgDO["img"+i];
 				
 				if(img!=null){
-					$("#img"+i).attr("src","http://mm.xknow.net/"+img);
+					var imgurl = qiniuyunURL+img;
+					//判断是否404
+					if(validateImage(imgurl) == true){
+						$("#img"+i).attr("src",imgurl);
+					}
 				}
 			}
 			
@@ -56,6 +67,26 @@ $("#searchCommodity").click(function() {
 	});
 	
 })
+
+function validateImage(url)
+    {    
+        var xmlHttp ;
+        if (window.ActiveXObject)
+         {
+          xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+         }
+         else if (window.XMLHttpRequest)
+         {
+          xmlHttp = new XMLHttpRequest();
+         } 
+        xmlHttp.open("Get",url,false);
+        xmlHttp.send();
+        if(xmlHttp.status==404)
+        return false;
+        else
+        return true;
+    }
+
 
 /**
  * 新建商品
@@ -105,7 +136,6 @@ function clearCommodityFrom() {
 	$(".comm-img").attr("src","../backstageMange/images/addImg.png");
 }
 
-
 /**
  * 获取表单数据封装成对象
  * @returns
@@ -117,33 +147,23 @@ function getCommodityFrom(url){
 	//获取数据
 	var obj = $.getObjFrom(new Array("#commodityFrom","#commodityDefFrom","#commodityStateFrom","#commodityPriceFrom","#commodityGoodFrom"));
 	
-	//获取图片有几张
-	var imgLength = 0;
-	for(var o in img){  
-        if(img[o] != null){
-        	imgLength++;
-        }
-	}  
-	//通过设置商品ID来设置图片数量
-	obj["commodityDO"]["commodityId"] = imgLength;
+	console.log(img)
+	
 	
 	//提交后台
 	$.postData(url, obj["commodityDO"],function(result) {
 		if (result != null && result.length != 0) {
+			
 			console.log(result)
 			
 			for(var i=0;i<6;i++){
-				if(result.key[i] != null || result.token[i] != null){
-					var s = i+1;
-					$.qiniuUp(img['img'+s],"123.img",result["key"][i],result["token"][i]);
+				if(img['img'+(i+1)] != null ){
+					$.qiniuUp(img['img'+(i+1)],"123.img",result["key"][i],result["token"][i]);
 				}
 			}
+			
 		} else {
-
+			
 		}
 	}, null);
-}
-
-function send(){
-	
 }

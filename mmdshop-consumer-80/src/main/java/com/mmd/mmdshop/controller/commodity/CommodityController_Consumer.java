@@ -91,8 +91,16 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 		return template.postForObject(ADMINUSERPROVIDER_URL+"/searchCommodityDOById", commodityIdentity, CommodityBasic.class);
 	}
 	
+	/**
+	 * 更新商品
+	 * @param basic
+	 * @return
+	 */
 	@PostMapping("/consumer/modifyCommodity")
-	public QiNiuResult modifyCommodity() {
-		return null;
+	public QiNiuResult modifyCommodity(@RequestBody CommodityDO commodityDO) {
+		
+		System.out.println(commodityDO);
+		
+		return template.postForObject(ADMINUSERPROVIDER_URL+"/modifyCommodity", commodityDO, QiNiuResult.class);
 	}
 }
