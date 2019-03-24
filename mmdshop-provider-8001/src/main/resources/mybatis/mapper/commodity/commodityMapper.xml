@@ -93,11 +93,12 @@
 			c.commodity_id = #{commodityId}
 	</select>
 	<select id="upDataCommodity" resultType="java.util.HashMap">
-<!--	update commodity
+		update commodity
         <set>
             <if test="commTypeId != null">comm_type_id=#{commTypeId},</if>
+            <if test="shopId != null">shop_id=#{shopId},</if>
         </set>
-        where bar_code=#{barCode};-->
+        where bar_code=#{barCode};
         SELECT
 			commodity.commodity_id,
 			commodity.thumb,

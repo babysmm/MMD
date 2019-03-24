@@ -16,4 +16,9 @@ spring:
     host: 192.168.1.9  # Redis服务器地址  
     port: 6379          # Redis服务器连接端口
     password: 123456    # Redis服务器连接密码（默认为空）
-    
+
+#eureka:
+#  client:
+#    register-with-eureka: false
+#    service-url: 
+#      defaultZone: http://localhost:7001/eureka/

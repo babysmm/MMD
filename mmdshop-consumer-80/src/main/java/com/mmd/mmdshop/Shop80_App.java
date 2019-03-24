@@ -1,12 +1,10 @@
 package com.mmd.mmdshop;
 
-import java.io.IOException;
-
 import org.springframework.boot.SpringApplication;
-
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 import com.mmd.mmdshop.controller.SocketServer;
 
@@ -18,6 +16,7 @@ import com.mmd.mmdshop.controller.SocketServer;
  * @date 2019/2/18
  */
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+//@EnableEurekaClient
 @SpringBootApplication
 public class Shop80_App
 {
@@ -25,9 +24,5 @@ public class Shop80_App
 	public static void main(String[] args)
 	{
 		SpringApplication.run(Shop80_App.class, args);
-		
-		//server = new SocketServer();
-		//起socket服务
-		//server.startSocketServer(8088);
 	}
 }

@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableTransactionManagement
-@EnableEurekaClient
+//@EnableEurekaClient
 @MapperScan("com.mmd.mmdshop.mapper")
 public class Shop8001_App
 {

@@ -2,6 +2,7 @@ package com.mmd.mmdshop.config;
 
 import java.nio.charset.StandardCharsets;
 
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -23,9 +24,11 @@ import com.mmd.mmdshop.utils.SerializeUtil;
 @Configuration
 public class ConfigBean {
 	@Bean
+	//@LoadBalanced	//Spring Cloud Ribbon是基于Netflix Ribbon实现的一套客户端       负载均衡的工具。
 	public RestTemplate getRestTemplate() {
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.getMessageConverters().set(1, new StringHttpMessageConverter(StandardCharsets.UTF_8));
+		
 		return restTemplate;
 	}
 	

@@ -30,6 +30,8 @@ public class AdminUserController_Consumer {
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
 	private final static String ADMINUSERPROVIDER_URL = "http://localhost:8001/provider";
+	//private final static String ADMINUSERPROVIDER_URL = "http://mmdmmdshop-provider-8001/provider";
+	//private final static String ADMINUSERPROVIDER_URL = "http://MMDSHOP-PROVIDER/provider";
 
 	@Autowired
 	private RestTemplate template;
