@@ -76,5 +76,6 @@
   	<module>mmdshop-consumer-80</module>
   	<module>mmdshop-provider-8001</module>
   	<module>mmdshop-provider-8002</module>
+  	<module>mmdshop-eureka-7001</module>
   </modules>
 </project>

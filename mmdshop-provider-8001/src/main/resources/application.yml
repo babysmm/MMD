@@ -43,4 +43,12 @@ spring:
 logging:
   level:
     com.mmd.mmdshop.dao : debug
+    
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url: 
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: mmdmmdshop-provider-8001
+    prefer-ip-address: true
    
