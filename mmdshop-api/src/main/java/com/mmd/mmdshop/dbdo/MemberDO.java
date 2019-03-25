@@ -55,11 +55,11 @@ public class MemberDO implements java.io.Serializable {
     /** 变更用户ID */
     private Integer changeUserId;
     
-    /**  */
-    private String date1;
+    /** 微信sessionKey */
+    private String sessionKey;
     
-    /**  */
-    private String date2;
+    /** 自己的mySessionKey */
+    private String mySessionKey;
     
     /**  */
     private String date3;
