@@ -1,5 +1,7 @@
 package com.mmd.mmdshop.services;
 
+import org.springframework.stereotype.Service;
+
 import com.mmd.mmdshop.result.member.MemberIndexInitResult;
 
 import net.sf.json.JSONObject;

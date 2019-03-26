@@ -1,8 +1,13 @@
 package com.mmd.mmdshop.result.commodity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
@@ -17,16 +22,22 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @ToString
-public class CommodityRough {
+@EqualsAndHashCode
+@JsonSerialize
+public class CommodityRough implements Serializable{
+	
+	/** 商品条形码  */
+	private Long id;
+	
 	/** 商品缩略图 */
-    private String thumb;
+    private String img;
     
     /** 商品名称 */
-    private String name;
+    private String commName;
     
     /** 市场价 */
-    private BigDecimal marketPrice;
+    private BigDecimal price;
     
     /** 批发价 */
-    private BigDecimal tradePrice;
+    private BigDecimal costpeo;
 }

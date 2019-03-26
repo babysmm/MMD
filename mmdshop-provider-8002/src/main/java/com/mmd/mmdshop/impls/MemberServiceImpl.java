@@ -1,6 +1,9 @@
 package com.mmd.mmdshop.impls;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mmd.mmdshop.dbdo.MemberDO;
 import com.mmd.mmdshop.mapper.member.MemberMapper;
+import com.mmd.mmdshop.result.commodity.CommodityRough;
 import com.mmd.mmdshop.result.member.MemberIndexInitResult;
 import com.mmd.mmdshop.services.MemberService;
 import com.mmd.mmdshop.utils.MD5Utils;
@@ -30,25 +34,6 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	private RedisUtil redisUtil;
 	
-	//初始化设置redis
-    MemberServiceImpl() throws Exception {
-    	Jedis jedis = redisUtil.getJedis();
-    	//加入上部滑动图片
-    	
-    	String [] topImgUrls = new String[3];
-    	topImgUrls[0] = "http://mm.xknow.net/1.jpg";
-    	topImgUrls[0] = "http://mm.xknow.net/2.jpg";
-    	topImgUrls[0] = "http://mm.xknow.net/3.jpg";
-    	jedis.set("topImgUrls", SerializeUtil.serializeToString(topImgUrls));
-    	
-    	String [] topHostMessage = new String[3];
-    	topHostMessage[0] = "喵喵喵1";
-    	topHostMessage[0] = "喵喵喵2";
-    	topHostMessage[0] = "喵喵喵3";
-    	jedis.set("topHostMessage", SerializeUtil.serializeToString(topHostMessage));
-    	
-    	jedis.close();
-    }
 
 	@Override
 	public String memberLogin(JSONObject result) {
@@ -81,6 +66,7 @@ public class MemberServiceImpl implements MemberService{
 		return mySessionKey;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public MemberIndexInitResult findMemberIndexInitResult() throws Exception {
 		Jedis jedis = redisUtil.getJedis();
@@ -95,9 +81,13 @@ public class MemberServiceImpl implements MemberService{
 		result.setHostSearch((String[]) SerializeUtil.deserializeToObject(jedis.get("hostSearch")));
 		//特价图片
 		result.setDiscounts((String[]) SerializeUtil.deserializeToObject(jedis.get("discounts")));
+		
 		//商品
+		result.setCommodityLeft((CommodityRough[]) SerializeUtil.deserializeToObject(jedis.get("commodityLeft")));
 		
+		//商品
+		result.setCommodityRight((CommodityRough[]) SerializeUtil.deserializeToObject(jedis.get("commodityright")));
 		
-		return null;
+		return result;
 	}
 }

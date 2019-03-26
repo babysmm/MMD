@@ -50,10 +50,12 @@ public class SessionInterceptor implements HandlerInterceptor {
         
         boolean result = true;
         
-        if(session.getAttribute("userId") == null) {
+        
+        if(map.get(requestPath) == 4) {	//会员登录
+        	result = true;
+        }else if(session.getAttribute("userId") == null) {
         	result = false;
         }else {
-        	
         	switch(map.get(requestPath)) {
 	        	//是否是商店员工
 	        	case 1:if(session.getAttribute("shopStaffType") == null) result = false;break;
@@ -61,15 +63,12 @@ public class SessionInterceptor implements HandlerInterceptor {
 	        	case 2:if((int)session.getAttribute("shopStaffType") == 2) result = false;break;
 	        	//查询商品
 	        	case 3:if(session.getAttribute("userId") == null)result = false;break;
-	        	//会员
-	        	case 4:if(session.getAttribute("openID") == null)result = false;break;
 	        	
 	        	default :result = false;break;
         	}
         	
         }
         
-        //result = true;
         
         if(result == false) {
         	this.error(request, response, handler);

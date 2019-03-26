@@ -43,8 +43,6 @@ public class WXMemberLoginController_Consumer {
 		if(mySessionkey == null) {
 			return null;
 		}
-		//设置openID
-		request.getSession().setAttribute("openID", result.get("openid"));
 		
 		return mySessionkey;
 	}

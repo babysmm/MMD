@@ -1,11 +1,14 @@
 package com.mmd.mmdshop.utils;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.junit.Test;
+import com.mmd.mmdshop.result.commodity.CommodityRough;
+
 import redis.clients.jedis.Jedis;
 
 public class RedisTest {
@@ -114,19 +117,49 @@ public class RedisTest {
     	Jedis jedis = redisUtil.getJedis();
     	//加入上部滑动图片
     	
-    	String [] data = new String[3];
+    	String [] topImgUrls = new String[3];
+    	topImgUrls[0] = "http://mm.xknow.net/20181224104849409.jpg";
+    	topImgUrls[1] = "http://mm.xknow.net/20181224133800485.jpg";
+    	topImgUrls[2] = "http://mm.xknow.net/20181225110153158.jpg";
+    	jedis.set("topImgUrls", SerializeUtil.serializeToString(topImgUrls));
     	
-    	data[0] = "http://mm.xknow.net/1.jpg";
-    	data[0] = "http://mm.xknow.net/2.jpg";
-    	data[0] = "http://mm.xknow.net/3.jpg";
+    	String [] topHostMessage = new String[3];
+    	topHostMessage[0] = "冰淇淋今日开张";
+    	topHostMessage[1] = "冰淇淋免费试吃";
+    	jedis.set("topHostMessage", SerializeUtil.serializeToString(topHostMessage));
+    	
+    	String [] hostSearch = new String[3];
+    	hostSearch[0] = "热搜1";
+    	hostSearch[1] = "热搜2";
+    	hostSearch[2] = "热搜3";
+    	jedis.set("hostSearch", SerializeUtil.serializeToString(hostSearch));
+    	
+    	String [] discounts = new String[8];
+    	discounts[0] = "https://mm.xknow.net/001.jpg";
+    	discounts[1] = "https://mm.xknow.net/002.jpg";
+    	discounts[2] = "https://mm.xknow.net/003.jpg";
+    	discounts[3] = "https://mm.xknow.net/004.jpg";
+    	discounts[4] = "https://mm.xknow.net/005.jpg";
+    	discounts[5] = "https://mm.xknow.net/006.jpg";
+    	discounts[6] = "https://mm.xknow.net/007.jpg";
+    	discounts[7] = "https://mm.xknow.net/008.jpg";
+    	jedis.set("discounts", SerializeUtil.serializeToString(discounts));
+    	
+    	//设置商品
+    	//Commodity
+    	CommodityRough[] commodityLeft = new CommodityRough[2];
+    	CommodityRough[] commodityright = new CommodityRough[2];
     	
     	
-    	jedis.set("topImgUrl", SerializeUtil.serializeToString(data));
+    	commodityLeft[0] = new CommodityRough(1L, "http://mm.xknow.net/269450775921561600.png", "喵喵奶茶1", new BigDecimal(10), new BigDecimal(20));
+    	commodityLeft[1] = new CommodityRough(1L, "http://mm.xknow.net/269450775921561601.png", "喵喵奶茶1", new BigDecimal(10), new BigDecimal(20));
     	
-    	String topImgUrl = jedis.get("topImgUrl");
-    	 
-        System.out.println(SerializeUtil.deserializeToObject(topImgUrl));
+    	commodityright[1] = new CommodityRough(1L, "http://mm.xknow.net/269450775921561600.png", "喵喵奶茶1", new BigDecimal(10), new BigDecimal(20));
+    	commodityright[0] = new CommodityRough(2L, "http://mm.xknow.net/269450775921561601.png", "喵喵奶茶1", new BigDecimal(20), new BigDecimal(30));
     	
+    	
+    	jedis.set("commodityLeft", SerializeUtil.serializeToString(commodityLeft));
+    	jedis.set("commodityright", SerializeUtil.serializeToString(commodityright));
     	
     	jedis.close();
     }

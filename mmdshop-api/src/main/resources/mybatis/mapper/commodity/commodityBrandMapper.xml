@@ -3,24 +3,37 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mmd.mmdshop.mapper.commodity.CommodityBrandMapper">
-<!--  
-	<resultMap type="com.mmd.mmdshop.dbdo.ChangeTypeDO" id="ChangeTypeDO">
-		<id column="user_id" property="userId"/>
-		<result column="name" property="name"/>
-		<result column="change_id" property="changeId"/>
-		<result column="change_time" property="changeTime"/>
-		<result column="change_user_id" property="changeUserId"/>
-	</resultMap>
--->
 	<resultMap type="com.mmd.mmdshop.dbdo.CommodityBrandDO" id="CommodityBrandDO">
 		<id column="brand_id" property="brandId"/>
-		<result column="commodity_brand_name" property="name"/>
+		<result column="name" property="name"/>
 		<result column="address" property="address"/>
-		<result column="date1" property="date1"/>
-		<result column="date2" property="date2"/>
+		<result column="state" property="state"/>
+		<result column="shop_id" property="shopId"/>
 		<result column="date3" property="date3"/>
 		<result column="date4" property="date4"/>
 		<result column="date5" property="date5"/>
 	</resultMap>
+	
+	<insert id="inserCommodityBrand">
+		INSERT INTO
+		commodity_brand (
+			brand_id,name,address,state,shop_id
+		)VALUES(
+			Null,#{name},#{address},1,#{shopId}
+		);
+	</insert>
+	<update id="upCommodityBrand">
+		update commodity_brand
+		<set>
+			<if test="name != null">name=#{name},</if>
+			<if test="address != null">address=#{address}</if>
+		</set>
+		where brand_id = #{brandId};
+	</update>
+	<delete id="deleteCommodityBrand">
+		update commodity_brand
+			set state = 0
+		where brand_id = #{brandId} AND shop_id = #{shopId};
+	</delete>
 </mapper>
  

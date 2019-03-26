@@ -1,5 +1,7 @@
 package com.mmd.mmdshop.result.member;
 
+import java.util.List;
+
 import com.mmd.mmdshop.result.commodity.CommodityRough;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,5 +39,10 @@ public class MemberIndexInitResult {
 	/**
 	 * 商品
 	 */
-	private CommodityRough[] commodity;
+	private CommodityRough[] commodityLeft;
+	
+	/**
+	 * 商品
+	 */
+	private CommodityRough[] commodityRight;
 }
