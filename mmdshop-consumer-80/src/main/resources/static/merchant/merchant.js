@@ -5,6 +5,8 @@ var length = {
 	"commodityDO.name" : [2 ,10,'text','条形码'],
 }
 
+var commodityType = {};
+
 var img = {
 	img1:null,
 	img2:null,
@@ -16,6 +18,21 @@ var img = {
 
 var upDataimgName = {
 		
+}
+
+window.onload=function()
+{
+	$.postData("/consumer/getCommodityType", null, function(result) {
+		if (result != null && result.length != 0) {
+			//设置商品类型
+			var ophtml = "";
+			for(var i=0;i<result.length;++i){
+				ophtml += "<option value ="+result[i].commTypeId+">"+result[i].type+"</option>";
+			}
+			
+			$("#commodityType").html(ophtml);
+		}
+	}, null);
 }
 
 

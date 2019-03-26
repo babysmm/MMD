@@ -34,8 +34,10 @@ public class SessionInterceptor implements HandlerInterceptor {
 		map.put("addCommodity", 2);
 		map.put("modifyCommodity", 2);
 		map.put("searchCommodityDOByBarCode", 3);
+		map.put("getCommodityType", 3);
 		map.put("searchCommodityDOByName", 3);
 		map.put("memberLoginHSessionKey", 4);
+		map.put("memberIndexInit", 4);
 	}
 	
 	

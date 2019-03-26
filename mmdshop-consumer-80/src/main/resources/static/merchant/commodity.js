@@ -149,7 +149,7 @@ function getCommodityFrom(url){
 	
 	console.log(img)
 	
-	
+	/*
 	//提交后台
 	$.postData(url, obj["commodityDO"],function(result) {
 		if (result != null && result.length != 0) {
@@ -166,4 +166,5 @@ function getCommodityFrom(url){
 			
 		}
 	}, null);
+	*/
 }

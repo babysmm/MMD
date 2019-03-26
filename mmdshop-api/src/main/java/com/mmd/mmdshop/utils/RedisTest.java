@@ -1,5 +1,6 @@
 package com.mmd.mmdshop.utils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -89,5 +90,44 @@ public class RedisTest {
         System.out.println(jedis.lrange("a", 0, -1));
         jedis.close();
     }
+    
+    @Test
+    public void test1() {
+    	Jedis jedis = redisUtil.getJedis();
+        String name = "name";
+        String value = "qq";
+        jedis.set(name, value);
+        System.out.println("追加前：" + jedis.get(name)); // 追加前：qq
 
+        // 在原有值得基础上添加,如若之前没有该key，则导入该key
+        jedis.append(name, "ww");
+        System.out.println("追加后：" + jedis.get(name)); // 追加后：qqww
+
+        jedis.append("id", "ee");
+        System.out.println("没此key：" + jedis.get(name));
+        System.out.println("get此key：" + jedis.get("id"));
+
+    }
+    
+    @Test
+    public void init() throws Exception {
+    	Jedis jedis = redisUtil.getJedis();
+    	//加入上部滑动图片
+    	
+    	String [] data = new String[3];
+    	
+    	data[0] = "http://mm.xknow.net/1.jpg";
+    	data[0] = "http://mm.xknow.net/2.jpg";
+    	data[0] = "http://mm.xknow.net/3.jpg";
+    	
+    	
+    	jedis.set("topImgUrl", SerializeUtil.serializeToString(data));
+    	
+    	String topImgUrl = jedis.get("topImgUrl");
+    	 
+        System.out.println(SerializeUtil.deserializeToObject(topImgUrl));
+    	
+    	
+    	jedis.close();
+    }
 }

@@ -1,13 +1,9 @@
 package com.mmd.mmdshop.impl.commodity;
 
-import java.io.Serializable;
-
 
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +21,7 @@ import com.mmd.mmdshop.result.commodity.CommodityBasic;
 import com.mmd.mmdshop.service.commodity.CommodityService;
 import com.mmd.mmdshop.utils.QiNiuYunUtils;
 import com.mmd.mmdshop.utils.RedisUtil;
-import com.mmd.mmdshop.utils.SnowflakeIdWorker;
-
-import net.sf.json.JSONObject;
+import com.mmd.mmdshop.utils.SnowflakeIdWorker;;
 
 /**
  * 
@@ -53,9 +47,6 @@ public class CommodityServiceImpl implements CommodityService {
 	
 	@Autowired
 	private SnowflakeIdWorker idWorker;
-	
-	@Autowired
-	private RedisUtil redisUtil;
 	
 	@Override
 	public List<CommodityRough> findCommodityRoughByName(String name) {
