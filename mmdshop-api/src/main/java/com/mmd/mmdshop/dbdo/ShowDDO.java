@@ -60,11 +60,11 @@ public class ShowDDO implements java.io.Serializable {
     /** 变更用户ID */
     private Integer changeUserId;
     
-    /**  */
-    private String date1;
+    /** 头像 */
+    private String torUrl;
     
     /**  */
-    private String date2;
+    private Integer look;
     
     /**  */
     private String date3;

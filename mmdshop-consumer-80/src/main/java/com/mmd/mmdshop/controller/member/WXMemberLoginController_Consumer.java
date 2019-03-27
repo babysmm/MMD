@@ -3,6 +3,7 @@ package com.mmd.mmdshop.controller.member;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import com.mmd.mmdshop.result.member.WXUserInfo;
+
 import net.sf.json.JSONObject;
 
 /**
@@ -38,13 +42,31 @@ public class WXMemberLoginController_Consumer {
 		
 		JSONObject result = this.getSessionKeyOrOpenId(code, template);
 		
-		String mySessionkey = template.postForObject(ADMINUSERPROVIDER_URL+"/memberLogin", result, String.class);
+		JSONObject backresult = template.postForObject(ADMINUSERPROVIDER_URL+"/memberLogin", result, JSONObject.class);
 		
-		if(mySessionkey == null) {
+		String mySessionkey = (String) backresult.get("mySessionkey");
+		
+		if(result == null) {
 			return null;
 		}
 		
+		request.getSession().setAttribute("openID", result.get("openid"));
+		request.getSession().setAttribute("memberID", backresult.get("memberID"));
+		
 		return mySessionkey;
+	}
+	
+	/**
+	 * 会员提交信息
+	 * @param userInfo
+	 * @param request
+	 * @return
+	 */
+	@PostMapping("/consumer/memberUserInfo")
+	public boolean memberUserInfo(@RequestBody WXUserInfo userInfo,HttpServletRequest request) {
+		//设置id
+		userInfo.setMemberId((String) request.getSession().getAttribute("memberID"));
+		return template.postForObject(ADMINUSERPROVIDER_URL+"/memberUserInfo", userInfo, boolean.class);
 	}
 	
 	/**

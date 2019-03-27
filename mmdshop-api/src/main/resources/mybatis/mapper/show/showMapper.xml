@@ -2,16 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mmd.mmdshop.publicmapper.show.ShowMappper">
-<!--  
-	<resultMap type="com.mmd.mmdshop.dbdo.ChangeTypeDO" id="ChangeTypeDO">
-		<id column="user_id" property="userId"/>
-		<result column="name" property="name"/>
-		<result column="change_id" property="changeId"/>
-		<result column="change_time" property="changeTime"/>
-		<result column="change_user_id" property="changeUserId"/>
-	</resultMap>
--->
+<mapper namespace="com.mmd.mmdshop.mapper.show.ShowMapper">
 	<resultMap type="com.mmd.mmdshop.dbdo.ShowDDO" id="ShowDDO">
 		<id column="show_id" property="showId"/>
 		<result column="user_id" property="userId"/>
@@ -23,11 +14,29 @@
 		<result column="change_id" property="changeId"/>
 		<result column="change_time" property="changeTime"/>
 		<result column="change_user_id" property="changeUserId"/>
-		<result column="date1" property="date1"/>
-		<result column="date2" property="date2"/>
+		<result column="torUrl" property="torUrl"/>
+		<result column="look" property="look"/>
 		<result column="date3" property="date3"/>
 		<result column="date4" property="date4"/>
 		<result column="date5" property="daye5"/>
 	</resultMap>
+	
+	<select id="selectShowByMinForList" resultMap="ShowDDO">
+		SELECT
+			s.show_id,
+			s.add_time,
+			s.content,
+			s.good,
+			s.talk,
+			s.transpond,
+			s.change_id,
+			s.torUrl,
+			s.look
+		FROM
+			show_d AS s
+		ORDER BY
+			s.add_time DESC
+		LIMIT #{item}
+	</select>
 </mapper>
  

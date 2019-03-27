@@ -38,6 +38,8 @@ public class SessionInterceptor implements HandlerInterceptor {
 		map.put("searchCommodityDOByName", 3);
 		map.put("memberLoginHSessionKey", 4);
 		map.put("memberIndexInit", 4);
+		map.put("memberUserInfo", 4);
+		map.put("getNewShowMessage", 4);
 	}
 	
 	
@@ -50,9 +52,13 @@ public class SessionInterceptor implements HandlerInterceptor {
         
         boolean result = true;
         
-        
-        if(map.get(requestPath) == 4) {	//会员登录
-        	result = true;
+        if(map.get(requestPath) == 4) {	//会员
+        	System.out.println();
+        	if(session.getAttribute("openID") == null) {
+        		result = false;
+        	}else {
+        		result = true;
+        	}
         }else if(session.getAttribute("userId") == null) {
         	result = false;
         }else {

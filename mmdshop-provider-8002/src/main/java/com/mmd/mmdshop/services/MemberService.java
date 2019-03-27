@@ -3,6 +3,7 @@ package com.mmd.mmdshop.services;
 import org.springframework.stereotype.Service;
 
 import com.mmd.mmdshop.result.member.MemberIndexInitResult;
+import com.mmd.mmdshop.result.member.WXUserInfo;
 
 import net.sf.json.JSONObject;
 
@@ -12,7 +13,7 @@ public interface MemberService {
 	 * @param result
 	 * @return
 	 */
-	String memberLogin(JSONObject result);
+	JSONObject memberLogin(JSONObject result);
 	
 	/**
 	 * 首页初始化
@@ -20,4 +21,11 @@ public interface MemberService {
 	 * @throws Exception 
 	 */
 	MemberIndexInitResult findMemberIndexInitResult() throws Exception;
+	
+	/**
+	 * 更新用户信息
+	 * @param info
+	 * @return
+	 */
+	boolean modityMemberWXInfo(WXUserInfo info);
 }

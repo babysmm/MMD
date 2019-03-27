@@ -1,9 +1,5 @@
 package com.mmd.mmdshop.impls;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +10,7 @@ import com.mmd.mmdshop.dbdo.MemberDO;
 import com.mmd.mmdshop.mapper.member.MemberMapper;
 import com.mmd.mmdshop.result.commodity.CommodityRough;
 import com.mmd.mmdshop.result.member.MemberIndexInitResult;
+import com.mmd.mmdshop.result.member.WXUserInfo;
 import com.mmd.mmdshop.services.MemberService;
 import com.mmd.mmdshop.utils.MD5Utils;
 import com.mmd.mmdshop.utils.RedisUtil;
@@ -36,7 +33,7 @@ public class MemberServiceImpl implements MemberService{
 	
 
 	@Override
-	public String memberLogin(JSONObject result) {
+	public JSONObject memberLogin(JSONObject result) {
 		
 		String openId = (String) result.get("openid");
 		String sessionKey = (String) result.get("session_key");
@@ -54,7 +51,8 @@ public class MemberServiceImpl implements MemberService{
 		queryWrapper.select("member_id").eq("open_id", openId);
 		MemberDO dbMember = mapper.selectOne(queryWrapper);
 		
-		System.out.println(dbMember == null);
+		
+		//System.out.println(dbMember == null);
 		
 		//存储openID,sessionKey,mySessionKey
 		if(dbMember == null) {
@@ -62,8 +60,11 @@ public class MemberServiceImpl implements MemberService{
 			mapper.insertMember(openId, sessionKey, mySessionKey);
 		}
 		
-		//返回mySessionKey
-		return mySessionKey;
+		JSONObject backresult = new JSONObject();
+		backresult.put("mySessionKey", mySessionKey);
+		backresult.put("memberID", dbMember.getMemberId());
+		
+		return backresult;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -89,5 +90,11 @@ public class MemberServiceImpl implements MemberService{
 		result.setCommodityRight((CommodityRough[]) SerializeUtil.deserializeToObject(jedis.get("commodityright")));
 		
 		return result;
+	}
+
+	@Override
+	public boolean modityMemberWXInfo(WXUserInfo info) {
+		System.out.println(info.getMemberId());
+		return mapper.updataMemberWXInfo(info);
 	}
 }

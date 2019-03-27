@@ -33,5 +33,12 @@
         	set my_session_key = #{mySessionKey},
         where member_id=#{memberId};
 	</update>
+	
+	<update id="updataMemberWXInfo">
+		update member
+        	set head_Img = #{avatarUrl},
+        	wx_name = #{nickName}
+        where member_id=#{memberId};
+	</update>
 </mapper>
  
