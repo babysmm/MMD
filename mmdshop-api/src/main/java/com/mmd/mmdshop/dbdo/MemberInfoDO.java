@@ -48,7 +48,7 @@ public class MemberInfoDO implements java.io.Serializable {
     private BigDecimal creditLine;
     
     /** 会员类型 */
-    private Byte[] mberType;
+    private String mberType;
     
     /** 注册时间 */
     private Date registerTime;

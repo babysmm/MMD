@@ -61,8 +61,8 @@ public class MemberDO implements java.io.Serializable {
     /** 自己的mySessionKey */
     private String mySessionKey;
     
-    /**  */
-    private String date3;
+    /** 用户点赞记录 */
+    private String goodShow;
     
     /**  */
     private String date4;

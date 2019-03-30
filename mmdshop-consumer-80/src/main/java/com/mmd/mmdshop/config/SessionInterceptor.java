@@ -40,6 +40,8 @@ public class SessionInterceptor implements HandlerInterceptor {
 		map.put("memberIndexInit", 4);
 		map.put("memberUserInfo", 4);
 		map.put("getNewShowMessage", 4);
+		map.put("showGood", 4);
+		map.put("getShowTalk", 4);
 	}
 	
 	
@@ -65,7 +67,7 @@ public class SessionInterceptor implements HandlerInterceptor {
         	switch(map.get(requestPath)) {
 	        	//是否是商店员工
 	        	case 1:if(session.getAttribute("shopStaffType") == null) result = false;break;
-	        	//是否是商店店员
+	        	//是否是商店店长
 	        	case 2:if((int)session.getAttribute("shopStaffType") == 2) result = false;break;
 	        	//查询商品
 	        	case 3:if(session.getAttribute("userId") == null)result = false;break;

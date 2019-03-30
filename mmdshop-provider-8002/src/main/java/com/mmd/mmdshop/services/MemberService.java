@@ -1,10 +1,7 @@
 package com.mmd.mmdshop.services;
 
-import org.springframework.stereotype.Service;
-
 import com.mmd.mmdshop.result.member.MemberIndexInitResult;
 import com.mmd.mmdshop.result.member.WXUserInfo;
-
 import net.sf.json.JSONObject;
 
 public interface MemberService {

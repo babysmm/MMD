@@ -21,22 +21,65 @@
 		<result column="date5" property="daye5"/>
 	</resultMap>
 	
-	<select id="selectShowByMinForList" resultMap="ShowDDO">
+	<resultMap type="com.mmd.mmdshop.result.show.ShowResult" id="ShowResult">
+		<id column="show_id" property="showId"/>
+		<result column="user_id" property="userId"/>
+		<result column="add_time" property="addTime"/>
+		<result column="content" property="content"/>
+		<result column="good" property="good"/>
+		<result column="talk" property="talk"/>
+		<result column="transpond" property="transpond"/>
+		
+		<result column="head_Img" property="torUrl"/>
+		<result column="look" property="look"/>
+		<result column="show_id" property="showId"/>
+		<result column="img1" property="img1"/>
+		<result column="img2" property="img2"/>
+		<result column="img3" property="img3"/>
+		
+		<result column="is_good" property="isGood"/>
+		
+		<result column="grade" property="grade"/>
+		<result column="mber_type" property="member"/>
+		
+	</resultMap>
+	
+	<select id="selectShowByMinForList" resultMap="ShowResult">
 		SELECT
-			s.show_id,
+			m.grade,
+			m.mber_type,
+			mes.head_Img,
 			s.add_time,
 			s.content,
+			s.show_id,
 			s.good,
 			s.talk,
+			s.look,
 			s.transpond,
-			s.change_id,
-			s.torUrl,
-			s.look
+			si.img1,
+			si.img2,
+			si.img3,
+			mem.type AS is_good
 		FROM
 			show_d AS s
+		LEFT JOIN member_info AS m ON s.user_id = m.member_id
+		LEFT JOIN show_img AS si ON si.show_id = s.show_id
+		LEFT JOIN member AS mes ON mes.member_id = m.member_id
+		LEFT JOIN member AS mem On mem.member_id = #{memberId} AND mem.good_show LIKE CONCAT('%,',s.show_id,',%')
 		ORDER BY
 			s.add_time DESC
 		LIMIT #{item}
 	</select>
+	
+	
+	<select id="selectIsGood" resultType="int">
+		SELECT member_id FROM member WHERE good_show LIKE '%,${showId},%' AND member_id = #{memberId}
+	</select>
+	
+	<update id="insertGood">
+		update member set good_show = concat(",${showId}",good_show) where member_id = #{memberId};
+		update show_d set good=good+1 where show_id = #{showId};
+	</update>
+	
 </mapper>
  

@@ -2,16 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mmd.mmdshop.publicmapper.show.ShowTalkMappper">
-<!--  
-	<resultMap type="com.mmd.mmdshop.dbdo.ChangeTypeDO" id="ChangeTypeDO">
-		<id column="user_id" property="userId"/>
-		<result column="name" property="name"/>
-		<result column="change_id" property="changeId"/>
-		<result column="change_time" property="changeTime"/>
-		<result column="change_user_id" property="changeUserId"/>
-	</resultMap>
--->
+<mapper namespace="com.mmd.mmdshop.mapper.show.ShowTalkMapper">
 	<resultMap type="com.mmd.mmdshop.dbdo.ShowTalkDO" id="ShowTalkDO">
 		<id column="show_talk_id" property="showTalkId"/>
 		<result column="show_id" property="showId"/>
@@ -26,5 +17,30 @@
 		<result column="date4" property="date4"/>
 		<result column="date5" property="date5"/>
 	</resultMap>
+	
+	<resultMap type="com.mmd.mmdshop.result.show.ShowTalkResult" id="ShowTalkResult">
+		<id column="show_id" property="showId"/>
+		<result column="content" property="content"/>
+		<result column="wx_name" property="wxName"/>
+		<result column="head_Img" property="headImg"/>
+		<result column="grade" property="grade"/>
+		<result column="mber_type" property="mberType"/>
+	</resultMap>
+	
+	<select id="selectShowTalkById" resultMap="ShowTalkResult">
+		SELECT
+			mt.content,
+			mt.show_id,
+			m.wx_name,
+			m.head_Img,
+			mi.grade,
+			mi.mber_type
+		FROM
+			show_talk AS mt
+			LEFT JOIN	member AS m ON m.member_id = mt.user_h_id
+			LEFT JOIN	member_info AS mi ON mi.member_id = mt.user_h_id
+		WHERE 
+			mt.show_id = #{showId}
+	</select>
 </mapper>
  

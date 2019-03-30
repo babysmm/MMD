@@ -14,7 +14,7 @@
 		<result column="change_user_id" property="changeUserId"/>
 		<result column="session_key" property="sessionKey"/>
 		<result column="my_session_key" property="mySessionKey"/>
-		<result column="date3" property="date3"/>
+		<result column="good_show" property="goodShow"/>
 		<result column="date4" property="date4"/>
 		<result column="date5" property="date5"/>
 	</resultMap>
