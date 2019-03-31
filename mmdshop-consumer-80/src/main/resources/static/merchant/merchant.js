@@ -33,6 +33,18 @@ window.onload=function()
 			$("#commodityType").html(ophtml);
 		}
 	}, null);
+	
+	$.postData("/consumer/searchCommodityBrand", null, function(result) {
+		if (result != null && result.length != 0) {
+			
+			var ophtml = "";
+			for(var i=0;i<result.length;++i){
+				ophtml += "<option value ="+result[i].brandId+">"+result[i].name+"</option>";
+			}
+			
+			$("#commodityBrand").html(ophtml);
+		}
+	}, null);
 }
 
 

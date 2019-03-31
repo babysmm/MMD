@@ -1,7 +1,6 @@
 package com.mmd.mmdshop.impl.commodity;
 
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mmd.mmdshop.dbdo.CommodityBrandDO;
-import com.mmd.mmdshop.dbdo.CommodityDO;
-import com.mmd.mmdshop.dbdo.CommodityTypeDO;
 import com.mmd.mmdshop.mapper.commodity.CommodityBrandMapper;
-import com.mmd.mmdshop.mapper.commodity.CommodityTypeMappper;
 import com.mmd.mmdshop.service.commodity.CommodityBrandService;
-import com.mmd.mmdshop.service.commodity.CommodityTypeService;
 
 /**
  * 
@@ -35,7 +30,7 @@ public class CommodityBrandServiceImpl implements CommodityBrandService {
 	@Override
 	public List<CommodityBrandDO> findCommodityBrandDOList(Integer shopId) {
 		QueryWrapper<CommodityBrandDO> wrapper = new QueryWrapper<CommodityBrandDO>();
-		wrapper.select("name","address").eq("shop_id", shopId).eq("state", 1);
+		wrapper.select("name","address","brand_id").eq("shop_id", shopId).eq("state", 1);
 		return mapper.selectList(wrapper);
 	}
 

@@ -69,7 +69,7 @@ $("#searchCommodity").click(function() {
 })
 
 function validateImage(url)
-    {    
+{    
         var xmlHttp ;
         if (window.ActiveXObject)
          {
@@ -85,7 +85,7 @@ function validateImage(url)
         return false;
         else
         return true;
-    }
+}
 
 
 /**
@@ -142,12 +142,26 @@ function clearCommodityFrom() {
  */
 function getCommodityFrom(url){
 	//数据校验
-	var s = $.isNotNull("#commodityFrom",new Array("commodityDO.barCode","commodityDO.name","commodityTypeDO.type","commodityDO.keywords","commodityBrandDO.name","commodityBrandDO.address"))
+	var s = $.isNotNull("#commodityFrom",new Array("commodityDO.barCode","commodityDO.name","commodityDO.keywords","commodityBrandDO.address"));
+	var c = $.isNotNull("#commodityDefFrom",new Array("commodityDO.weight",
+														"commodityDO.number",
+														"commodityDO.integral",
+														"commodityDO.note",
+														"commodityDO.address"));
+	
+	var w = $.isNotNull("#commodityPriceFrom",new Array("commodityDO.marketPrice",
+														"commodityDO.primeCost",
+														"commodityDO.lowPrice",
+														"commodityDO.retailPrice",
+														"commodityDO.tradePrice",
+														"commodityDO.maxNumber",
+														"commodityDO.minNumber"));
+	var a = $.isNotNull("#commodityPriceFrom",new Array("commodityDO.evaluate"));
 	
 	//获取数据
 	var obj = $.getObjFrom(new Array("#commodityFrom","#commodityDefFrom","#commodityStateFrom","#commodityPriceFrom","#commodityGoodFrom"));
 	
-	console.log(img)
+	console.log(obj)
 	
 	
 	//提交后台
@@ -183,23 +197,74 @@ $("#allCommodityBrand").click(function(){
 })
 
 $("#addCommodityBrand").click(function() {
-	addCommoditBrand((brandLength+1),"","add");
+	addCommoditBrand(null,(brandLength+1),"","add");
 	brandLength++;
 })
 
 //删除
-$(".delBrand").click(function() {
-	console.log(1)
-})
+$(function(){				
+	$('body').on('click' , '.delBrand' , function() {
+		var dom = this;
+		$.post('/consumer/removeCommodityBrand', {
+			'brandId' : $(this).attr("brandId"),
+		}, function(result) {
+			if (result != null && result.length != 0) {
+				if(result == true){
+					$(dom).parent().parent().remove()
+				}
+			} else {
+				
+			}
+		});
+		
+	})
+});
 
+//保存
+$(function(){				
+	$('body').on('click' , '.upDataBrand' , function() {
+		var dom = this;
+		var type = $(dom).attr("types");
+		var val = $(dom).parent().parent().find("input").val();
+		
+		console.log(val.length)
+		if(val.length>15 || val.length<1){
+			$.myAlert("警告", "品牌长度不对", "red", 2000);
+		}
+		
+		if(type == 'add'){		//新增
+			upLoadCommodityBrand("/consumer/addCommodityBrand",null,val);
+		}else{					//保存
+			upLoadCommodityBrand("/consumer/modityCommodityBrand",$(dom).attr("brandId"),val);
+		}
+		
+	})
+});
+
+function upLoadCommodityBrand(url,id,name){
+	$.postData(url, {
+		"brandId":id,
+		"name":name
+	},function(result) {
+		if (result != null && result.length != 0) {
+			if(result == true){
+				brandInit();
+			}else{
+				
+			}
+		} else {
+			
+		}
+	}, null);
+}
 
 function brandInit(){
+	$("#CommodityType tr:gt(0)").empty();
 	$.postData("/consumer/searchCommodityBrand", null,function(result) {
 		if (result != null && result.length != 0) {
-			console.log(result)
 			
 			for(var i=0;i<result.length;i++){
-				addCommoditBrand((i+1),result[i].name,null);
+				addCommoditBrand(result[i].brandId,(i+1),result[i].name,null);
 			}
 			
 			brandLength = result.length;
@@ -209,11 +274,11 @@ function brandInit(){
 	}, null);
 }
 
-function addCommoditBrand(item,name,type){
+function addCommoditBrand(id,item,name,type){
 	var addHtml = "<tr><td>"+item+"</td><td><input type='text' value='"+name+"'></td>"+
 	"<td>"+
-		"<button brandId='' class='upDataBrand' types='"+type+"'>保存</button>"+
-		"<button brandId='' class='delBrand'>删除</button>"+
+		"<button brandId='"+id+"' class='upDataBrand' types='"+type+"'>保存</button>"+
+		"<button brandId='"+id+"' class='delBrand'>删除</button>"+
 	"</td></tr>";
 	$("#CommodityType").append(addHtml);
 }

@@ -39,17 +39,17 @@ public class CommodityBrandController<T>{
 	}
 	
 	@PostMapping("/provider/addCommodityBrand")
-	public boolean addCommodityBrand(CommodityBrandDO commodityBrandDO) {
+	public boolean addCommodityBrand(@RequestBody CommodityBrandDO commodityBrandDO) {
 		return service.addCommodityBrand(commodityBrandDO);
 	}
 
 	@PostMapping("/provider/modityCommodityBrand")
-	public boolean modityCommodityBrand(CommodityBrandDO commodityBrandDO) {
+	public boolean modityCommodityBrand(@RequestBody CommodityBrandDO commodityBrandDO) {
 		return service.modityCommodityBrand(commodityBrandDO);
 	}
 
 	@PostMapping("/provider/removeCommodityBrand")
-	public boolean removeCommodityBrand(CommodityBrandDO commodityBrandDO) {
+	public boolean removeCommodityBrand(@RequestBody CommodityBrandDO commodityBrandDO) {
 		return service.removeCommodityBrand(commodityBrandDO.getBrandId(), commodityBrandDO.getShopId());
 	}
 }

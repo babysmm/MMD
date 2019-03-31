@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -42,12 +43,16 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 	}
 	
 	@PostMapping("/consumer/addCommodityBrand")
-	public boolean addCommodityBrand(CommodityBrandDO commodityBrandDO) {
+	public boolean addCommodityBrand(@RequestBody CommodityBrandDO commodityBrandDO,HttpServletRequest httpServletRequest) {
+		Integer shopId = (Integer) httpServletRequest.getSession().getAttribute("shopId");
+		commodityBrandDO.setShopId(shopId);
 		return template.postForObject(ADMINUSERPROVIDER_URL + "/addCommodityBrand", commodityBrandDO, boolean.class);
 	}
 
 	@PostMapping("/consumer/modityCommodityBrand")
-	public boolean modityCommodityBrand(CommodityBrandDO commodityBrandDO) {
+	public boolean modityCommodityBrand(@RequestBody CommodityBrandDO commodityBrandDO,HttpServletRequest httpServletRequest) {
+		Integer shopId = (Integer) httpServletRequest.getSession().getAttribute("shopId");
+		commodityBrandDO.setShopId(shopId);
 		return template.postForObject(ADMINUSERPROVIDER_URL + "/modityCommodityBrand", commodityBrandDO, boolean.class);
 	}
 
