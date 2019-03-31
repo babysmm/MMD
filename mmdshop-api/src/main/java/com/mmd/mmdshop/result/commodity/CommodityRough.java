@@ -26,8 +26,16 @@ import lombok.experimental.Accessors;
 @JsonSerialize
 public class CommodityRough implements Serializable{
 	
-	/** 商品条形码  */
-	private Long id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/** 商品Id  */
+	private Long commodityId;
+	
+	/** 商店Id  */
+	private Long shopId;
 	
 	/** 商品缩略图 */
     private String img;

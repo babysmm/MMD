@@ -19,11 +19,27 @@
 		<result column="date5" property="date5"/>
 	</resultMap>
 	
+	<resultMap type="com.mmd.mmdshop.result.member.WXUserResult" id="WXUserResult">
+		<id column="member_id" property="memberId"/>
+		<result column="head_Img" property="headImg"/>
+		<result column="mber_type" property="country"/>
+		<result column="gender" property="gender"/>
+		<result column="wx_name" property="wxName"/>
+	</resultMap>
+	
 	<insert id="insertMember">
 		INSERT INTO member (
 			member_id,open_id,session_key,my_session_key
 		)VALUES(
 			NULL,#{openId},#{sessionKey},#{mySessionKey}
+		);
+		<selectKey resultType="java.lang.Long" order="AFTER" keyProperty="productId">
+          SELECT LAST_INSERT_ID()
+     	</selectKey>
+     	INSERT INTO member_info (
+			member_id,grade,mber_type,register_time
+		)VALUES(
+			#{productId},0,0,NOW()
 		);
 	</insert>
 	
@@ -40,5 +56,19 @@
         	wx_name = #{nickName}
         where member_id=#{memberId};
 	</update>
+	
+	<select id="selectWXUserResult" resultMap="WXUserResult">
+		SELECT
+			m.member_id,
+			m.wx_name,
+			m.head_Img,
+			mi.grade,
+			mi.mber_type
+		FROM
+			member AS m
+			LEFT JOIN member_info AS mi ON mi.member_id = m.member_id
+		WHERE
+			m.member_id = #{memberId}
+	</select>
 </mapper>
  

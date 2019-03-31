@@ -34,7 +34,7 @@ public class CommodityBrandController<T>{
 	 * @return
 	 */
 	@PostMapping("/provider/findCommodityBrandDOList")
-	public List<CommodityBrandDO> findCommodityBrandDOList(@RequestBody Long shopId) {
+	public List<CommodityBrandDO> findCommodityBrandDOList(@RequestBody Integer shopId) {
 		return service.findCommodityBrandDOList(shopId);
 	}
 	

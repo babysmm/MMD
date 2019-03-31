@@ -42,5 +42,10 @@
 		WHERE 
 			mt.show_id = #{showId}
 	</select>
+	
+	<insert id='insertShowTalk'>
+		INSERT INTO show_talk(show_talk_id,show_id,user_h_id,content,change_time) VALUES(NULL,#{showId},#{memberId},#{context},NOW());
+		UPDATE show_d SET talk = talk + 1 WHERE show_id = #{showId};
+	</insert>
 </mapper>
  

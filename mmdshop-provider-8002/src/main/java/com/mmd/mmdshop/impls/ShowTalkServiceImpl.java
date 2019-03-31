@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.mmd.mmdshop.mapper.show.ShowTalkMapper;
+import com.mmd.mmdshop.result.show.ShowTalkMemberResult;
 import com.mmd.mmdshop.result.show.ShowTalkResult;
 import com.mmd.mmdshop.services.ShowTalkService;
 
@@ -24,4 +25,8 @@ public class ShowTalkServiceImpl implements ShowTalkService{
 		return mapper.selectShowTalkById(showId);
 	}
 
+	@Override
+	public boolean addNewShowTalk(ShowTalkMemberResult result) {
+		return mapper.insertShowTalk(result);
+	}
 }

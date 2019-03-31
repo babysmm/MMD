@@ -67,7 +67,6 @@ public class MemberServiceImpl implements MemberService{
 		return backresult;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public MemberIndexInitResult findMemberIndexInitResult() throws Exception {
 		Jedis jedis = redisUtil.getJedis();

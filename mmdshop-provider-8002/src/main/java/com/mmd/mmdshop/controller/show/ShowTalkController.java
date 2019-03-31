@@ -1,12 +1,14 @@
 package com.mmd.mmdshop.controller.show;
 
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import com.mmd.mmdshop.result.show.ShowTalkMemberResult;
 import com.mmd.mmdshop.result.show.ShowTalkResult;
 import com.mmd.mmdshop.services.ShowTalkService;
 
@@ -26,5 +28,10 @@ public class ShowTalkController {
 	@PostMapping("/provider/getShowTalk")
 	public List<ShowTalkResult> getShowTalk(@RequestBody Integer showId) throws Exception {
 		return service.getShowTalkById(showId);
+	}
+	
+	@PostMapping("/provider/addNewShowTalk")
+	public boolean addNewShowTalk(@RequestBody ShowTalkMemberResult result,HttpServletRequest request) {
+		return service.addNewShowTalk(result);
 	}
 }

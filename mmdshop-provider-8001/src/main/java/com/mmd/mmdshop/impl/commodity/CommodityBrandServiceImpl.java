@@ -33,7 +33,7 @@ public class CommodityBrandServiceImpl implements CommodityBrandService {
 	private CommodityBrandMapper mapper;
 
 	@Override
-	public List<CommodityBrandDO> findCommodityBrandDOList(Long shopId) {
+	public List<CommodityBrandDO> findCommodityBrandDOList(Integer shopId) {
 		QueryWrapper<CommodityBrandDO> wrapper = new QueryWrapper<CommodityBrandDO>();
 		wrapper.select("name","address").eq("shop_id", shopId).eq("state", 1);
 		return mapper.selectList(wrapper);
@@ -50,7 +50,7 @@ public class CommodityBrandServiceImpl implements CommodityBrandService {
 	}
 
 	@Override
-	public boolean removeCommodityBrand(Long brandId, Long shopId) {
+	public boolean removeCommodityBrand(Integer brandId, Integer shopId) {
 		return mapper.deleteCommodityBrand(brandId,shopId);
 	}
 

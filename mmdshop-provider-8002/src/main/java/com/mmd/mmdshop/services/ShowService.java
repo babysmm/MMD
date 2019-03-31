@@ -1,6 +1,8 @@
 package com.mmd.mmdshop.services;
 
 import java.util.List;
+
+import com.mmd.mmdshop.result.QiNiuResult;
 import com.mmd.mmdshop.result.show.ShowResult;
 
 import net.sf.json.JSONObject;
@@ -18,4 +20,11 @@ public interface ShowService {
 	 * @return
 	 */
 	boolean addShowGood(JSONObject json);
+	
+	/**
+	 * 增加show
+	 * @param result
+	 * @return
+	 */
+	QiNiuResult addNewShow(ShowResult result);
 }

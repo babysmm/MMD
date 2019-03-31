@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.mmd.mmdshop.dbdo.*;
 import com.mmd.mmdshop.result.member.WXUserInfo;
+import com.mmd.mmdshop.result.member.WXUserResult;
 
 @Mapper
 public interface MemberMapper extends BaseMapper<MemberDO>{
@@ -33,4 +34,6 @@ public interface MemberMapper extends BaseMapper<MemberDO>{
 	 * @return
 	 */
 	boolean updataMemberWXInfo(WXUserInfo info);
+	
+	WXUserResult selectWXUserResult(@Param("memberId")Integer integer);
 }

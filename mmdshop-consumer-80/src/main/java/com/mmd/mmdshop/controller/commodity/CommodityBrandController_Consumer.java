@@ -34,10 +34,10 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	@PostMapping("/consumer/findCommodityBrandDOList")
+	@PostMapping("/consumer/searchCommodityBrand")
 	public List<CommodityBrandDO> findCommodityBrandDOList(HttpServletRequest httpServletRequest) {
 		//获取shopID
-		Long shopId = (Long) httpServletRequest.getSession().getAttribute("shopId");
+		Integer shopId = (Integer) httpServletRequest.getSession().getAttribute("shopId");
 		return template.postForObject(ADMINUSERPROVIDER_URL + "/findCommodityBrandDOList", shopId, List.class);
 	}
 	
@@ -54,7 +54,7 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 	@PostMapping("/consumer/removeCommodityBrand")
 	public boolean removeCommodityBrand(CommodityBrandDO commodityBrandDO,HttpServletRequest httpServletRequest) {
 		//获取shopID
-		Long shopId = (Long) httpServletRequest.getSession().getAttribute("shopId");
+		Integer shopId = (Integer) httpServletRequest.getSession().getAttribute("shopId");
 		commodityBrandDO.setShopId(shopId);
 		return template.postForObject(ADMINUSERPROVIDER_URL + "/removeCommodityBrand", commodityBrandDO, boolean.class);
 	}

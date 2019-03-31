@@ -146,3 +146,24 @@ table tbody{
 .commodity-tr,.commodityDef-tr,.commodityImg-tr,.commodityState-tr,.commodityPrice-tr,.commodityGood-tr{
 	display: none;
 }
+
+#CommodityType{
+	font-size:10px;
+}
+#CommodityType tr td:nth-child(1){
+	width:5%;
+}
+#CommodityType tr td:nth-child(2){
+	width:75%;
+}
+#CommodityType tr td:nth-child(3){
+	display:flex;
+	width:20%;
+	text-align:center;
+}
+#CommodityType tr td:nth-child(3)>button{
+	padding: 10px;
+	padding-top:5px;
+	padding-bottom:5px;
+	margin-left:10px;
+}

@@ -149,7 +149,7 @@ function getCommodityFrom(url){
 	
 	console.log(img)
 	
-	/*
+	
 	//提交后台
 	$.postData(url, obj["commodityDO"],function(result) {
 		if (result != null && result.length != 0) {
@@ -166,5 +166,54 @@ function getCommodityFrom(url){
 			
 		}
 	}, null);
-	*/
+}
+
+var brandLength = 0;
+
+//打开品牌
+$("#commodityBrand").click(function(){
+	//加载全部品牌信息
+	brandInit();
+})
+
+$("#allCommodityBrand").click(function(){
+	//删除表格
+	$('#CommodityType tr td').remove();
+	brandInit();
+})
+
+$("#addCommodityBrand").click(function() {
+	addCommoditBrand((brandLength+1),"","add");
+	brandLength++;
+})
+
+//删除
+$(".delBrand").click(function() {
+	console.log(1)
+})
+
+
+function brandInit(){
+	$.postData("/consumer/searchCommodityBrand", null,function(result) {
+		if (result != null && result.length != 0) {
+			console.log(result)
+			
+			for(var i=0;i<result.length;i++){
+				addCommoditBrand((i+1),result[i].name,null);
+			}
+			
+			brandLength = result.length;
+		} else {
+			
+		}
+	}, null);
+}
+
+function addCommoditBrand(item,name,type){
+	var addHtml = "<tr><td>"+item+"</td><td><input type='text' value='"+name+"'></td>"+
+	"<td>"+
+		"<button brandId='' class='upDataBrand' types='"+type+"'>保存</button>"+
+		"<button brandId='' class='delBrand'>删除</button>"+
+	"</td></tr>";
+	$("#CommodityType").append(addHtml);
 }

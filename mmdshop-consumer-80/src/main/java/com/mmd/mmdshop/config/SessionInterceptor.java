@@ -33,6 +33,12 @@ public class SessionInterceptor implements HandlerInterceptor {
 		map.put("sendEmailCode", 2);
 		map.put("addCommodity", 2);
 		map.put("modifyCommodity", 2);
+		
+		map.put("searchCommodityBrand", 2);
+		map.put("addCommodityBrand", 2);
+		map.put("modityCommodityBrand", 2);
+		map.put("removeCommodityBrand", 2);
+		
 		map.put("searchCommodityDOByBarCode", 3);
 		map.put("getCommodityType", 3);
 		map.put("searchCommodityDOByName", 3);
@@ -42,6 +48,8 @@ public class SessionInterceptor implements HandlerInterceptor {
 		map.put("getNewShowMessage", 4);
 		map.put("showGood", 4);
 		map.put("getShowTalk", 4);
+		map.put("addNewShowTalk", 4);
+		map.put("addNewShow", 4);
 	}
 	
 	
@@ -55,7 +63,6 @@ public class SessionInterceptor implements HandlerInterceptor {
         boolean result = true;
         
         if(map.get(requestPath) == 4) {	//会员
-        	System.out.println();
         	if(session.getAttribute("openID") == null) {
         		result = false;
         	}else {

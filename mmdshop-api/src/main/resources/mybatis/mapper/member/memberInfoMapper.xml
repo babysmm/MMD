@@ -3,15 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mmd.mmdshop.mapper.member.MemberAddressMapper">
-<!--  
-	<resultMap type="com.mmd.mmdshop.dbdo.ChangeTypeDO" id="ChangeTypeDO">
-		<id column="user_id" property="userId"/>
-		<result column="name" property="name"/>
-		<result column="change_id" property="changeId"/>
-		<result column="change_time" property="changeTime"/>
-		<result column="change_user_id" property="changeUserId"/>
-	</resultMap>
--->
 	<resultMap type="com.mmd.mmdshop.dbdo.MemberInfoDO" id="MemberInfoDO">
 		<id column="member_id" property="memberId"/>
 		<result column="phone_number" property="phoneNumber"/>
@@ -31,5 +22,13 @@
 		<result column="date4" property="date4"/>
 		<result column="date5" property="date5"/>
 	</resultMap>
+	
+	<insert id="insertMemberInfo">
+		INSERT INTO member_info (
+			member_id,grade,mber_type,register_time
+		)VALUES(
+			#{memberId},0,0,NOW()
+		);
+	</insert>
 </mapper>
  

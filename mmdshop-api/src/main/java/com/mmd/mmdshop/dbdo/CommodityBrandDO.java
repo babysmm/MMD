@@ -29,7 +29,7 @@ public class CommodityBrandDO implements java.io.Serializable {
     
     /** 品牌ID */
     @TableId(value="brand_id",type=IdType.AUTO)
-    private Long brandId;
+    private Integer brandId;
     
     /** 品牌名字 */
     private String name;
@@ -41,7 +41,7 @@ public class CommodityBrandDO implements java.io.Serializable {
     private int state;
     
     /**  */
-    private Long shopId;
+    private Integer shopId;
     
     /**  */
     private String date3;

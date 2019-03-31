@@ -28,6 +28,6 @@ public interface CommodityBrandMapper extends BaseMapper<CommodityBrandDO>{
 	 * @param commodityBrandDO
 	 * @return
 	 */
-	boolean deleteCommodityBrand(@Param("brandId")Long brandId,@Param("shopId")Long shopId);
+	boolean deleteCommodityBrand(@Param("brandId")Integer brandId,@Param("shopId")Integer shopId);
 	
 }

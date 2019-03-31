@@ -81,5 +81,48 @@
 		update show_d set good=good+1 where show_id = #{showId};
 	</update>
 	
+	<insert id="insertShow" useGeneratedKeys="true" keyProperty="showId">
+		INSERT INTO show_d (
+				show_id,
+				user_id,
+				add_time,
+				content,
+				good,
+				talk,
+				transpond,
+				torUrl,
+				look
+		)
+		VALUES
+		(
+				NULL,
+				#{userId},
+				NOW(),
+				#{content},
+				0,
+				0,
+				0,
+				#{torUrl},
+				0
+		);
+	</insert>
+	
+	<insert id="insertShowImg">
+		INSERT INTO show_img (
+				show_img_id,
+				show_id,
+				img1,
+				img2,
+				img3
+		)
+		VALUES
+		(
+				NULL,
+				#{showId},
+				#{img1},
+				#{img2},
+				#{img3}
+		);
+	</insert>
 </mapper>
  

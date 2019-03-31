@@ -11,7 +11,7 @@ public interface CommodityBrandService {
 	 * @param shopId
 	 * @return
 	 */
-	List<CommodityBrandDO> findCommodityBrandDOList(Long shopId);
+	List<CommodityBrandDO> findCommodityBrandDOList(Integer shopId);
 	
 	/**
 	 * 新增商品品牌
@@ -33,5 +33,5 @@ public interface CommodityBrandService {
 	 * @param shopId
 	 * @return
 	 */
-	boolean removeCommodityBrand(Long brandId,Long shopId);
+	boolean removeCommodityBrand(Integer brandId,Integer shopId);
 }

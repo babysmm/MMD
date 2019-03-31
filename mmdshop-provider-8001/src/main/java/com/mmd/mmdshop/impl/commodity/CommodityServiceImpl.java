@@ -105,8 +105,8 @@ public class CommodityServiceImpl implements CommodityService {
 				case 5:	img.setImg5(keya[i]);break;
 			}
 			
-			System.out.println(keya[i]);
-			System.out.println(token[i]);
+			//System.out.println(keya[i]);
+			//System.out.println(token[i]);
 			
 		}
 		
