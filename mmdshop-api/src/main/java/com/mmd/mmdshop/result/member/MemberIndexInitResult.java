@@ -1,7 +1,5 @@
 package com.mmd.mmdshop.result.member;
 
-import java.util.List;
-
 import com.mmd.mmdshop.result.commodity.CommodityRough;
 import lombok.AllArgsConstructor;
 import lombok.Data;

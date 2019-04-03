@@ -1,6 +1,7 @@
 package com.mmd.mmdshop.controller.commodity;
 
 import java.util.List;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,31 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 	private RestTemplate template;
 	
 	/**
-	 * 获取商品类型
+	 * 商家获取商品类型
 	 * @param marketResult
+	 * @return
+	 */
+	/**
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	@PostMapping("/consumer/getCommodityType")
-	public List<CommodityTypeDO> getCommodityType() {
-		return template.postForObject(ADMINUSERPROVIDER_URL+"/getCommodityType", null, List.class);
+	public List<CommodityTypeDO> getCommodityType(HttpServletRequest httpServletRequest) {
+		Integer shopId = Integer.parseInt(httpServletRequest.getSession().getAttribute("shopId").toString());
+		return template.postForObject(ADMINUSERPROVIDER_URL+"/getCommodityType", shopId, List.class);
+	}
+	
+	/**
+	 * 会员获取商品类型
+	 * @param marketResult
+	 * @return
+	 */
+	/**
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	@PostMapping("/consumer/membergetCommodityType")
+	public List<CommodityTypeDO> membergetCommodityType(Integer shopId) {
+		return template.postForObject(ADMINUSERPROVIDER_URL+"/getCommodityType", shopId, List.class);
 	}
 }

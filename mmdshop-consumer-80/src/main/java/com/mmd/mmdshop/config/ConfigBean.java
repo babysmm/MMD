@@ -1,14 +1,11 @@
 package com.mmd.mmdshop.config;
 
 import java.nio.charset.StandardCharsets;
-
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
-
 import com.baidu.aip.speech.AipSpeech;
 import com.mmd.mmdshop.utils.BaiduSpeechSynthesis;
 import com.mmd.mmdshop.utils.RedisUtil;

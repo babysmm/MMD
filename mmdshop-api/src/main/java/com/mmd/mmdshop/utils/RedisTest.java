@@ -150,11 +150,11 @@ public class RedisTest {
     	CommodityRough[] commodityright = new CommodityRough[2];
     	
     	
-    	commodityLeft[0] = new CommodityRough(1L,1L, "http://mm.xknow.net/269450775921561600.png", "喵喵奶茶1", new BigDecimal(10), new BigDecimal(20));
-    	commodityLeft[1] = new CommodityRough(2L,1L,"http://mm.xknow.net/269450775921561601.png", "喵喵奶茶1", new BigDecimal(10), new BigDecimal(20));
+    	commodityLeft[0] = new CommodityRough(1L,1L, "http://mm.xknow.net/269450775921561600.png", "喵喵奶茶1", new BigDecimal(10), new BigDecimal(20), 1);
+    	commodityLeft[1] = new CommodityRough(2L,1L,"http://mm.xknow.net/269450775921561601.png", "喵喵奶茶1", new BigDecimal(10), new BigDecimal(20),1);
     	
-    	commodityright[1] = new CommodityRough(1L,1L,"http://mm.xknow.net/269450775921561600.png", "喵喵奶茶1", new BigDecimal(10), new BigDecimal(20));
-    	commodityright[0] = new CommodityRough(2L,1L,"http://mm.xknow.net/269450775921561601.png", "喵喵奶茶1", new BigDecimal(20), new BigDecimal(30));
+    	commodityright[1] = new CommodityRough(1L,1L,"http://mm.xknow.net/269450775921561600.png", "喵喵奶茶1", new BigDecimal(10), new BigDecimal(20),1);
+    	commodityright[0] = new CommodityRough(2L,1L,"http://mm.xknow.net/269450775921561601.png", "喵喵奶茶1", new BigDecimal(20), new BigDecimal(30),1);
     	
     	
     	jedis.set("commodityLeft", SerializeUtil.serializeToString(commodityLeft));

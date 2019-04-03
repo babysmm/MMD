@@ -47,7 +47,7 @@ public class CommodityTypeDO implements java.io.Serializable {
     private Integer changeUserId;
     
     /**  */
-    private String date1;
+    private Integer shopId;
     
     /**  */
     private String date2;

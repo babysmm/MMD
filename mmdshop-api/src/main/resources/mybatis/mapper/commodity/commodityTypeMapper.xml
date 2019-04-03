@@ -18,7 +18,7 @@
 		<result column="change_id" property="changeId"/>
 		<result column="change_time" property="changeTime"/>
 		<result column="change_user_id" property="changeUserId"/>
-		<result column="date1" property="date1"/>
+		<result column="shop_id" property="shopId"/>
 		<result column="date2" property="date2"/>
 		<result column="date3" property="date3"/>
 		<result column="date4" property="date4"/>

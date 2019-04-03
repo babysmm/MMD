@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mmd.mmdshop.mapper.shop.ShopTalkMapper">
+	<resultMap type="com.mmd.mmdshop.dbdo.ShopTalkDO" id="ShopTalkDO">
+		<id column="shop_talk_id" property="shopTalkId"/>
+		<result column="shop_id" property="shopId"/>
+		<result column="member_id" property="memberId"/>
+		<result column="creation_time" property="creationTime"/>
+		<result column="grade" property="grade"/>
+		<result column="context" property="context"/>
+		<result column="shop_reply" property="shopReply"/>
+	</resultMap>
+	
+	<resultMap type="com.mmd.mmdshop.result.shop.ShopTalkResult" id="ShopTalkResult">
+		<result column="grade" property="grade"/>
+		<result column="context" property="context"/>
+		<result column="shop_reply" property="shopReply"/>
+		<result column="wx_name" property="wxName"/>
+		<result column="head_Img" property="headImg"/>
+	</resultMap>
+	
+	<select id="selectShopTalk">
+		SELECT
+			st.grade,
+			st.context,
+			st.shop_reply,
+			m.wx_name,
+			m.head_Img
+		FROM
+			shop_talk AS st
+		LEFT JOIN member AS m ON st.member_id = m.member_id
+		WHERE
+			shop_id = #{shopId};
+	</select>
+</mapper>
+ 

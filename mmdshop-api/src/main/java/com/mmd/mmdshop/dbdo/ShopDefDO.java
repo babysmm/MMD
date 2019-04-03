@@ -2,6 +2,7 @@
 
 package com.mmd.mmdshop.dbdo;
 
+import java.sql.Time;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -55,8 +56,11 @@ public class ShopDefDO implements java.io.Serializable {
     /** 好评百分比 */
     private Integer goodNum;
     
-    /** 营业时间 */
-    private String businessHours;
+    /** 开始时间 */
+    private Time openTime;
+    
+    /** 关闭时间 */
+    private Time closeTime;
     
     /** 商户商品类型ID */
     private Integer shopCommTypeId;

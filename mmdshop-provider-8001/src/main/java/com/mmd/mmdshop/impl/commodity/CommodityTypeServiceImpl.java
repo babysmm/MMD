@@ -29,7 +29,7 @@ public class CommodityTypeServiceImpl implements CommodityTypeService {
 	private CommodityTypeMappper mapper;
 
 	@Override
-	public List<CommodityTypeDO> findCommodityTypeAll() {
+	public List<CommodityTypeDO> findCommodityTypeAll(Integer shopId) {
 		QueryWrapper<CommodityTypeDO> queryWrapper = new QueryWrapper<CommodityTypeDO>();
 		queryWrapper.select("comm_type_id","type");
 		return mapper.selectList(queryWrapper);

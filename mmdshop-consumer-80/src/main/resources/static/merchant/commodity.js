@@ -156,7 +156,6 @@ function getCommodityFrom(url){
 														"commodityDO.tradePrice",
 														"commodityDO.maxNumber",
 														"commodityDO.minNumber"));
-	var a = $.isNotNull("#commodityPriceFrom",new Array("commodityDO.evaluate"));
 	
 	//获取数据
 	var obj = $.getObjFrom(new Array("#commodityFrom","#commodityDefFrom","#commodityStateFrom","#commodityPriceFrom","#commodityGoodFrom"));

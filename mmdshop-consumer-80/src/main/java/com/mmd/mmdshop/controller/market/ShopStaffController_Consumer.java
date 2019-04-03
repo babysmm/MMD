@@ -86,6 +86,9 @@ protected final Logger logger = LoggerFactory.getLogger(getClass());
 		if(staffDO.getType() == 2) return null;
 		
 		this.setLoginSession(staffDO, httpServletRequest);
+		
+		//设置shopId
+		httpServletRequest.getSession().setAttribute("shopId", staffDO.getShopId());
 					
 		return staffDO.getFullName();
 	}

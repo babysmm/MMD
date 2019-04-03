@@ -13,5 +13,5 @@ public interface CommodityTypeService {
 	 *            商品名字
 	 * @return 商品粗略信息的集合
 	 */
-	List<CommodityTypeDO> findCommodityTypeAll();
+	List<CommodityTypeDO> findCommodityTypeAll(Integer shopId);
 }

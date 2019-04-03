@@ -48,4 +48,7 @@ public class CommodityRough implements Serializable{
     
     /** 批发价 */
     private BigDecimal costpeo;
+    
+    /** 类型Id */
+    private Integer typeId;
 }

@@ -50,6 +50,9 @@ public class SessionInterceptor implements HandlerInterceptor {
 		map.put("getShowTalk", 4);
 		map.put("addNewShowTalk", 4);
 		map.put("addNewShow", 4);
+		map.put("memberShopInit", 4);
+		map.put("membergetCommodityType", 4);
+		map.put("memberChooseType", 4);
 	}
 	
 	

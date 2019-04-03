@@ -24,7 +24,7 @@ public class CommodityTypeController<T>{
 	private CommodityTypeService service;
 	
 	@PostMapping("/provider/getCommodityType")
-	public List<CommodityTypeDO> findCommodityTypeAll() {
-		return service.findCommodityTypeAll();
+	public List<CommodityTypeDO> findCommodityTypeAll(Integer shopId) {
+		return service.findCommodityTypeAll(shopId);
 	}
 }

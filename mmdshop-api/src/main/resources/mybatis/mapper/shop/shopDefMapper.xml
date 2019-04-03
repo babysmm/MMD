@@ -3,15 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mmd.mmdshop.mapper.shop.ShopDefMappper">
-<!--  
-	<resultMap type="com.mmd.mmdshop.dbdo.ChangeTypeDO" id="ChangeTypeDO">
-		<id column="user_id" property="userId"/>
-		<result column="name" property="name"/>
-		<result column="change_id" property="changeId"/>
-		<result column="change_time" property="changeTime"/>
-		<result column="change_user_id" property="changeUserId"/>
-	</resultMap>
--->
 	<resultMap type="com.mmd.mmdshop.dbdo.ShopDefDO" id="ShopDefDO">
 		<id column="shop_id" property="shopId"/>
 		<result column="address" property="address"/>
@@ -21,7 +12,8 @@
 		<result column="notice" property="notice"/>
 		<result column="credential_id" property="credentialId"/>
 		<result column="good_num" property="goodNum"/>
-		<result column="business_hours" property="businessHours"/>
+		<result column="open_time" property="openTime"/>
+		<result column="close_time" property="closeTime"/>
 		<result column="shop_comm_type_id" property="shopCommTypeId"/>
 		<result column="change_id" property="changeId"/>
 		<result column="change_time" property="changeTime"/>

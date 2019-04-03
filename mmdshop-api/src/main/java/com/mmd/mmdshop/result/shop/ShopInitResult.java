@@ -1,6 +1,5 @@
-package com.mmd.mmdshop.result.market;
+package com.mmd.mmdshop.result.shop;
 
-import com.mmd.mmdshop.dbdo.ShopStaffDO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,9 +11,11 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @ToString
-public class MarketOperationResult {
+public class ShopInitResult {
 	
-	private ShopStaffDO shopStaffDO;
+	private Integer shopId;
 	
-	private Integer code;
+	private Integer commodityId;
+	
+	private Integer typeId;
 }

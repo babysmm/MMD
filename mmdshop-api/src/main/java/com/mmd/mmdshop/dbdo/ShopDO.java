@@ -50,18 +50,18 @@ public class ShopDO implements java.io.Serializable {
     private Integer changeUserId;
     
     /**  */
-    private String date1;
+    private String img1;
     
     /**  */
-    private String date2;
+    private String img2;
     
     /**  */
-    private String date3;
+    private String img3;
     
     /**  */
-    private String date4;
+    private String img4;
     
     /**  */
-    private String date5;
+    private String img5;
     
 }
